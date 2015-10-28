@@ -1,7 +1,5 @@
 package cz.fi.muni.pa165.seminar.pkmnleague.domain;
 
-import com.sun.istack.internal.Nullable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

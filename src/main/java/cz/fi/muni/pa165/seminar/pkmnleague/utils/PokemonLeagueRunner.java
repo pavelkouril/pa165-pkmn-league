@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ImportResource;
  * @author Dominik Hanak @domhanak
  */
 @SpringBootApplication
-@ImportResource("classpath:/dao-context.xml")
+@ImportResource("classpath:/app-Context.xml")
 public class PokemonLeagueRunner {
     public static void main(String[] args) throws SQLException {
         SpringApplication.run(PokemonLeagueRunner.class, args);
