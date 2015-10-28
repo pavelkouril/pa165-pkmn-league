@@ -1,18 +1,16 @@
-package cz.fi.muni.pa165.seminar.pkmnleague.dao;
+/*package cz.fi.muni.pa165.seminar.pkmnleague.dao;
 
-import cz.fi.muni.pa165.seminar.pkmnleague.domain.Pokemon;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.List;
 
-/**
- * Implementation of PokemonDao interface.
- *
- * @author dhanak @domhanak on 10/28/15.
- */
+///**
+// * Implementation of PokemonDao interface.
+// *
+// * @author dhanak @domhanak on 10/28/15.
+ //
 @Repository
 @Transactional
 public class PokemonDaoImpl implements PokemonDao {
@@ -39,4 +37,4 @@ public class PokemonDaoImpl implements PokemonDao {
     public List<Pokemon> findAll() {
         return entityManager.createQuery("select p from Pokemon p", Pokemon.class).getResultList();
     }
-}
+} */
