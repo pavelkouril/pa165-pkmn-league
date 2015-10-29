@@ -20,7 +20,7 @@ public class TrainerDaoImpl implements TrainerDao {
     }
 
     @Override
-    public void create(Trainer trainer) {
+    public void save(Trainer trainer) {
         entityManager.persist(trainer);
     }
 
