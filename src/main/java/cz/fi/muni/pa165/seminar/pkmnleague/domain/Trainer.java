@@ -1,13 +1,12 @@
 package cz.fi.muni.pa165.seminar.pkmnleague.domain;
 
-import sun.util.calendar.BaseCalendar;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 /**
  * Entity class for Trainer object.
@@ -30,7 +29,7 @@ public class Trainer {
 
     @NotNull
     @Column(nullable = false)
-    private BaseCalendar.Date dateOfBirth;
+    private Date dateOfBirth;
 
     @Override
     public boolean equals(Object o) {
@@ -71,11 +70,11 @@ public class Trainer {
         this.surname = surname;
     }
 
-    public BaseCalendar.Date getDateOfBirth() {
+    public Date getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(BaseCalendar.Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+    public void setDateOfBirth(java.sql.Date date) {
+        this.dateOfBirth = date;
     }
 }
