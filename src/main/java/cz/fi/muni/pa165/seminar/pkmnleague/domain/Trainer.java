@@ -53,6 +53,10 @@ public class Trainer {
         result = 31 * result + (dateOfBirth != null ? dateOfBirth.hashCode() : 0);
         return result;
     }
+    
+    public int getId() {
+        return id;
+    }
 
     public String getName() {
         return name;
