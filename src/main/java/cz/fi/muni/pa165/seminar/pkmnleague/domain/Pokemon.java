@@ -1,5 +1,6 @@
 package cz.fi.muni.pa165.seminar.pkmnleague.domain;
 
+import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -26,9 +27,11 @@ public class Pokemon {
 
     @NotNull
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private PokemonType primaryType;
 
     @Column()
+    @Enumerated(EnumType.STRING)
     private PokemonType secondaryType;
 
     @NotNull
@@ -109,27 +112,38 @@ public class Pokemon {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Pokemon)) return false;
-
-        Pokemon pokemon = (Pokemon) o;
-
-        if (level != pokemon.level) return false;
-        if (speciesId != pokemon.speciesId) return false;
-        if (!speciesName.equals(pokemon.speciesName)) return false;
-        if (!trainer.equals(pokemon.trainer)) return false;
-
-        return nickname.equals(pokemon.nickname);
-
+    public int hashCode() {
+        int hash = speciesId;
+        hash = 53 * hash + this.speciesId;
+        hash = 53 * hash + Objects.hashCode(this.speciesName);
+        hash = 53 * hash + Objects.hashCode(this.nickname);
+        hash = 53 * hash + Objects.hashCode(this.trainer);
+        return hash;
     }
 
     @Override
-    public int hashCode() {
-        int result = speciesId;
-        result = 31 * result + speciesName.hashCode();
-        result = 31 * result + nickname.hashCode();
-        result = 31 * result + level;
-        return result;
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Pokemon other = (Pokemon) obj;
+        if (this.speciesId != other.speciesId) {
+            return false;
+        }
+        if (!Objects.equals(this.speciesName, other.speciesName)) {
+            return false;
+        }
+        if (!Objects.equals(this.nickname, other.nickname)) {
+            return false;
+        }
+        if (!Objects.equals(this.level, other.level)) {
+            return false;
+        }
+        return true;
     }
+
+
 }
