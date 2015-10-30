@@ -4,6 +4,8 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="gymDao" class="dao.GymDaoImpl"/>
-    <!-- TODO: add your entity here -->
+    <bean id="pokemonDao" class="dao.PokemonDaoImpl"/>
+    <bean id="trainerDao" class="dao.TrainerDaoImpl"/>
+    <bean id="badgeDao" class="dao.BadgeDaoImpl" />
 
 </beans>
