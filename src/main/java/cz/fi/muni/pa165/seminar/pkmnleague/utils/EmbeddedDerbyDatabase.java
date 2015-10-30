@@ -59,6 +59,7 @@ public class EmbeddedDerbyDatabase {
     public LocalValidatorFactoryBean localValidatorFactoryBean(){
         return new LocalValidatorFactoryBean();
     }
+
     @Bean
     public LoadTimeWeaver instrumentationLoadTimeWeaver() {
         return new InstrumentationLoadTimeWeaver();
