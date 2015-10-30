@@ -30,7 +30,7 @@ public class Gym implements Serializable {
     private PokemonType type;
     
     @NotNull
-    @ManyToOne()
+    @ManyToOne(cascade=CascadeType.PERSIST)
     @JoinColumn(name="TRAINER_ID")
     private Trainer leader;
 

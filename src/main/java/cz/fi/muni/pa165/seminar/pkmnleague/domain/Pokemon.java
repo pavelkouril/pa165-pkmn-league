@@ -36,7 +36,7 @@ public class Pokemon {
     private int level;
 
     @NotNull
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="TRAINER_ID")
     private Trainer trainer;
 
