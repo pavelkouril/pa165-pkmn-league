@@ -3,6 +3,7 @@ package cz.fi.muni.pa165.seminar.pkmnleague.utils;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver;
 import org.springframework.instrument.classloading.LoadTimeWeaver;
@@ -27,6 +28,7 @@ import javax.sql.DataSource;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories
+@ImportResource("classpath:/appContext.xml")
 public class EmbeddedDerbyDatabase {
     @Bean
     public JpaTransactionManager transactionManager(){
