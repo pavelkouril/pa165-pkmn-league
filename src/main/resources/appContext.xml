@@ -3,7 +3,8 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="gymDao" class="dao.GymDaoImpl"/>
-    <!-- TODO: add your entity here -->
-
+    <bean id="gymDao" class="cz.fi.muni.pa165.seminar.pkmnleague.dao.GymDaoImpl"/>
+    <bean id="trainerDao" class="cz.fi.muni.pa165.seminar.pkmnleague.dao.TrainerDaoImpl"/>
+    <bean id="badgeDao" class="cz.fi.muni.pa165.seminar.pkmnleague.dao.BadgeDaoImpl"/>
+    <bean id="pokemonDao" class="cz.fi.muni.pa165.seminar.pkmnleague.dao.PokemonDaoImpl"/>
 </beans>
