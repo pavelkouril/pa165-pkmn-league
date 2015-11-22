@@ -1,6 +1,8 @@
 package cz.fi.muni.pa165.seminar.pkmnleague.dao;
 
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.Gym;
+import org.springframework.stereotype.Repository;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
@@ -11,6 +13,7 @@ import java.util.List;
  * 
  * @author Zuzana Goldmannova
  */
+@Repository
 public class GymDaoImpl implements GymDao{
      @PersistenceContext
     private EntityManager entityManager;

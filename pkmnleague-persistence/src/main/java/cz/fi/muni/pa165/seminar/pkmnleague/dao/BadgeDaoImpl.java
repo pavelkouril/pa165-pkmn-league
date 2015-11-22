@@ -6,6 +6,8 @@
 package cz.fi.muni.pa165.seminar.pkmnleague.dao;
 
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.Badge;
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,7 +16,7 @@ import javax.persistence.PersistenceContext;
  *
  * @author Oldrich Faldik
  */
-
+@Repository
 public class BadgeDaoImpl implements BadgeDao{
     @PersistenceContext
     private EntityManager entityManager;
