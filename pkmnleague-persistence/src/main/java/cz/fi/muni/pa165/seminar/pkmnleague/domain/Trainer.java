@@ -1,12 +1,11 @@
 package cz.fi.muni.pa165.seminar.pkmnleague.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Entity class for Trainer object.
@@ -30,6 +29,19 @@ public class Trainer {
     @NotNull
     @Column(nullable = false)
     private Date dateOfBirth;
+
+    @NotNull
+    @OneToMany(cascade = CascadeType.PERSIST)
+    private Set<Badge> badges = new HashSet<>();
+
+    public Trainer(String name, String surname, Date dateOfBirth) {
+        this.name = name;
+        this.surname = surname;
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public Trainer() {
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -80,5 +92,13 @@ public class Trainer {
 
     public void setDateOfBirth(java.sql.Date date) {
         this.dateOfBirth = date;
+    }
+
+    void addBadge(Badge badge) {
+        badges.add(badge);
+    }
+
+    public Set<Badge> getBadges() {
+        return Collections.unmodifiableSet(badges);
     }
 }
