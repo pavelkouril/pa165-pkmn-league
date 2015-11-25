@@ -51,6 +51,15 @@ public class Pokemon {
         this.trainer = trainer;
     }
 
+    public Pokemon(Trainer trainer, int speciesId, String speciesName, PokemonType primaryType, PokemonType secondaryType, int level) {
+        this.speciesId = speciesId;
+        this.speciesName = speciesName;
+        this.primaryType = primaryType;
+        this.secondaryType = secondaryType;
+        this.level = level;
+        this.trainer = trainer;
+    }
+
     public int getId() {
         return id;
     }

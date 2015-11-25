@@ -15,7 +15,7 @@ public class Badge {
     private int id;
     
     @NotNull
-    @ManyToOne(cascade=CascadeType.PERSIST)
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="TRAINER_ID")
     private Trainer trainer;
 
@@ -27,6 +27,7 @@ public class Badge {
     public Badge(Trainer trainer, Gym gym) {
         this.trainer = trainer;
         this.gym = gym;
+        trainer.addBadge(this);
 
     }
     
