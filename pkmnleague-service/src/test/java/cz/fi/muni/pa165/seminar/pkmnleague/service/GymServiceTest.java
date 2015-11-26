@@ -28,7 +28,7 @@ import static org.testng.Assert.assertEquals;
  * @author Pavel Kouřil <pk@pavelkouril.cz>
  */
 @ContextConfiguration(classes = ServiceConfiguration.class)
-public class GymServiceImplTest extends AbstractTestNGSpringContextTests {
+public class GymServiceTest extends AbstractTestNGSpringContextTests {
     @Mock
     private GymDao gymDao;
 
