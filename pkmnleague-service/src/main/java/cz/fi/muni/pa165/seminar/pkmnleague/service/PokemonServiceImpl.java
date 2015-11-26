@@ -29,4 +29,9 @@ public class PokemonServiceImpl implements PokemonService {
     public void delete(Pokemon pokemon) {
         pokemonDao.delete(pokemon);
     }
+
+    @Override
+    public void create(Pokemon pokemon) {
+        pokemonDao.save(pokemon);
+    }
 }

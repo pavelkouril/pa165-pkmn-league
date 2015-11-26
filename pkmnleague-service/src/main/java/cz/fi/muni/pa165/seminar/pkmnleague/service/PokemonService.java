@@ -11,4 +11,5 @@ public interface PokemonService {
     Pokemon findById(int id);
     List<Pokemon> findAll();
     void delete(Pokemon pokemon);
+    void create(Pokemon pokemon);
 }
