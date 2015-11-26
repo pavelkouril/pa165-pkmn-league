@@ -1,6 +1,6 @@
 # PA165 Projekt (Seminář 03, tým 5) - Pokémon League
 
-Seminář 03, tým 5.
+[![Build Status](https://travis-ci.org/pavelkouril/pa165-pkmn-league.svg)](https://travis-ci.org/pavelkouril/pa165-pkmn-league)
 
 Informace k projektu (zadání, apod.) lze nalézt ve [Wiki](https://github.com/pavelkouril/pa165-pkmn-league/wiki)
 
