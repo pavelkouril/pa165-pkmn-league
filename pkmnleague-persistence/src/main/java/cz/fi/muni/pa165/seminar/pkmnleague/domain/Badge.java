@@ -23,7 +23,10 @@ public class Badge {
     @ManyToOne(cascade=CascadeType.PERSIST)
     @JoinColumn(name="GYM_ID")
     private Gym gym;
-    
+
+    public Badge() {
+    }
+
     public Badge(Trainer trainer, Gym gym) {
         this.trainer = trainer;
         this.gym = gym;

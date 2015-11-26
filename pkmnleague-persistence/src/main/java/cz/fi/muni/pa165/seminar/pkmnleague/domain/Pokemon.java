@@ -43,6 +43,9 @@ public class Pokemon {
     @JoinColumn(name="TRAINER_ID")
     private Trainer trainer;
 
+    public Pokemon() {
+    }
+
     public Pokemon(Trainer trainer, int speciesId, String speciesName, PokemonType primaryType, int level) {
         this.speciesId = speciesId;
         this.speciesName = speciesName;

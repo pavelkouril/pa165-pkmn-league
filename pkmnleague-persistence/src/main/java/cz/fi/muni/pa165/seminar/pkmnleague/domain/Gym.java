@@ -34,6 +34,9 @@ public class Gym implements Serializable {
     @JoinColumn(name="TRAINER_ID")
     private Trainer leader;
 
+    public Gym() {
+    }
+
     public Gym(String city, PokemonType type, Trainer leader) {
         this.city = city;
         this.type = type;

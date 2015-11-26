@@ -34,6 +34,9 @@ public class Trainer {
     @OneToMany(cascade = CascadeType.PERSIST)
     private Set<Badge> badges = new HashSet<>();
 
+    @NotNull
+    private boolean isGymLeader = false;
+
     public Trainer(String name, String surname, Date dateOfBirth) {
         this.name = name;
         this.surname = surname;
@@ -100,5 +103,13 @@ public class Trainer {
 
     public Set<Badge> getBadges() {
         return Collections.unmodifiableSet(badges);
+    }
+
+    public boolean isGymLeader() {
+        return isGymLeader;
+    }
+
+    public void setIsGymLeader(boolean isGymLeader) {
+        this.isGymLeader = isGymLeader;
     }
 }
