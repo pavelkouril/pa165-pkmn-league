@@ -34,41 +34,15 @@ public class Trainer {
     @OneToMany(cascade = CascadeType.PERSIST)
     private Set<Badge> badges = new HashSet<>();
 
-    @NotNull
-    private boolean isGymLeader = false;
-
     public Trainer(String name, String surname, Date dateOfBirth) {
         this.name = name;
         this.surname = surname;
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Trainer() {
+    protected Trainer() {
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Trainer trainer = (Trainer) o;
-
-        if (id != trainer.id) return false;
-        if (name != null ? !name.equals(trainer.name) : trainer.name != null) return false;
-        if (surname != null ? !surname.equals(trainer.surname) : trainer.surname != null) return false;
-        return !(dateOfBirth != null ? !dateOfBirth.equals(trainer.dateOfBirth) : trainer.dateOfBirth != null);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (surname != null ? surname.hashCode() : 0);
-        result = 31 * result + (dateOfBirth != null ? dateOfBirth.hashCode() : 0);
-        return result;
-    }
-    
     public int getId() {
         return id;
     }
@@ -105,11 +79,28 @@ public class Trainer {
         return Collections.unmodifiableSet(badges);
     }
 
-    public boolean isGymLeader() {
-        return isGymLeader;
+    public boolean isGymLeaderAtGym(Gym gym) {
+        return gym.getLeader().equals(this);
     }
 
-    public void setIsGymLeader(boolean isGymLeader) {
-        this.isGymLeader = isGymLeader;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Trainer)) return false;
+
+        Trainer trainer = (Trainer) o;
+
+        if (!getName().equals(trainer.getName())) return false;
+        if (!getSurname().equals(trainer.getSurname())) return false;
+        return getDateOfBirth().equals(trainer.getDateOfBirth());
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getName().hashCode();
+        result = 31 * result + getSurname().hashCode();
+        result = 31 * result + getDateOfBirth().hashCode();
+        return result;
     }
 }

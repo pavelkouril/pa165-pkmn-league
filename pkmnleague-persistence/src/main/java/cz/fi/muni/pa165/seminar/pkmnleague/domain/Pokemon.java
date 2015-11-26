@@ -43,9 +43,6 @@ public class Pokemon {
     @JoinColumn(name="TRAINER_ID")
     private Trainer trainer;
 
-    public Pokemon() {
-    }
-
     public Pokemon(Trainer trainer, int speciesId, String speciesName, PokemonType primaryType, int level) {
         this.speciesId = speciesId;
         this.speciesName = speciesName;
@@ -61,6 +58,9 @@ public class Pokemon {
         this.secondaryType = secondaryType;
         this.level = level;
         this.trainer = trainer;
+    }
+
+    protected Pokemon() {
     }
 
     public int getId() {
@@ -124,38 +124,26 @@ public class Pokemon {
     }
 
     @Override
-    public int hashCode() {
-        int hash = speciesId;
-        hash = 53 * hash + this.speciesId;
-        hash = 53 * hash + Objects.hashCode(this.speciesName);
-        hash = 53 * hash + Objects.hashCode(this.nickname);
-        hash = 53 * hash + Objects.hashCode(this.trainer);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Pokemon)) return false;
+
+        Pokemon pokemon = (Pokemon) o;
+
+        if (getSpeciesId() != pokemon.getSpeciesId()) return false;
+        if (getLevel() != pokemon.getLevel()) return false;
+        if (getNickname() != null ? !getNickname().equals(pokemon.getNickname()) : pokemon.getNickname() != null)
+            return false;
+        return getTrainer().equals(pokemon.getTrainer());
+
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Pokemon other = (Pokemon) obj;
-        if (this.speciesId != other.speciesId) {
-            return false;
-        }
-        if (!Objects.equals(this.speciesName, other.speciesName)) {
-            return false;
-        }
-        if (!Objects.equals(this.nickname, other.nickname)) {
-            return false;
-        }
-        if (!Objects.equals(this.level, other.level)) {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        int result = getSpeciesId();
+        result = 31 * result + (getNickname() != null ? getNickname().hashCode() : 0);
+        result = 31 * result + getLevel();
+        result = 31 * result + getTrainer().hashCode();
+        return result;
     }
-
-
 }

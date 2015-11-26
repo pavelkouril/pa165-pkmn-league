@@ -24,14 +24,13 @@ public class Badge {
     @JoinColumn(name="GYM_ID")
     private Gym gym;
 
-    public Badge() {
-    }
-
     public Badge(Trainer trainer, Gym gym) {
         this.trainer = trainer;
         this.gym = gym;
         trainer.addBadge(this);
+    }
 
+    protected Badge() {
     }
     
     public int getId() {
@@ -53,31 +52,23 @@ public class Badge {
     public void setGym(Gym gym) {
         this.gym = gym;
     }
-    
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Badge)) return false;
+
+        Badge badge = (Badge) o;
+
+        if (!getTrainer().equals(badge.getTrainer())) return false;
+        return getGym().equals(badge.getGym());
+
+    }
+
     @Override
     public int hashCode() {
-        int hash = this.id;
-        hash = 31 * hash + Objects.hashCode(this.gym);
-        hash = 31 * hash + Objects.hashCode(this.trainer);
-        return hash;
-    }
-    
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Badge other = (Badge) obj;
-
-        if (!Objects.equals(this.gym, other.gym)) {
-            return false;
-        }
-        if (!Objects.equals(this.trainer, other.trainer)) {
-            return false;
-        }
-        return true;
+        int result = getTrainer().hashCode();
+        result = 31 * result + getGym().hashCode();
+        return result;
     }
 }
