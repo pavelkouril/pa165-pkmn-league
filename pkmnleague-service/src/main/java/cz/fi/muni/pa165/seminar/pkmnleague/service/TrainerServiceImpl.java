@@ -68,12 +68,10 @@ public class TrainerServiceImpl implements TrainerService {
             throw new PokemonLeagueServiceException("Can't find Pokemons for Trainer that is null");
         }
 
-        Trainer trainer1 = findById(trainer.getId());
         List<Pokemon> pokemons = pokemonService.findAll();
-
         List<Pokemon> result = new ArrayList<>();
         for (Pokemon p : pokemons) {
-            if (p.getTrainer().equals(trainer1)) {
+            if (p.getTrainer().equals(trainer)) {
                 result.add(p);
             }
         }
