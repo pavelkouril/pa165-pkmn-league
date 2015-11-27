@@ -5,7 +5,6 @@ import cz.fi.muni.pa165.seminar.pkmnleague.domain.Pokemon;
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.PokemonType;
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.Trainer;
 import cz.fi.muni.pa165.seminar.pkmnleague.utils.EmbeddedDerbyDatabase;
-import junit.framework.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
@@ -19,6 +18,8 @@ import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
+
+import static org.junit.Assert.*;
 
 /**
  * @author dhanak @domhanak on 10/29/15.
@@ -38,13 +39,7 @@ public class GymDaoTest extends AbstractTestNGSpringContextTests {
 
     @BeforeMethod
     public void setUp() throws Exception {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date date = new Date(2222);
-
-        testTrainer = new Trainer();
-        testTrainer.setName("TestTrainer");
-        testTrainer.setSurname("TestTrainerSurname");
-        testTrainer.setDateOfBirth(date);
+        testTrainer = new Trainer("Foo", "Bar", new Date(0));
 
         testPokemon = new Pokemon(testTrainer, 1, "meno", PokemonType.BUG, 0);
 
@@ -58,18 +53,18 @@ public class GymDaoTest extends AbstractTestNGSpringContextTests {
         gymDao.save(testGym);
 
         Gym result = gymDao.findById(testGym.getId());
-        Assert.assertEquals(testGym, result);
+        assertEquals(testGym, result);
     }
 
     @Test
     public void testDelete() throws Exception {
         Gym result = gymDao.findById(deleteGym.getId());
-        Assert.assertNotNull(result);
+        assertNotNull(result);
         
         gymDao.delete(deleteGym);
 
         Gym nullresult = gymDao.findById(deleteGym.getId());
-        Assert.assertNull(nullresult);
+        assertNull(nullresult);
     }
 
     @Test
@@ -79,13 +74,13 @@ public class GymDaoTest extends AbstractTestNGSpringContextTests {
         int id = testGym.getId();
 
         Gym result = gymDao.findById(id);
-        Assert.assertEquals(result, testGym);
+        assertEquals(result, testGym);
     }
 
     @Test
     public void testFindAllGyms() throws Exception {
         List<Gym> gymList = gymDao.findAll();
-        Assert.assertEquals(gymList.size(), 1);
+        assertEquals(gymList.size(), 1);
     }
 
 }

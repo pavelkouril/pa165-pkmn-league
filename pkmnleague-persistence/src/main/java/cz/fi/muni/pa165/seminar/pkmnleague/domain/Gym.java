@@ -34,13 +34,13 @@ public class Gym implements Serializable {
     @JoinColumn(name="TRAINER_ID")
     private Trainer leader;
 
-    public Gym() {
-    }
-
     public Gym(String city, PokemonType type, Trainer leader) {
         this.city = city;
         this.type = type;
         this.leader = leader;
+    }
+
+    protected Gym() {
     }
 
     public int getId() {
@@ -72,35 +72,21 @@ public class Gym implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        int hash = this.id;
-        hash = 31 * hash + Objects.hashCode(this.city);
-        hash = 31 * hash + Objects.hashCode(this.type);
-        hash = 31 * hash + Objects.hashCode(this.leader);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Gym)) return false;
+
+        Gym gym = (Gym) o;
+
+        if (!getCity().equals(gym.getCity())) return false;
+        return getLeader().equals(gym.getLeader());
+
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Gym other = (Gym) obj;
-        if (!Objects.equals(this.city, other.city)) {
-            return false;
-        }
-        if (!Objects.equals(this.type, other.type)) {
-            return false;
-        }
-        if (!Objects.equals(this.leader, other.leader)) {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        int result = getCity().hashCode();
+        result = 31 * result + getLeader().hashCode();
+        return result;
     }
-    
-    
-    
 }

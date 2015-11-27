@@ -38,7 +38,7 @@ public class BadgeServiceTest extends AbstractTestNGSpringContextTests {
 
     @Autowired
     @InjectMocks
-    BadgeService badgeService = new BadgeServiceImpl();
+    BadgeService badgeService;
 
     private Trainer trainer;
     private Trainer trainerLeader;
@@ -49,14 +49,13 @@ public class BadgeServiceTest extends AbstractTestNGSpringContextTests {
     @BeforeClass
     public void setup() throws ServiceException {
         MockitoAnnotations.initMocks(this);
-        trainer = new Trainer();
-        trainer.setName("Tester");
+        trainer = new Trainer("Tester", "-", new Date(0));
 
-        trainerLeader = new Trainer();
-        trainerLeader2 = new Trainer();
+        trainerLeader = new Trainer("Tester", "-", new Date(0));
+        trainerLeader2 = new Trainer("Tester", "-", new Date(0));
 
         gym = new Gym("Brno", PokemonType.FIRE, trainerLeader);
-        gym2 = new Gym("Brno", PokemonType.WATER, trainerLeader2);
+        gym2 = new Gym("Praha", PokemonType.WATER, trainerLeader2);
     }
 
     @Test

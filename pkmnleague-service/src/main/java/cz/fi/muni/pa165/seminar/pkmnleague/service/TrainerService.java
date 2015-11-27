@@ -1,5 +1,6 @@
 package cz.fi.muni.pa165.seminar.pkmnleague.service;
 
+import cz.fi.muni.pa165.seminar.pkmnleague.domain.Gym;
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.Pokemon;
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.Trainer;
 

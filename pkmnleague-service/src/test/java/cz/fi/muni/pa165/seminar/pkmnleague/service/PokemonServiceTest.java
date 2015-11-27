@@ -16,6 +16,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,8 +40,7 @@ public class PokemonServiceTest extends AbstractTestNGSpringContextTests {
     @BeforeClass
     public void setup() throws ServiceException {
         MockitoAnnotations.initMocks(this);
-        trainerRed = new Trainer();
-        trainerRed.setName("Red");
+        trainerRed = new Trainer("Red", "-", new Date(0));
     }
 
     @Test

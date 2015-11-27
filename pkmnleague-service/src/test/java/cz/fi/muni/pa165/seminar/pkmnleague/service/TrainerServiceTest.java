@@ -1,5 +1,6 @@
 package cz.fi.muni.pa165.seminar.pkmnleague.service;
 
+import cz.fi.muni.pa165.seminar.pkmnleague.dao.GymDao;
 import cz.fi.muni.pa165.seminar.pkmnleague.dao.PokemonDao;
 import cz.fi.muni.pa165.seminar.pkmnleague.dao.TrainerDao;
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.Gym;
@@ -13,6 +14,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -25,20 +27,24 @@ import java.util.Map;
 
 import static org.mockito.Mockito.when;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
 
 /**
  * @author dhanak @domhanak on 11/26/15.
  */
 @ContextConfiguration(classes = ServiceConfiguration.class)
-public class TrainerServiceTest {
+public class TrainerServiceTest extends AbstractTestNGSpringContextTests {
 
     @Mock
     private TrainerDao trainerDao;
 
+    @Mock
+    private GymDao gymDao;
 
     @Autowired
     @InjectMocks
-    private TrainerService trainerService = new TrainerServiceImpl();
+    private TrainerService trainerService;
 
     @Mock
     private PokemonService pokemonService;
@@ -48,8 +54,7 @@ public class TrainerServiceTest {
     @BeforeClass
     public void setup() throws ServiceException {
         MockitoAnnotations.initMocks(this);
-        trainer = new Trainer();
-        trainer.setName("Tester");
+        trainer = new Trainer("Tester", "", new Date(0));
 
         trainerService.create(trainer);
         new ArrayList<>(createPokemonTeam().values()).forEach(pokemonService::create);
@@ -65,6 +70,16 @@ public class TrainerServiceTest {
     public void testFindById() {
         when(trainerDao.findById(1)).thenReturn(createTrainersTeam().get("Ash"));
         assertEquals(trainerService.findById(1), new Trainer("Ash", "Ketchup", Date.from(Instant.EPOCH)));
+    }
+
+    @Test
+    public void testIsGymLeader() {
+        Trainer leader = new Trainer("Foo", "Bar", new Date(0));
+        List<Gym> gyms = new ArrayList<>();
+        gyms.add(new Gym("Viridian", PokemonType.GROUND, leader));
+        when(gymDao.findAll()).thenReturn(gyms);
+        assertFalse(trainerService.isGymLeader(trainer));
+        assertTrue(trainerService.isGymLeader(leader));
     }
 
     @Test

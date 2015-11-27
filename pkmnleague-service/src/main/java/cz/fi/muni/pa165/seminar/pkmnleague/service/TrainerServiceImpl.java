@@ -1,10 +1,13 @@
 package cz.fi.muni.pa165.seminar.pkmnleague.service;
 
+import cz.fi.muni.pa165.seminar.pkmnleague.dao.GymDao;
 import cz.fi.muni.pa165.seminar.pkmnleague.dao.TrainerDao;
+import cz.fi.muni.pa165.seminar.pkmnleague.domain.Gym;
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.Pokemon;
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.Trainer;
 import cz.fi.muni.pa165.seminar.pkmnleague.exceptions.PokemonLeagueServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
@@ -16,10 +19,14 @@ import java.util.List;
  * that provides the implementation of the business logic.
  * @author dhanak @domhanak on 11/26/15.
  */
+@Service
 public class TrainerServiceImpl implements TrainerService {
 
     @Autowired
     TrainerDao trainerDao;
+
+    @Autowired
+    GymDao gymDao;
 
     @Autowired
     PokemonService pokemonService;
@@ -47,7 +54,12 @@ public class TrainerServiceImpl implements TrainerService {
 
     @Override
     public boolean isGymLeader(Trainer trainer) {
-        return findById(trainer.getId()).isGymLeader();
+        for (Gym g : gymDao.findAll()) {
+            if (trainer.isGymLeaderAtGym(g)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

@@ -4,7 +4,6 @@ import cz.fi.muni.pa165.seminar.pkmnleague.domain.PokemonType;
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.Trainer;
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.Pokemon;
 import cz.fi.muni.pa165.seminar.pkmnleague.utils.EmbeddedDerbyDatabase;
-import junit.framework.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
@@ -14,6 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.testng.annotations.Test;
 
 import java.sql.Date;
+
+import static org.junit.Assert.*;
 
 /**
  * @author Oldrich Faldik
@@ -28,27 +29,19 @@ public class PokemonDaoTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void testSave() {
-        
-
-        Trainer t = new Trainer();
-        t.setName("Foo");
-        t.setSurname("Bar");
-        t.setDateOfBirth(new Date(0));
+        Trainer t = new Trainer("Foo", "Bar", new Date(0));
 
         Pokemon pokemon = new Pokemon(t,1,"testPokemon",PokemonType.BUG,0);
 
         pokemonDao.save(pokemon);
 
         Pokemon result = pokemonDao.findById(pokemon.getId());
-        Assert.assertEquals(pokemon, result);
+        assertEquals(pokemon, result);
     }
 
     @Test
     public void testDelete() {
-       Trainer t = new Trainer();
-        t.setName("Foo");
-        t.setSurname("Bar");
-        t.setDateOfBirth(new Date(0));
+        Trainer t = new Trainer("Foo", "Bar", new Date(0));
 
         Pokemon pokemon = new Pokemon(t,1,"testPokemon",PokemonType.BUG,0);
 
@@ -57,20 +50,17 @@ public class PokemonDaoTest extends AbstractTestNGSpringContextTests {
         pokemonDao.save(pokemon);
         pokemonDao.delete(pokemon);
 
-        Assert.assertEquals(0, pokemonDao.findAll().size());
+        assertEquals(0, pokemonDao.findAll().size());
     }
 
     @Test
     public void testFindAll() {
-       Trainer t = new Trainer();
-        t.setName("Foo");
-        t.setSurname("Bar");
-        t.setDateOfBirth(new Date(0));
+        Trainer t = new Trainer("Foo", "Bar", new Date(0));
 
         Pokemon pokemon = new Pokemon(t,1,"testPokemon",PokemonType.BUG,0);
 
         pokemonDao.save(pokemon);
 
-        Assert.assertEquals(1, pokemonDao.findAll().size());
+        assertEquals(1, pokemonDao.findAll().size());
     }
 }
