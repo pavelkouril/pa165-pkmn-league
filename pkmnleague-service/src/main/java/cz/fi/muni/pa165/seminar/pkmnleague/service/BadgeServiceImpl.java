@@ -1,63 +1,60 @@
 package cz.fi.muni.pa165.seminar.pkmnleague.service;
 
-import cz.fi.muni.pa165.seminar.pkmnleague.dao.BadgeDao;
 import cz.fi.muni.pa165.seminar.pkmnleague.dao.GymDao;
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.Badge;
+import cz.fi.muni.pa165.seminar.pkmnleague.domain.Gym;
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.Trainer;
 import cz.fi.muni.pa165.seminar.pkmnleague.exceptions.PokemonLeagueServiceException;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author dhanak @domhanak on 11/25/15.
+ * @author Pavel Kouřil <pk@pavelkouril.cz>
  */
 @Service
-public class BadgeServiceImpl implements BadgeService {
-
+public class GymServiceImpl implements GymService {
     @Inject
-    private BadgeDao badgeDao;
-
+    private GymDao gymDao;
+    
     @Override
-    public void createBadge(Badge badge) {
-        badgeDao.save(badge);
+    public void create(Gym gym) {
+        gymDao.save(gym);
     }
 
     @Override
-    public Badge findById(int id) {
-        return badgeDao.findById(id);
+    public Gym findById(int id) {
+        return gymDao.findById(id);
     }
 
     @Override
-    public List<Badge> findAll() {
-        return badgeDao.findAll();
+    public List<Gym> findAll() {
+        return gymDao.findAll();
     }
 
     @Override
-    public void delete(Badge badge) {
-        badgeDao.delete(badge);
+    public void delete(Gym gym) {
+        gymDao.delete(gym);
     }
 
     @Override
-    public List<Badge> getAllBadgesByTrainer(Trainer trainer) {
+    public Badge awardBadgeToTrainer(Gym gym, Trainer trainer) {
+        if (gym == null) {
+            throw new IllegalArgumentException("Gym can't be null");
+        }
         if (trainer == null) {
-            throw new PokemonLeagueServiceException("Can't find Badges for Trainer that is null.");
+            throw new IllegalArgumentException("Trainer can't be null");
         }
-
-        List<Badge> badges = badgeDao.findAll();
-        if (badges.isEmpty() || badges == null) {
-            throw new PokemonLeagueServiceException("No badges in database found.");
+        if (gym.getLeader().equals(trainer)) {
+            throw new PokemonLeagueServiceException("You can't award badge to a gym leader.");
         }
-
-        List<Badge> result = new ArrayList<>();
-        for (Badge b : badges) {
-            if (b.getTrainer().equals(trainer)) {
-                result.add(b);
+        for (Badge b : trainer.getBadges()) {
+            if (b.getGym().equals(gym)) {
+                throw new PokemonLeagueServiceException("Trainer already has badge from this gym.");
             }
         }
 
-        return result;
+        return new Badge(trainer, gym);
     }
 }
