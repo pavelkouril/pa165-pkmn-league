@@ -22,16 +22,15 @@ public interface GymFacade {
         * Create new Gym
         *
         * @param g GymCreateDTO - information about new Gym
-        * @return ID of new Gym.
         */
-        public Long createGym(GymCreateDTO g);
+        public void createGym(GymCreateDTO g);
         
         /**
         * Delete existing Gym
         *
         * @param gymId ID of Gym
         */
-        public void deleteGym(Long gymId);
+        public void deleteGym(int gymId);
         
         /**
         * Gets all existing Gyms
@@ -45,15 +44,7 @@ public interface GymFacade {
         * @param id
         * @return GymDTO
         */
-        public GymDTO getGymWithId(Long id);
-        
-        /**
-        * Gets existing Gyms by Leader ID
-        *
-        * @param trainerId 
-        * @return List of GymDTOs
-        */
-        public List<GymDTO> getGymsByLeader(Long trainerId);
+        public GymDTO getGymWithId(int id);
         
         /**
         * Gets existing Gyms by PokemonType
@@ -61,29 +52,32 @@ public interface GymFacade {
         * @param type 
         * @return List of GymDTOs
         */
-        public List<GymDTO> getGymsByType(PokemonType type);
+        //public List<GymDTO> getGymsByType(PokemonType type);
         
         /**
         * Change city of existing Gym
         *
         * @param newCity 
+        * @param gymId
         * 
         */
-        public void changeCity(String newCity);
+        public void changeCity(String newCity, int gymId);
         
         /**
         * Change Pokemon Type of existing Gym
         *
         * @param newType 
+        * @param gymId
         * 
         */
-        public void changeType(PokemonType newType);
+        //public void changeType(PokemonType newType, int gymId);
         
         /**
         * Change Leader of existing Gym
         *
         * @param newLeader 
+        * @param gymId
         * 
         */
-        public void changeLeader(TrainerDTO newLeader);
+        public void changeLeader(TrainerDTO newLeader, int gymId);
 }
