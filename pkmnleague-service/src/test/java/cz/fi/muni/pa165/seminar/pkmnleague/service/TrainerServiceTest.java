@@ -22,6 +22,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -57,7 +58,6 @@ public class TrainerServiceTest extends AbstractTestNGSpringContextTests {
         trainer = new Trainer("Tester", "", new Date(0));
 
         trainerService.create(trainer);
-        new ArrayList<>(createPokemonTeam().values()).forEach(pokemonService::create);
     }
 
     @Test
@@ -83,12 +83,25 @@ public class TrainerServiceTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
-    public void testFindTrainersPokemons() throws Exception {
-        when(trainerDao.findById(1)).thenReturn(trainer);
+    public void testFindTrainersPokemon() throws Exception {
         when(pokemonService.findAll()).thenReturn(new ArrayList<>(createPokemonTeam().values()));
-        assertEquals(trainerService.findById(1), trainer);
+        when(trainerDao.findById(1)).thenReturn(trainer);
 
-        assertEquals(trainerService.findTrainersPokemons(trainerService.findById(1)).size(),0);
+        // set his pokemons
+        trainer.setPokemons(new HashSet<>(createPokemonTeam().values()));
+
+        assertEquals(trainerService.findTrainersPokemons(trainer).size(), 6);
+    }
+
+    @Test
+    public void testFindTrainersPokemonZero() throws Exception {
+        when(pokemonService.findAll()).thenReturn(new ArrayList<>(createPokemonTeam().values()));
+        Trainer noPokemonTrainer = new Trainer("Ash", "-", new Date());
+        when(trainerDao.findById(1)).thenReturn(noPokemonTrainer);
+
+        trainer.setPokemons(new HashSet<>(createPokemonTeam().values()));
+
+        assertEquals(trainerService.findTrainersPokemons(noPokemonTrainer).size(), 0);
     }
 
     private Map<String, Trainer> createTrainersTeam() {

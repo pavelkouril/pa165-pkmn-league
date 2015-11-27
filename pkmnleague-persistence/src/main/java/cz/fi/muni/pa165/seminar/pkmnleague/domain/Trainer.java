@@ -34,6 +34,10 @@ public class Trainer {
     @OneToMany(cascade = CascadeType.PERSIST)
     private Set<Badge> badges = new HashSet<>();
 
+    @NotNull
+    @OneToMany(cascade = CascadeType.PERSIST)
+    private Set<Pokemon> pokemons = new HashSet<>();
+
     public Trainer(String name, String surname, Date dateOfBirth) {
         this.name = name;
         this.surname = surname;
@@ -77,6 +81,14 @@ public class Trainer {
 
     public Set<Badge> getBadges() {
         return Collections.unmodifiableSet(badges);
+    }
+
+    public Set<Pokemon> getPokemons() {
+        return Collections.unmodifiableSet(pokemons);
+    }
+
+    public void setPokemons(Set<Pokemon> pokemons) {
+        this.pokemons = pokemons;
     }
 
     public boolean isGymLeaderAtGym(Gym gym) {
