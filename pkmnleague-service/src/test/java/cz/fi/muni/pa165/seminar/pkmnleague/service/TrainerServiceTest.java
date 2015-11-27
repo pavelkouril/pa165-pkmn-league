@@ -88,7 +88,7 @@ public class TrainerServiceTest extends AbstractTestNGSpringContextTests {
         when(trainerDao.findById(1)).thenReturn(trainer);
 
         // set his pokemons
-        trainer.setPokemons(new HashSet<>(createPokemonTeam().values()));
+        trainer.addPokemon(new HashSet<>(createPokemonTeam().values()));
 
         assertEquals(trainerService.findTrainersPokemons(trainer).size(), 6);
     }
@@ -99,7 +99,7 @@ public class TrainerServiceTest extends AbstractTestNGSpringContextTests {
         Trainer noPokemonTrainer = new Trainer("Ash", "-", new Date());
         when(trainerDao.findById(1)).thenReturn(noPokemonTrainer);
 
-        trainer.setPokemons(new HashSet<>(createPokemonTeam().values()));
+        trainer.addPokemon(new HashSet<>(createPokemonTeam().values()));
 
         assertEquals(trainerService.findTrainersPokemons(noPokemonTrainer).size(), 0);
     }

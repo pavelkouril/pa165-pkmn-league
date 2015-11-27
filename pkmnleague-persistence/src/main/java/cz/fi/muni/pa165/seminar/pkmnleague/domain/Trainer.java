@@ -2,6 +2,7 @@ package cz.fi.muni.pa165.seminar.pkmnleague.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
@@ -36,7 +37,7 @@ public class Trainer {
 
     @NotNull
     @OneToMany(cascade = CascadeType.PERSIST)
-    private Set<Pokemon> pokemons = new HashSet<>();
+    private Set<Pokemon> pokemon = new HashSet<>();
 
     public Trainer(String name, String surname, Date dateOfBirth) {
         this.name = name;
@@ -83,12 +84,20 @@ public class Trainer {
         return Collections.unmodifiableSet(badges);
     }
 
-    public Set<Pokemon> getPokemons() {
-        return Collections.unmodifiableSet(pokemons);
+    public Set<Pokemon> getPokemon() {
+        return Collections.unmodifiableSet(pokemon);
     }
 
-    public void setPokemons(Set<Pokemon> pokemons) {
-        this.pokemons = pokemons;
+    public void addPokemon(Pokemon pokemon) {
+        if (pokemon != null) {
+            this.pokemon.add(pokemon);
+        }
+    }
+
+    public void addPokemon(Collection<Pokemon> pokemon) {
+        if (pokemon != null) {
+            this.pokemon.addAll(pokemon);
+        }
     }
 
     public boolean isGymLeaderAtGym(Gym gym) {
