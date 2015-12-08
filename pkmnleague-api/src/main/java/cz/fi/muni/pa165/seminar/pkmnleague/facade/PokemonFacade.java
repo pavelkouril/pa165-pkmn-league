@@ -22,16 +22,15 @@ public interface PokemonFacade {
         * Create new Pokemon
         *
         * @param p PokemonCreateDTO - information about new Pokemon
-        * @return ID of new Pokemon.
         */
-        public Long createPokemon(PokemonCreateDTO p);
+        public void createPokemon(PokemonCreateDTO p);
         
         /**
         * Delete existing Pokemon
         *
         * @param pokemonId ID of Pokemon
         */
-        public void deletePokemon(Long pokemonId);
+        public void deletePokemon(int pokemonId);
         
         /**
         * Gets all existing Pokemons
@@ -45,7 +44,7 @@ public interface PokemonFacade {
         * @param id
         * @return PokemonDTO
         */
-        public PokemonDTO getPokemonWithId(Long id);
+        public PokemonDTO getPokemonWithId(int id);
         
         /**
         * Gets existing Pokemons by Trainer ID
@@ -53,7 +52,7 @@ public interface PokemonFacade {
         * @param trainerId 
         * @return List of PokemonDTOs
         */
-        public List<PokemonDTO> getPokemonsByTrainer(Long trainerId);
+        public List<PokemonDTO> getPokemonsByTrainer(int trainerId);
         
         /**
         * Gets existing Pokemons by Primary Type
@@ -91,48 +90,54 @@ public interface PokemonFacade {
         * Change Species Name of existing Pokemon
         *
         * @param newSpeciesName 
+        * @param pokemonId 
         * 
         */
-        public void changeSpeciesName(String newSpeciesName);
+        public void changeSpeciesName(String newSpeciesName, int pokemonId);
         
         /**
         * Change Nick Name of existing Pokemon
         *
         * @param newNickName 
+        * @param pokemonId 
         * 
         */
-        public void changeNickName(String newNickName);
+        public void changeNickName(String newNickName, int pokemonId);
         
-        /**
-        * Change Primary Type of existing Pokemon
-        *
-        * @param newType 
-        * 
-        */
-        public void changePrimaryType(PokemonType newType);
-        
-        /**
-        * Change Secondary Type of existing Pokemon
-        *
-        * @param newType 
-        * 
-        */
-        public void changeSecondaryType(PokemonType newType);
+//        /**
+//        * Change Primary Type of existing Pokemon
+//        *
+//        * @param newType 
+//        * @param pokemonId 
+//        * 
+//        */
+//        public void changePrimaryType(PokemonType newType, int pokemonId);
+//        
+//        /**
+//        * Change Secondary Type of existing Pokemon
+//        *
+//        * @param newType 
+//        * @param pokemonId 
+//        * 
+//        */
+//        public void changeSecondaryType(PokemonType newType, int pokemonId);
         
         /**
         * Change Level of existing Pokemon
         *
         * @param newLevel 
+        * @param pokemonId 
         * 
         */
-        public void changeLevel(int newLevel);
+        public void changeLevel(int newLevel, int pokemonId);
         
         /**
         * Change Trainer of existing Pokemon
         *
         * @param newTrainer 
+        * @param pokemonId 
         * 
         */
-        public void changeTrainer(TrainerDTO newTrainer);
+        public void changeTrainer(TrainerDTO newTrainer, int pokemonId);
         
 }

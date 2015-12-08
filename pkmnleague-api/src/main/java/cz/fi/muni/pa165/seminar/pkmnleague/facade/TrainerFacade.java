@@ -24,14 +24,14 @@ public interface TrainerFacade {
         * @param t TrainerCreateDTO - information about new Trainer
         * @return ID of new Trainer.
         */
-        public Long createTrainer(TrainerCreateDTO t);
+        public void createTrainer(TrainerCreateDTO t);
         
         /**
         * Delete existing Trainer
         *
         * @param trainerId ID of Trainer
         */
-        public void deleteTrainer(Long trainerId);
+        public void deleteTrainer(int trainerId);
         
         /**
         * Gets all existing Trainers
@@ -45,7 +45,7 @@ public interface TrainerFacade {
         * @param id
         * @return TrainerDTO
         */
-        public TrainerDTO getTrainerWithId(Long id);
+        public TrainerDTO getTrainerWithId(int id);
         
         /**
         * Gets all existing Trainers, who have already been Gym Leaders
@@ -66,39 +66,35 @@ public interface TrainerFacade {
         * New badge for existing Trainer
         *
         * @param newBadge
+     * @param trainerId
         */
-        public void addBadge(BadgeDTO newBadge);
-        
-        /**
-        * Change state of Gym Leader
-        *
-        * @param isGymLeader 
-        * 
-        */
-        public void changeIsGymLeader(Boolean isGymLeader);
+        public void addBadge(BadgeDTO newBadge, int trainerId);
         
         /**
         * Change name of Trainer
         *
         * @param newName 
+        * @param trainerId 
         * 
         */
-        public void changeName(String newName);
+        public void changeName(String newName, int trainerId);
         
         /**
         * Change Surname of Trainer
         *
         * @param newSurname 
+        * @param trainerId 
         * 
         */
-        public void changeSurname(String newSurname);
+        public void changeSurname(String newSurname, int trainerId);
         
         /**
         * Change Date Of Birth of Trainer
         *
         * @param newDateOfBirth 
+        * @param trainerId 
         * 
         */
-        public void changeDateOfBirth(Date newDateOfBirth);
+        public void changeDateOfBirth(Date newDateOfBirth, int trainerId);
         
 }

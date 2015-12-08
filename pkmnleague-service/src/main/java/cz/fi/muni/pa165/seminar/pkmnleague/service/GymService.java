@@ -10,6 +10,7 @@ import java.util.List;
  * @author Pavel Kouřil <pk@pavelkouril.cz>
  */
 public interface GymService {
+    public void create(Gym gym);
     Gym findById(int id);
     List<Gym> findAll();
     void delete(Gym gym);
