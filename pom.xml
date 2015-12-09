@@ -44,5 +44,6 @@
         <module>pkmnleague-persistence</module>
         <module>pkmnleague-service</module>
         <module>pkmnleague-api</module>
+        <module>pkmnleague-web</module>
     </modules>
 </project>
