@@ -22,16 +22,15 @@ public interface GymFacade {
         * Create new Gym
         *
         * @param g GymCreateDTO - information about new Gym
-        * @return ID of new Gym.
         */
-        public Long createGym(GymCreateDTO g);
+        public void createGym(GymCreateDTO g);
         
         /**
         * Delete existing Gym
         *
         * @param gymId ID of Gym
         */
-        public void deleteGym(Long gymId);
+        public void deleteGym(int gymId);
         
         /**
         * Gets all existing Gyms
@@ -45,7 +44,7 @@ public interface GymFacade {
         * @param id
         * @return GymDTO
         */
-        public GymDTO getGymWithId(Long id);
+        public GymDTO getGymWithId(int id);
         
         /**
         * Gets existing Gyms by Leader ID
@@ -53,7 +52,7 @@ public interface GymFacade {
         * @param trainerId 
         * @return List of GymDTOs
         */
-        public List<GymDTO> getGymsByLeader(Long trainerId);
+        public List<GymDTO> getGymsByLeader(int trainerId);
         
         /**
         * Gets existing Gyms by PokemonType
@@ -67,23 +66,17 @@ public interface GymFacade {
         * Change city of existing Gym
         *
         * @param newCity 
+        * @param gymId 
         * 
         */
-        public void changeCity(String newCity);
-        
-        /**
-        * Change Pokemon Type of existing Gym
-        *
-        * @param newType 
-        * 
-        */
-        public void changeType(PokemonType newType);
+        public void changeCity(String newCity, int gymId);
         
         /**
         * Change Leader of existing Gym
         *
         * @param newLeader 
+        * @param gymId 
         * 
         */
-        public void changeLeader(TrainerDTO newLeader);
+        public void changeLeader(TrainerDTO newLeader, int gymId);
 }

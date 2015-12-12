@@ -24,6 +24,10 @@ public class GymDTO
     private PokemonType type;
     
     private TrainerDTO leader;
+    
+    public int getId() {
+        return id;
+    }
 
     public String getCity() {
         return city;

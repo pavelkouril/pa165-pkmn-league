@@ -20,16 +20,15 @@ public interface BadgeFacade {
         * Create new Badge belonging to Trainer
         *
         * @param b BadgeCreateDTO - information about new Badge
-        * @return ID of new Badge.
         */
-        public Long createBadge(BadgeCreateDTO b);
+        public void createBadge(BadgeCreateDTO b);
         
         /**
         * Delete existing Badge 
         *
         * @param badgeId ID of Bagde
         */
-        public void deleteBadge(Long badgeId);
+        public void deleteBadge(int badgeId);
         
         /**
         * Gets all existing Badges
@@ -43,7 +42,7 @@ public interface BadgeFacade {
         * @param id
         * @return BadgeDTO
         */
-        public BadgeDTO getBadgeWithId(Long id);
+        public BadgeDTO getBadgeWithId(int id);
         
         /**
         * Gets existing Badges by Trainer ID
@@ -51,7 +50,7 @@ public interface BadgeFacade {
         * @param trainerId 
         * @return List of BadgeDTOs
         */
-        public List<BadgeDTO> getBadgesByTrainer(Long trainerId);
+        public List<BadgeDTO> getBadgesByTrainer(int trainerId);
         
         /**
         * Gets existing Badges by Gym ID
@@ -59,6 +58,6 @@ public interface BadgeFacade {
         * @param gymId 
         * @return List of BadgeDTOs
         */
-        public List<BadgeDTO> getBadgesByGym(Long gymId);
+        public List<BadgeDTO> getBadgesByGym(int gymId);
     
 }

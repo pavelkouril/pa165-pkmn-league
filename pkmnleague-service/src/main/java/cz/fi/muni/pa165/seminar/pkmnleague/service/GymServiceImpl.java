@@ -17,6 +17,11 @@ import java.util.List;
 public class GymServiceImpl implements GymService {
     @Inject
     private GymDao gymDao;
+    
+    @Override
+    public void create(Gym gym) {
+        gymDao.save(gym);
+    }
 
     @Override
     public Gym findById(int id) {
