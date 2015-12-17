@@ -14,15 +14,18 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import javax.validation.Validator;
+import org.springframework.core.Ordered;
 
 @EnableWebMvc
 @Configuration
 @Import({ServiceConfiguration.class})
-@ComponentScan(basePackages = "cz.fi.muni.pa165.seminar.pkmnleague.mvc.controllers")
+@ComponentScan(basePackages = "cz.fi.muni.pa165.seminar.pkmnleague.mvc")
 public class MvcConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/login").setViewName("login");
+        registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
         registry.addViewController("/").setViewName("home");
     }
 
