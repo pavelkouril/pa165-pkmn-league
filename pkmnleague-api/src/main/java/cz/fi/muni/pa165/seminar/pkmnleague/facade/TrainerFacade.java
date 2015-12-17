@@ -24,7 +24,7 @@ public interface TrainerFacade {
         * @param t TrainerCreateDTO - information about new Trainer
         * @return ID of new Trainer.
         */
-        public void createTrainer(TrainerCreateDTO t);
+        int createTrainer(TrainerCreateDTO t);
         
         /**
         * Delete existing Trainer

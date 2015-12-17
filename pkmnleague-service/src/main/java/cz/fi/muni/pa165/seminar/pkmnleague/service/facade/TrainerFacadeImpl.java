@@ -10,14 +10,14 @@ import cz.fi.muni.pa165.seminar.pkmnleague.service.BadgeService;
 import cz.fi.muni.pa165.seminar.pkmnleague.service.BeanMappingService;
 import cz.fi.muni.pa165.seminar.pkmnleague.service.GymService;
 import cz.fi.muni.pa165.seminar.pkmnleague.service.TrainerService;
-
-import java.util.Date;
-import java.util.ArrayList;
-import java.util.List;
-import javax.inject.Inject;
-
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author Zuzana Goldmannova
@@ -38,16 +38,15 @@ public class TrainerFacadeImpl implements TrainerFacade {
     @Inject
     private BeanMappingService beanMappingService;
 
+    @Inject
+    private PasswordEncoder passwordEncoder;
+
     @Override
-    public void createTrainer(TrainerCreateDTO t) {
-        Trainer mappedTrainer = beanMappingService.mapTo(t, Trainer.class);
-
-        mappedTrainer.setFullName(t.getFullName());
-        mappedTrainer.setEmail(t.getEmail());
-        mappedTrainer.setPassword(t.getPassword());
-        mappedTrainer.setDateOfBirth((java.sql.Date) t.getDateOfBirth());
-
-        trainerService.create(mappedTrainer);
+    public int createTrainer(TrainerCreateDTO t) {
+        String encodedPassword = passwordEncoder.encode(t.getPassword());
+        Trainer newTrainer = new Trainer(t.getFullName(), t.getEmail(), encodedPassword, t.getDateOfBirth());
+        trainerService.create(newTrainer);
+        return newTrainer.getId();
     }
 
     @Override
