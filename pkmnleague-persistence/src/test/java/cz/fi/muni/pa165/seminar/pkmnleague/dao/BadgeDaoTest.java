@@ -30,10 +30,10 @@ public class BadgeDaoTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void testSave() {
-        Trainer leader = new Trainer("Misty", "?", new Date(1996, 1, 2));
+        Trainer leader = new Trainer("Misty", "misty@kanto.jp", "", new Date(1996, 1, 2));
         Gym gym = new Gym("Cerulean", PokemonType.WATER, leader);
 
-        Trainer t = new Trainer("Foo", "Bar", new Date(0));
+        Trainer t = new Trainer("Ash", "satoshi@kanto.jp", "", new Date(0));
 
         Badge badge = new Badge(t, gym);
 
@@ -45,10 +45,10 @@ public class BadgeDaoTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void testDelete() {
-        Trainer leader = new Trainer("Misty", "?", new Date(1996, 1, 2));
+        Trainer leader = new Trainer("Misty", "misty@kanto.jp", "", new Date(1996, 1, 2));
         Gym gym = new Gym("Cerulean", PokemonType.WATER, leader);
 
-        Trainer t = new Trainer("Foo", "Bar", new Date(0));
+        Trainer t = new Trainer("Ash", "satoshi@kanto.jp", "", new Date(0));
 
         Badge badge = new Badge(t, gym);
 
@@ -60,10 +60,10 @@ public class BadgeDaoTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void testFindAll() {
-        Trainer leader = new Trainer("Misty", "?", new Date(1996, 1, 2));
+        Trainer leader = new Trainer("Misty", "misty@kanto.jp", "", new Date(1996, 1, 2));
         Gym gym = new Gym("Cerulean", PokemonType.WATER, leader);
 
-        Trainer t = new Trainer("Foo", "Bar", new Date(0));
+        Trainer t = new Trainer("Ash", "satoshi@kanto.jp", "", new Date(0));
 
         Badge badge = new Badge(t, gym);
 

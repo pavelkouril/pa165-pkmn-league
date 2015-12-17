@@ -55,7 +55,7 @@ public class TrainerServiceTest extends AbstractTestNGSpringContextTests {
     @BeforeClass
     public void setup() throws ServiceException {
         MockitoAnnotations.initMocks(this);
-        trainer = new Trainer("Tester", "", new Date(0));
+        trainer = new Trainer("Tester", "tester@example.com", "", new Date(0));
 
         trainerService.create(trainer);
     }
@@ -69,12 +69,12 @@ public class TrainerServiceTest extends AbstractTestNGSpringContextTests {
     @Test
     public void testFindById() {
         when(trainerDao.findById(1)).thenReturn(createTrainersTeam().get("Ash"));
-        assertEquals(trainerService.findById(1), new Trainer("Ash", "Ketchup", Date.from(Instant.EPOCH)));
+        assertEquals(trainerService.findById(1), new Trainer("Ash", "satoshi@kanto.jp", "", new Date(0)));
     }
 
     @Test
     public void testIsGymLeader() {
-        Trainer leader = new Trainer("Foo", "Bar", new Date(0));
+        Trainer leader = new Trainer("Misty", "misty@kanto.jp", "", new Date(0));
         List<Gym> gyms = new ArrayList<>();
         gyms.add(new Gym("Viridian", PokemonType.GROUND, leader));
         when(gymDao.findAll()).thenReturn(gyms);
@@ -96,7 +96,7 @@ public class TrainerServiceTest extends AbstractTestNGSpringContextTests {
     @Test
     public void testFindTrainersPokemonZero() throws Exception {
         when(pokemonService.findAll()).thenReturn(new ArrayList<>(createPokemonTeam().values()));
-        Trainer noPokemonTrainer = new Trainer("Ash", "-", new Date());
+        Trainer noPokemonTrainer = new Trainer("Ash", "satosthi@kanto.jp", "", new Date());
         when(trainerDao.findById(1)).thenReturn(noPokemonTrainer);
 
         trainer.addPokemon(new HashSet<>(createPokemonTeam().values()));
@@ -106,8 +106,8 @@ public class TrainerServiceTest extends AbstractTestNGSpringContextTests {
 
     private Map<String, Trainer> createTrainersTeam() {
         Map<String, Trainer> team = new HashMap<>();
-        team.put("Ash", new Trainer("Ash", "Ketchup", Date.from(Instant.EPOCH)));
-        team.put("Brock", new Trainer("Brock", "Rocker", new Date()));
+        team.put("Ash", new Trainer("Ash", "satoshi@kanto.jp", "", new Date(0)));
+        team.put("Brock", new Trainer("Brock", "brock@kanto.jp", "", new Date(0)));
         return team;
     }
 

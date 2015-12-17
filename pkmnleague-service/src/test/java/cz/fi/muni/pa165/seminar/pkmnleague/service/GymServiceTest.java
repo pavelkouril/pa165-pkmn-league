@@ -43,8 +43,8 @@ public class GymServiceTest extends AbstractTestNGSpringContextTests {
     @BeforeClass
     public void setup() throws ServiceException {
         MockitoAnnotations.initMocks(this);
-        trainerRed = new Trainer("Red", "", new Date(1996, 8, 8));
-        leaderGreen = new Trainer("Green", "", new Date(1996, 11, 22));
+        trainerRed = new Trainer("Red", "red@pkmnadventures.net", "", new Date(1996, 8, 8));
+        leaderGreen = new Trainer("Green", "green@pkmnadventures.net", "", new Date(1996, 11, 22));
         viridianGym = new Gym("Viridian City", PokemonType.GROUND, leaderGreen);
     }
 
@@ -75,7 +75,7 @@ public class GymServiceTest extends AbstractTestNGSpringContextTests {
 
     @Test(expectedExceptions = PokemonLeagueServiceException.class)
     public void awardBadgeTwice() {
-        Gym ceruleanGym = new Gym("Cerulean City", PokemonType.WATER, new Trainer("Misty", "", new Date(1996, 4, 21)));
+        Gym ceruleanGym = new Gym("Cerulean City", PokemonType.WATER, new Trainer("Misty", "misty@kanto.jp", "", new Date(1996, 4, 21)));
         gymService.awardBadgeToTrainer(ceruleanGym, trainerRed);
         gymService.awardBadgeToTrainer(ceruleanGym, trainerRed);
     }

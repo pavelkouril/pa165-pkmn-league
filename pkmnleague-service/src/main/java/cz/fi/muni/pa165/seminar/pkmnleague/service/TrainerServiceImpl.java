@@ -4,6 +4,7 @@ import cz.fi.muni.pa165.seminar.pkmnleague.dao.GymDao;
 import cz.fi.muni.pa165.seminar.pkmnleague.dao.TrainerDao;
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.Gym;
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.Pokemon;
+import cz.fi.muni.pa165.seminar.pkmnleague.domain.Role;
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.Trainer;
 import cz.fi.muni.pa165.seminar.pkmnleague.exceptions.PokemonLeagueServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import java.util.List;
  * Implementation of the {@link TrainerService}.
  * This class is part of the service module of the application
  * that provides the implementation of the business logic.
+ *
  * @author dhanak @domhanak on 11/26/15.
  */
 @Service
@@ -60,6 +62,12 @@ public class TrainerServiceImpl implements TrainerService {
             }
         }
         return false;
+    }
+
+    @Override
+    public Role getRoleForTrainer(Trainer trainer) {
+        if (isGymLeader(trainer)) return Role.GYM_LEADER;
+        return Role.TRAINER;
     }
 
     @Override

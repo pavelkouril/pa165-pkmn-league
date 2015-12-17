@@ -80,15 +80,6 @@ public interface TrainerFacade {
         public void changeName(String newName, int trainerId);
         
         /**
-        * Change Surname of Trainer
-        *
-        * @param newSurname 
-        * @param trainerId 
-        * 
-        */
-        public void changeSurname(String newSurname, int trainerId);
-        
-        /**
         * Change Date Of Birth of Trainer
         *
         * @param newDateOfBirth 

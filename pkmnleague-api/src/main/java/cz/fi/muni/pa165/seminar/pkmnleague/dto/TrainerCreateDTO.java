@@ -1,51 +1,51 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.fi.muni.pa165.seminar.pkmnleague.dto;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
+import java.util.Date;
+import java.util.Objects;
 
 /**
- *
  * @author Oldrich Faldik
  */
 public class TrainerCreateDTO {
-    
-    @NotNull
-    @Size(min = 4, max = 40)
-    private String name;
 
     @NotNull
     @Size(min = 4, max = 40)
-    private String surname;
+    private String fullName;
 
     @Past
     private Date dateOfBirth;
 
-    private boolean isGymLeader = false;
+    @NotNull
+    private String email;
 
-    public String getName() {
-        return name;
+    @NotNull
+    private String password;
+
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getEmail() {
+        return email;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Date getDateOfBirth() {
@@ -56,21 +56,12 @@ public class TrainerCreateDTO {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public boolean isIsGymLeader() {
-        return isGymLeader;
-    }
-
-    public void setIsGymLeader(boolean isGymLeader) {
-        this.isGymLeader = isGymLeader;
-    }
-
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 97 * hash + Objects.hashCode(this.name);
-        hash = 97 * hash + Objects.hashCode(this.surname);
+        hash = 97 * hash + Objects.hashCode(this.fullName);
+        hash = 97 * hash + Objects.hashCode(this.email);
         hash = 97 * hash + Objects.hashCode(this.dateOfBirth);
-        hash = 97 * hash + (this.isGymLeader ? 1 : 0);
         return hash;
     }
 
@@ -83,22 +74,16 @@ public class TrainerCreateDTO {
             return false;
         }
         final TrainerCreateDTO other = (TrainerCreateDTO) obj;
-        if (!Objects.equals(this.name, other.name)) {
+        if (!Objects.equals(this.fullName, other.fullName)) {
             return false;
         }
-        if (!Objects.equals(this.surname, other.surname)) {
+        if (!Objects.equals(this.email, other.email)) {
             return false;
         }
         if (!Objects.equals(this.dateOfBirth, other.dateOfBirth)) {
             return false;
         }
-        if (this.isGymLeader != other.isGymLeader) {
-            return false;
-        }
         return true;
     }
-    
-    
-    
-    
+
 }

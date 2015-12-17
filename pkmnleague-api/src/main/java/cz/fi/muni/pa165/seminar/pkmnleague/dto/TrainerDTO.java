@@ -11,19 +11,19 @@ import java.util.Objects;
 import java.util.Set;
 
 /**
- *
  * @author Oldrich Faldik
  */
 
 
-public class TrainerDTO
-{
-   
+public class TrainerDTO {
+
     private int id;
 
-    private String name;
+    private String fullName;
 
-    private String surname;
+    private String email;
+
+    private String password;
 
     private Date dateOfBirth;
 
@@ -39,20 +39,36 @@ public class TrainerDTO
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getEmail() {
+        return email;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public boolean isGymLeader() {
+        return isGymLeader;
+    }
+
+    public void setGymLeader(boolean gymLeader) {
+        isGymLeader = gymLeader;
     }
 
     public Date getDateOfBirth() {
@@ -82,8 +98,8 @@ public class TrainerDTO
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 79 * hash + Objects.hashCode(this.name);
-        hash = 79 * hash + Objects.hashCode(this.surname);
+        hash = 79 * hash + Objects.hashCode(this.fullName);
+        hash = 79 * hash + Objects.hashCode(this.email);
         hash = 79 * hash + Objects.hashCode(this.dateOfBirth);
         hash = 79 * hash + (this.isGymLeader ? 1 : 0);
         return hash;
@@ -98,10 +114,10 @@ public class TrainerDTO
             return false;
         }
         final TrainerDTO other = (TrainerDTO) obj;
-        if (!Objects.equals(this.name, other.name)) {
+        if (!Objects.equals(this.fullName, other.fullName)) {
             return false;
         }
-        if (!Objects.equals(this.surname, other.surname)) {
+        if (!Objects.equals(this.email, other.email)) {
             return false;
         }
         if (!Objects.equals(this.dateOfBirth, other.dateOfBirth)) {
@@ -112,7 +128,5 @@ public class TrainerDTO
         }
         return true;
     }
-
-   
 
 }

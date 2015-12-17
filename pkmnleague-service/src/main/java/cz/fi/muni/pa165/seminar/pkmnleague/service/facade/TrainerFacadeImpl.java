@@ -42,8 +42,9 @@ public class TrainerFacadeImpl implements TrainerFacade {
     public void createTrainer(TrainerCreateDTO t) {
         Trainer mappedTrainer = beanMappingService.mapTo(t, Trainer.class);
 
-        mappedTrainer.setName(t.getName());
-        mappedTrainer.setSurname(t.getSurname());
+        mappedTrainer.setFullName(t.getFullName());
+        mappedTrainer.setEmail(t.getEmail());
+        mappedTrainer.setPassword(t.getPassword());
         mappedTrainer.setDateOfBirth((java.sql.Date) t.getDateOfBirth());
 
         trainerService.create(mappedTrainer);
@@ -100,13 +101,7 @@ public class TrainerFacadeImpl implements TrainerFacade {
     @Override
     public void changeName(String newName, int trainerId) {
         Trainer mappedTrainer = beanMappingService.mapTo(trainerId, Trainer.class);
-        mappedTrainer.setName(newName);
-    }
-
-    @Override
-    public void changeSurname(String newSurname, int trainerId) {
-        Trainer mappedTrainer = beanMappingService.mapTo(trainerId, Trainer.class);
-        mappedTrainer.setSurname(newSurname);
+        mappedTrainer.setFullName(newName);
     }
 
     @Override

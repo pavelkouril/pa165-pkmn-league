@@ -39,9 +39,9 @@ public class GymDaoTest extends AbstractTestNGSpringContextTests {
 
     @BeforeMethod
     public void setUp() throws Exception {
-        testTrainer = new Trainer("Foo", "Bar", new Date(0));
+        testTrainer = new Trainer("Brock", "brock@kanto.jp", "", new Date(0));
 
-        testPokemon = new Pokemon(testTrainer, 1, "meno", PokemonType.BUG, 0);
+        testPokemon = new Pokemon(testTrainer, 1, "Bulbasaur", PokemonType.GRASS, 1);
 
         testGym = new Gym("Name", PokemonType.DARK, testTrainer);
         deleteGym = new Gym("Delete", PokemonType.DARK, testTrainer);

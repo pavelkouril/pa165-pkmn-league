@@ -40,7 +40,7 @@ public class PokemonServiceTest extends AbstractTestNGSpringContextTests {
     @BeforeClass
     public void setup() throws ServiceException {
         MockitoAnnotations.initMocks(this);
-        trainerRed = new Trainer("Red", "-", new Date(0));
+        trainerRed = new Trainer("Red", "red@pkmnadventures.net", "", new Date(0));
     }
 
     @Test
