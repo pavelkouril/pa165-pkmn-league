@@ -29,9 +29,9 @@ public class PokemonDaoTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void testSave() {
-        Trainer t = new Trainer("Foo", "Bar", new Date(0));
+        Trainer t = new Trainer("Brock", "brock@kanto.jp", "", new Date(0));
 
-        Pokemon pokemon = new Pokemon(t,1,"testPokemon",PokemonType.BUG,0);
+        Pokemon pokemon = new Pokemon(t, 1, "testPokemon", PokemonType.BUG, 0);
 
         pokemonDao.save(pokemon);
 
@@ -41,11 +41,9 @@ public class PokemonDaoTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void testDelete() {
-        Trainer t = new Trainer("Foo", "Bar", new Date(0));
+        Trainer t = new Trainer("Brock", "brock@kanto.jp", "", new Date(0));
 
-        Pokemon pokemon = new Pokemon(t,1,"testPokemon",PokemonType.BUG,0);
-
-        
+        Pokemon pokemon = new Pokemon(t, 1, "testPokemon", PokemonType.BUG, 0);
 
         pokemonDao.save(pokemon);
         pokemonDao.delete(pokemon);
@@ -55,9 +53,9 @@ public class PokemonDaoTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void testFindAll() {
-        Trainer t = new Trainer("Foo", "Bar", new Date(0));
+        Trainer t = new Trainer("Brock", "brock@kanto.jp", "", new Date(0));
 
-        Pokemon pokemon = new Pokemon(t,1,"testPokemon",PokemonType.BUG,0);
+        Pokemon pokemon = new Pokemon(t, 1, "testPokemon", PokemonType.BUG, 0);
 
         pokemonDao.save(pokemon);
 

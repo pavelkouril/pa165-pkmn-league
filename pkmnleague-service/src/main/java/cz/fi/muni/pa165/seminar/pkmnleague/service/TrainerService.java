@@ -1,7 +1,7 @@
 package cz.fi.muni.pa165.seminar.pkmnleague.service;
 
-import cz.fi.muni.pa165.seminar.pkmnleague.domain.Gym;
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.Pokemon;
+import cz.fi.muni.pa165.seminar.pkmnleague.domain.Role;
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.Trainer;
 
 import java.util.List;
@@ -12,9 +12,13 @@ import java.util.List;
  * @author Pavel Kouřil <pk@pavelkouril.cz>
  */
 public interface TrainerService {
+
     void create(Trainer trainer);
+
     Trainer findById(int id);
+
     List<Trainer> findAll();
+
     void delete(Trainer trainer);
 
     /**
@@ -25,11 +29,8 @@ public interface TrainerService {
      */
     boolean isGymLeader(Trainer trainer);
 
-    /**
-     *
-     * @param trainer
-     * @return
-     */
     List<Pokemon> findTrainersPokemons(Trainer trainer);
+
+    Role getRoleForTrainer(Trainer trainer);
 
 }

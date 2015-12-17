@@ -49,10 +49,11 @@ public class BadgeServiceTest extends AbstractTestNGSpringContextTests {
     @BeforeClass
     public void setup() throws ServiceException {
         MockitoAnnotations.initMocks(this);
-        trainer = new Trainer("Tester", "-", new Date(0));
 
-        trainerLeader = new Trainer("Tester", "-", new Date(0));
-        trainerLeader2 = new Trainer("Tester", "-", new Date(0));
+        trainer = new Trainer("Brock", "brock@kanto.jp", "", new java.sql.Date(0));
+
+        trainerLeader = new Trainer("Brock", "brock@kanto.jp", "", new java.sql.Date(0));
+        trainerLeader2 = new Trainer("Brock", "brock@kanto.jp", "", new java.sql.Date(0));
 
         gym = new Gym("Brno", PokemonType.FIRE, trainerLeader);
         gym2 = new Gym("Praha", PokemonType.WATER, trainerLeader2);

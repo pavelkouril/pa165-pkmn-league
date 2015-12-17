@@ -21,15 +21,19 @@ public class Trainer {
 
     @NotNull
     @Column(nullable = false)
-    private String name;
-
-    @NotNull
-    @Column(nullable = false)
-    private String surname;
+    private String fullName;
 
     @NotNull
     @Column(nullable = false)
     private Date dateOfBirth;
+
+    @NotNull
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @NotNull
+    @Column(nullable = false)
+    private String password;
 
     @NotNull
     @OneToMany(cascade = CascadeType.PERSIST)
@@ -39,9 +43,10 @@ public class Trainer {
     @OneToMany(cascade = CascadeType.PERSIST)
     private Set<Pokemon> pokemon = new HashSet<>();
 
-    public Trainer(String name, String surname, Date dateOfBirth) {
-        this.name = name;
-        this.surname = surname;
+    public Trainer(String fullName, String email, String password, Date dateOfBirth) {
+        this.fullName = fullName;
+        this.email = email;
+        this.password = password;
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -52,20 +57,28 @@ public class Trainer {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getEmail() {
+        return email;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Date getDateOfBirth() {
@@ -111,16 +124,16 @@ public class Trainer {
 
         Trainer trainer = (Trainer) o;
 
-        if (!getName().equals(trainer.getName())) return false;
-        if (!getSurname().equals(trainer.getSurname())) return false;
+        if (!getFullName().equals(trainer.getFullName())) return false;
+        if (!getEmail().equals(trainer.getEmail())) return false;
         return getDateOfBirth().equals(trainer.getDateOfBirth());
 
     }
 
     @Override
     public int hashCode() {
-        int result = getName().hashCode();
-        result = 31 * result + getSurname().hashCode();
+        int result = getFullName().hashCode();
+        result = 31 * result + getEmail().hashCode();
         result = 31 * result + getDateOfBirth().hashCode();
         return result;
     }
