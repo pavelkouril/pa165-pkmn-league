@@ -26,7 +26,7 @@ To log in, you can use the following credentials:
 
 
 | Username        | Password | Role |
------------------ |-----------------
+----------------- |----------|-------
 | red@example.com | heslo   | trainer |
 | blue@example.com | heslo | gym leader |
 | brock@example.com | heslo | gym leader |
