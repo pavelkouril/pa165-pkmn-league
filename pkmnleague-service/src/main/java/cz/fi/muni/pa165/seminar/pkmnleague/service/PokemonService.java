@@ -12,4 +12,6 @@ public interface PokemonService {
     List<Pokemon> findAll();
     void delete(Pokemon pokemon);
     void create(Pokemon pokemon);
+
+    void levelUpPokemon(Pokemon pokemon);
 }

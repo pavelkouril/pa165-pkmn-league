@@ -2,6 +2,7 @@ package cz.fi.muni.pa165.seminar.pkmnleague.service;
 
 import cz.fi.muni.pa165.seminar.pkmnleague.dao.PokemonDao;
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.Pokemon;
+import cz.fi.muni.pa165.seminar.pkmnleague.exceptions.PokemonLeagueServiceException;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -32,6 +33,15 @@ public class PokemonServiceImpl implements PokemonService {
 
     @Override
     public void create(Pokemon pokemon) {
+        pokemonDao.save(pokemon);
+    }
+
+    @Override
+    public void levelUpPokemon(Pokemon pokemon) {
+        if (pokemon.getLevel() == 100) {
+            throw new PokemonLeagueServiceException("Pokémon can't have level bigger than 100.");
+        }
+        pokemon.setLevel(pokemon.getLevel() + 1);
         pokemonDao.save(pokemon);
     }
 }

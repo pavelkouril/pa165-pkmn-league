@@ -23,7 +23,7 @@
             <div class="form-group">
                 <form:label path="city" cssClass="col-sm-2 control-label">City</form:label>
                 <div class="col-sm-10">
-                    <form:input path="city" id="city" cssClass="form-control"/>
+                    <form:input path="city" id="city" cssClass="form-control" required="required"/>
                     <form:errors path="city" cssClass="error"/>
                 </div>
             </div>

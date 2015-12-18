@@ -50,7 +50,7 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         <br>
         <br>
-        <a href="${pageContext.request.contextPath}/registration" class="btn btn-default btn-block">Sign up</a>
+
     </form>
 
 </div>

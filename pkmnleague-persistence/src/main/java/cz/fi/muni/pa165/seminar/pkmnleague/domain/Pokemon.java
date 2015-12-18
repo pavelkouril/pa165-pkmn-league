@@ -1,6 +1,5 @@
 package cz.fi.muni.pa165.seminar.pkmnleague.domain;
 
-import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
