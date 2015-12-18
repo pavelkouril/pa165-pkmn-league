@@ -44,7 +44,7 @@ public interface PokemonFacade {
         * @param id
         * @return PokemonDTO
         */
-        public PokemonDTO getPokemonWithId(long id);
+        public PokemonDTO getPokemonWithId(int id);
         
         /**
         * Gets existing Pokemons by Trainer ID
