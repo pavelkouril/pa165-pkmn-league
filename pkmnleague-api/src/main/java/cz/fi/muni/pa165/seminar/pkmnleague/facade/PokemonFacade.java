@@ -5,10 +5,10 @@
  */
 package cz.fi.muni.pa165.seminar.pkmnleague.facade;
 
+import cz.fi.muni.pa165.seminar.pkmnleague.domain.PokemonType;
 import cz.fi.muni.pa165.seminar.pkmnleague.dto.PokemonCreateDTO;
 import cz.fi.muni.pa165.seminar.pkmnleague.dto.PokemonDTO;
 import cz.fi.muni.pa165.seminar.pkmnleague.dto.TrainerDTO;
-import cz.fi.muni.pa165.seminar.pkmnleague.enums.PokemonType;
 import java.util.List;
 
 /**

@@ -1,6 +1,7 @@
 package cz.fi.muni.pa165.seminar.pkmnleague.service.facade;
 
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.Pokemon;
+import cz.fi.muni.pa165.seminar.pkmnleague.domain.PokemonType;
 import cz.fi.muni.pa165.seminar.pkmnleague.dto.PokemonCreateDTO;
 import cz.fi.muni.pa165.seminar.pkmnleague.dto.PokemonDTO;
 import cz.fi.muni.pa165.seminar.pkmnleague.dto.TrainerDTO;
@@ -16,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import cz.fi.muni.pa165.seminar.pkmnleague.enums.PokemonType;
 
 import java.util.ArrayList;
 
