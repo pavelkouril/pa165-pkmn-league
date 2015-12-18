@@ -1,4 +1,4 @@
-package cz.fi.muni.pa165.seminar.pkmnleague.mvc.data;
+package cz.fi.muni.pa165.seminar.pkmnleague.sampledata;
 
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.*;
 import cz.fi.muni.pa165.seminar.pkmnleague.service.BadgeService;
@@ -55,8 +55,8 @@ public class SampleData {
         pokemon(brock, 74, "Geodude", PokemonType.ROCK, PokemonType.GROUND, 12);
         pokemon(brock, 95, "Onyx", PokemonType.ROCK, PokemonType.GROUND, 14);
 
-        pokemon(blue, 120, "Staryu", PokemonType.WATER, 18);
-        pokemon(blue, 121, "Starmie", PokemonType.WATER, PokemonType.PSYCHIC, 21);
+        pokemon(misty, 120, "Staryu", PokemonType.WATER, 18);
+        pokemon(misty, 121, "Starmie", PokemonType.WATER, PokemonType.PSYCHIC, 21);
 
         Gym viridianGym = gym("Viridian City", PokemonType.GROUND, blue);
         Gym pewterGym = gym("Pewter City", PokemonType.ROCK, brock);
