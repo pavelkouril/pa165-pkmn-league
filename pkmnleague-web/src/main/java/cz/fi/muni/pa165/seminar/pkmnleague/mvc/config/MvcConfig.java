@@ -1,8 +1,6 @@
 package cz.fi.muni.pa165.seminar.pkmnleague.mvc.config;
 
-import cz.fi.muni.pa165.seminar.pkmnleague.mvc.data.SampleData;
-import cz.fi.muni.pa165.seminar.pkmnleague.service.config.ServiceConfiguration;
-import org.springframework.beans.factory.annotation.Autowired;
+import cz.fi.muni.pa165.seminar.pkmnleague.sampledata.SampleDataConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -15,17 +13,14 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-import javax.annotation.PostConstruct;
 import javax.validation.Validator;
 
 @EnableWebMvc
 @Configuration
-@Import({ServiceConfiguration.class})
+@Import({SampleDataConfig.class})
 @ComponentScan(basePackages = "cz.fi.muni.pa165.seminar.pkmnleague.mvc")
 public class MvcConfig extends WebMvcConfigurerAdapter {
 
-    @Autowired
-    SampleData sampleData;
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
@@ -48,11 +43,6 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     @Bean
     public Validator validator() {
         return new LocalValidatorFactoryBean();
-    }
-
-    @PostConstruct
-    public void dataLoading() {
-        sampleData.loadData();
     }
 
 }
