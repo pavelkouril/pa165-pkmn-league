@@ -23,16 +23,18 @@
     <form name="f" action="${pageContext.request.contextPath}/login" method="post" class="form-signin">
         <h2 class="form-signin-heading">Please sign in</h2>
 
-        <c:if test="${not empty param.error}">
+        <c:if test="${param.error ne null}">
             <div class="alert alert-error">
                 Invalid username and password.
             </div>
         </c:if>
-        <c:if test="${not empty param.logout}">
+        <c:if test="${param.logout ne null}">
             <div class="alert alert-success">
                 You have been logged out.
             </div>
         </c:if>
+        
+        
 
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <input type="email" id="username" name="username" class="form-control" placeholder="Email address" required
