@@ -3,7 +3,6 @@ package cz.fi.muni.pa165.seminar.pkmnleague.mvc.controllers;
 import cz.fi.muni.pa165.seminar.pkmnleague.dto.GymCreateDTO;
 import cz.fi.muni.pa165.seminar.pkmnleague.dto.PokemonCreateDTO;
 import cz.fi.muni.pa165.seminar.pkmnleague.facade.GymFacade;
-import cz.fi.muni.pa165.seminar.pkmnleague.facade.PokemonFacade;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

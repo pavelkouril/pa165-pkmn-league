@@ -1,6 +1,7 @@
 package cz.fi.muni.pa165.seminar.pkmnleague.mvc.controllers;
 
 import cz.fi.muni.pa165.seminar.pkmnleague.dto.PokemonCreateDTO;
+import cz.fi.muni.pa165.seminar.pkmnleague.dto.PokemonDTO;
 import cz.fi.muni.pa165.seminar.pkmnleague.facade.PokemonFacade;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,13 +16,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 /**
  * @author dhanak @domhanak on 12/18/15.
  */
 @Controller
-@RequestMapping("/pokemon")
+@RequestMapping(value = {"/pokemon"})
 public class PokemonController {
 
     final static Logger log = LoggerFactory.getLogger(PokemonController.class);
@@ -35,15 +39,26 @@ public class PokemonController {
     PokemonFacade pokemonFacade;
 
     /**
-     * Lists all pokemon.
+     * Lists all pokemon of logged trainer.
      *
      * @param model
      * @return
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String pokemons(Model model) {
+    public String pokemons(Model model, Principal principal) {
         log.info("Pokemons = {}", pokemonFacade.getAllPokemons());
-        model.addAttribute("pokemons", pokemonFacade.getAllPokemons());
+
+        String trainerName = principal.getName();
+
+        List<PokemonDTO> pokemonDTOs = pokemonFacade.getAllPokemons();
+        List<PokemonDTO> result = new ArrayList<>();
+        for (PokemonDTO p : pokemonDTOs) {
+            if (p.getTrainer().getEmail().equals(trainerName)) {
+                result.add(p);
+            }
+        }
+
+        model.addAttribute("pokemons", result);
         return "pokemon/list";
     }
 
@@ -79,6 +94,7 @@ public class PokemonController {
             redirectAttributes.addFlashAttribute("alert_failure", "Some data were not filled!");
             return "redirect:" + uriBuilder.path("/room/create").build();
         }
+
         pokemonFacade.createPokemon(pokemon);
 
         redirectAttributes.addFlashAttribute("alert_success", "Pokemon was successfully created.");
