@@ -38,4 +38,6 @@ public interface TrainerDao {
      * @return List of Trainer instances.
      */
     public List<Trainer> findAll();
+
+    Trainer findByEmail(String email);
 }
