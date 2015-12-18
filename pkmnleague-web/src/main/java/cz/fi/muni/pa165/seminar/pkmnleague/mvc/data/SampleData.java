@@ -6,7 +6,6 @@ import cz.fi.muni.pa165.seminar.pkmnleague.domain.Trainer;
 import cz.fi.muni.pa165.seminar.pkmnleague.service.PokemonService;
 import cz.fi.muni.pa165.seminar.pkmnleague.service.TrainerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,22 +26,21 @@ public class SampleData {
 
     @Autowired
     private PokemonService pokemonService;
-    private Trainer trainer;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
 
     public void loadData() throws IOException {
         Trainer trainerRed = trainer("Red", "red@example.com", "heslo123", new Date(0));
         Trainer trainerGreen = trainer("Green", "green@example.com", "123heslo", new Date(0));
 
         Pokemon pikachu = pokemon(trainerRed, 25, "Pikachu", PokemonType.ELECTRIC, 88);
-
         Pokemon scizor = pokemon(trainerGreen, 212, "Scizor", PokemonType.BUG, PokemonType.STEEL, 55);
     }
 
     private Trainer trainer(String fullName, String email, String password, Date dateOfBirth) {
-        PasswordEncoder encoder = new BCryptPasswordEncoder();
-        encoder.encode(password);
-
-        Trainer t = new Trainer(fullName, email, password, dateOfBirth);
+        Trainer t = new Trainer(fullName, email, passwordEncoder.encode(password), dateOfBirth);
         trainerService.create(t);
         return t;
     }
