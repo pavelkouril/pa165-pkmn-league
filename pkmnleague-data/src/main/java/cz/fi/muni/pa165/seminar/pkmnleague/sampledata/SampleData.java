@@ -64,7 +64,7 @@ public class SampleData {
 
         badge(viridianGym, red);
         badge(pewterGym, red);
-        badge(ceruleanGym, red);
+        badge(ceruleanGym, blue);
     }
 
     private Trainer trainer(String fullName, String email, String password, Date dateOfBirth) {
