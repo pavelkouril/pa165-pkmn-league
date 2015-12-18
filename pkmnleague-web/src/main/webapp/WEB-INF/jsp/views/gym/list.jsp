@@ -28,7 +28,7 @@
                            alt="${gym.type}" title="${gym.type}">
                   </td>
                   <td><c:out value="${gym.city}"/></td>
-                  <td></td>
+                  <td><c:if test="${beatenGyms.contains(gym)}"><i class="fa fa-check"></i></c:if></td>
               </tr>
           </c:forEach>
       </table>

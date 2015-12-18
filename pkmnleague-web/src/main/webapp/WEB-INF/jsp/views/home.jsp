@@ -25,6 +25,32 @@
         </div>
         <div class="col-xs-12 col-md-6">
             <h2>Obtained Badges</h2>
+
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>City</th>
+                    <th>Gym Leader</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="badge" items="${badges}">
+                    <tr>
+                        <td><c:out value="${badge.gym.city}"/></td>
+                        <td><c:out value="${badge.gym.leader.fullName}"/></td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+
+            <p>You have collected <b>${badgeCount} badges</b> so far.
+                <c:if test="${badgeCount >= 8}">
+                    You can go and try to beat Elite Four and Champion now!
+                </c:if>
+                <c:if test="${badgeCount < 8}">
+                    You need at least 8 badges to face the Elite Four.
+                </c:if>
+            </p>
         </div>
     </div>
 
