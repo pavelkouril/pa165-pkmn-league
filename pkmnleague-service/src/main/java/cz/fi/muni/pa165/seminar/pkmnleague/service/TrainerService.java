@@ -3,6 +3,7 @@ package cz.fi.muni.pa165.seminar.pkmnleague.service;
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.Pokemon;
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.Role;
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.Trainer;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
  *
  * @author Pavel Kouřil <pk@pavelkouril.cz>
  */
-public interface TrainerService {
+public interface TrainerService extends UserDetailsService {
 
     void create(Trainer trainer);
 

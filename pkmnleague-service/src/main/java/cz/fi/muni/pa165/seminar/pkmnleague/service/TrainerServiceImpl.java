@@ -8,11 +8,18 @@ import cz.fi.muni.pa165.seminar.pkmnleague.domain.Role;
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.Trainer;
 import cz.fi.muni.pa165.seminar.pkmnleague.exceptions.PokemonLeagueServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Implementation of the {@link TrainerService}.
@@ -85,5 +92,19 @@ public class TrainerServiceImpl implements TrainerService {
         }
 
         return result;
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        Trainer trainer = trainerDao.findByEmail(s);
+
+        List<GrantedAuthority> auths = new ArrayList<>();
+        auths.add(new SimpleGrantedAuthority(getRoleForTrainer(trainer).toString()));
+
+        return buildUserForAuthentication(trainer, auths);
+    }
+
+    private User buildUserForAuthentication(Trainer trainer, List<GrantedAuthority> authorities) {
+        return new User(trainer.getEmail(), trainer.getPassword(), authorities);
     }
 }
