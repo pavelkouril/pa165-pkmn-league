@@ -20,4 +20,4 @@
           <div class="alert alert-danger" role="alert"><c:out value="${alert_failure}"/></div>
       </c:if>
 </jsp:attribute>
-<my:/layout>
+</my:layout>

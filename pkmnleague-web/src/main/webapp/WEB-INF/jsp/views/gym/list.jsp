@@ -6,9 +6,8 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<layout title="Gym">
+<my:layout title="Gym">
 <jsp:attribute name="body">
-
     <h1> Gyms </h1>
       <table class="table">
           <tr>
@@ -28,4 +27,4 @@
 
     <a class ="btn btn-info" href="${pageContext.request.contextPath}/gym/create">Create</a>
 </jsp:attribute>
-</layout>
+</my:layout>

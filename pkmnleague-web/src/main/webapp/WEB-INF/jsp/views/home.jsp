@@ -6,7 +6,7 @@
 <jsp:attribute name="body">
     <div class="row">
         <div class="col-xs-12 col-md-6">
-            <h2>Pokémoni <a href="${pageContext.request.contextPath}/pokemon/add" class="btn btn-success btn-sm"><i
+            <h2>Pokémoni <a href="${pageContext.request.contextPath}/pokemon/create" class="btn btn-success btn-sm"><i
                     class="fa fa-plus"></i> Nový pokémon</a></h2>
             <table class="table table-bordered table-striped">
                 <thead>

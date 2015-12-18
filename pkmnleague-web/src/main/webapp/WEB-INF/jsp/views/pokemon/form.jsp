@@ -2,11 +2,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 
-<form:label path="name">Name</form:label>
-<form:input path="name" id="name"/>
-<form:errors path="name" cssClass="error"/>
-
-<form:label path="nickname">Nickname</form:label>
+<form:label path="nickname">Name</form:label>
 <form:input path="nickname" id="nickname"/>
 <form:errors path="nickname" cssClass="error"/>
 
