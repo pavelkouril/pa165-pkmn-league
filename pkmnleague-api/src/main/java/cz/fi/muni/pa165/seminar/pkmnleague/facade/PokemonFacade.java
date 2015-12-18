@@ -103,25 +103,7 @@ public interface PokemonFacade {
         * 
         */
         public void changeNickName(String newNickName, int pokemonId);
-        
-//        /**
-//        * Change Primary Type of existing Pokemon
-//        *
-//        * @param newType 
-//        * @param pokemonId 
-//        * 
-//        */
-//        public void changePrimaryType(PokemonType newType, int pokemonId);
-//        
-//        /**
-//        * Change Secondary Type of existing Pokemon
-//        *
-//        * @param newType 
-//        * @param pokemonId 
-//        * 
-//        */
-//        public void changeSecondaryType(PokemonType newType, int pokemonId);
-        
+
         /**
         * Change Level of existing Pokemon
         *
@@ -139,5 +121,6 @@ public interface PokemonFacade {
         * 
         */
         public void changeTrainer(TrainerDTO newTrainer, int pokemonId);
-        
+
+        void levelUpPokemonWithId(int id);
 }

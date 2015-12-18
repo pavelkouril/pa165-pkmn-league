@@ -97,7 +97,6 @@ public class TrainerDTO {
         int hash = 3;
         hash = 79 * hash + Objects.hashCode(this.fullName);
         hash = 79 * hash + Objects.hashCode(this.email);
-        hash = 79 * hash + Objects.hashCode(this.dateOfBirth);
         return hash;
     }
 
@@ -106,17 +105,14 @@ public class TrainerDTO {
         if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (!(obj instanceof TrainerDTO)) {
             return false;
         }
         final TrainerDTO other = (TrainerDTO) obj;
-        if (!Objects.equals(this.fullName, other.fullName)) {
+        if (!this.fullName.equals(other.fullName)) {
             return false;
         }
-        if (!Objects.equals(this.email, other.email)) {
-            return false;
-        }
-        if (!Objects.equals(this.dateOfBirth, other.dateOfBirth)) {
+        if (!this.email.equals(other.email)) {
             return false;
         }
         return true;

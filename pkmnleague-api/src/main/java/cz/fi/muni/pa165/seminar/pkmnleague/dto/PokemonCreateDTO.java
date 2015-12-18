@@ -18,7 +18,7 @@ public class PokemonCreateDTO {
     private int speciesId;
 
     @NotNull
-    @Size(min = 4, max = 40)
+    @Size(min = 1, max = 40)
     private String speciesName;
 
     private String nickname;

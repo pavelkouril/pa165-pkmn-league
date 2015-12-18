@@ -2,6 +2,8 @@ package cz.fi.muni.pa165.seminar.pkmnleague.mvc.controllers;
 
 import cz.fi.muni.pa165.seminar.pkmnleague.dto.PokemonCreateDTO;
 import cz.fi.muni.pa165.seminar.pkmnleague.dto.PokemonDTO;
+import cz.fi.muni.pa165.seminar.pkmnleague.dto.TrainerDTO;
+import cz.fi.muni.pa165.seminar.pkmnleague.exceptions.PokemonLeagueServiceException;
 import cz.fi.muni.pa165.seminar.pkmnleague.facade.PokemonFacade;
 import cz.fi.muni.pa165.seminar.pkmnleague.facade.TrainerFacade;
 import org.slf4j.Logger;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -63,6 +66,24 @@ public class PokemonController {
 
         model.addAttribute("pokemons", result);
         return "pokemon/list";
+    }
+
+    @RequestMapping(value = "/level-up/{id}", method = RequestMethod.GET)
+    public String levelUp(@PathVariable int id, RedirectAttributes redirectAttributes, Principal principal) {
+        if (!trainerFacade.findByEmail(principal.getName()).equals(pokemonFacade.getPokemonWithId(id).getTrainer())) {
+            redirectAttributes.addFlashAttribute("alert_danger", "You can't modify Pokémon you don't own!");
+            return "redirect:/pokemon/list";
+        }
+
+        try {
+            pokemonFacade.levelUpPokemonWithId(id);
+        } catch (PokemonLeagueServiceException ex) {
+            redirectAttributes.addFlashAttribute("alert_warning", "Pokémon can't have level bigger than 100!");
+            return "redirect:/pokemon/list";
+        }
+
+        redirectAttributes.addFlashAttribute("alert_info", "Pokemon was successfully leveled up!");
+        return "redirect:/pokemon/list";
     }
 
     /**

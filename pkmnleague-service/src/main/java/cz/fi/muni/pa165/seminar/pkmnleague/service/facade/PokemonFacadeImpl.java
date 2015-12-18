@@ -138,4 +138,9 @@ public class PokemonFacadeImpl implements PokemonFacade {
         Pokemon mappedPokemon = beanMappingService.mapTo(pokemonId, Pokemon.class);
         mappedPokemon.setTrainer(trainerService.findById(newTrainer.getId()));
     }
+
+    @Override
+    public void levelUpPokemonWithId(int id) {
+        pokemonService.levelUpPokemon(pokemonService.findById(id));
+    }
 }

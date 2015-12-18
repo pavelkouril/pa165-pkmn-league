@@ -22,7 +22,7 @@
     <div class="form-group">
         <form:label path="speciesId" cssClass="col-sm-2 control-label">Species ID</form:label>
         <div class="col-sm-10">
-            <form:input path="speciesId" value="1" type="number" minpath="speciesId" min="1" max="649" id="speciesId" cssClass="form-control"/>
+            <form:input path="speciesId" value="1" type="number" minpath="speciesId" min="1" max="649" id="speciesId" cssClass="form-control" required="required" />
             <form:errors path="speciesId" cssClass="error"/>
         </div>
     </div>
@@ -30,7 +30,7 @@
     <div class="form-group">
         <form:label path="speciesName" cssClass="col-sm-2 control-label">Species name</form:label>
         <div class="col-sm-10">
-            <form:input path="speciesName" id="speciesName" cssClass="form-control"/>
+            <form:input path="speciesName" id="speciesName" cssClass="form-control" required="required" />
             <form:errors path="speciesName" cssClass="error"/>
         </div>
     </div>
@@ -46,7 +46,7 @@
     <div class="form-group">
         <form:label path="level" cssClass="col-sm-2 control-label">Level</form:label>
         <div class="col-sm-10">
-            <form:input path="level" value="1" type="number" minpath="speciesId" min="1" max="100" id="level" cssClass="form-control"/>
+            <form:input path="level" value="1" type="number" minpath="speciesId" min="1" max="100" id="level" cssClass="form-control" required="required"  />
             <form:errors path="level" cssClass="error"/>
         </div>
     </div>
