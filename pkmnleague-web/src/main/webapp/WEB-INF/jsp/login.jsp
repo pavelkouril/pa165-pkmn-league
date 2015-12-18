@@ -1,34 +1,50 @@
-<%-- 
-    Document   : login
-    Created on : 17.12.2015, 15:30:26
-    Author     : olda
---%>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="utf-8" trimDirectiveWhitespaces="true" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
-  <head>
-    <title tiles:fragment="title">Messages : Create</title>
-  </head>
-  <body>
-    <div tiles:fragment="content">
-        <form name="f" th:action="@{/login}" method="post"> 
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-            <fieldset>
-                <legend>Please Login</legend>
-                <div th:if="${param.error}" class="alert alert-error">    
-                    Invalid username and password.
-                </div>
-                <div th:if="${param.logout}" class="alert alert-success"> 
-                    You have been logged out.
-                </div>
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username"/>        
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password"/>    
-                <div class="form-actions">
-                    <button type="submit" class="btn">Log in</button>
-                </div>
-            </fieldset>
-        </form>
-    </div>
-  </body>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Login | Pokémon League</title>
+
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/favicon.png">
+
+    <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/pkmnleague.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container" tiles:fragment="content">
+
+    <form name="f" action="${pageContext.request.contextPath}/login" method="post" class="form-signin">
+        <h2 class="form-signin-heading">Please sign in</h2>
+
+        <c:if test="${not empty param.error}">
+            <div class="alert alert-error">
+                Invalid username and password.
+            </div>
+        </c:if>
+        <c:if test="${not empty param.logout}">
+            <div class="alert alert-success">
+                You have been logged out.
+            </div>
+        </c:if>
+
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        <input type="email" id="username" name="username" class="form-control" placeholder="Email address" required
+               autofocus>
+        <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+
+    </form>
+
+</div>
+
+</body>
 </html>
+
