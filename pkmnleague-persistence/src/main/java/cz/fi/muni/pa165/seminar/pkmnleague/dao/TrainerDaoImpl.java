@@ -35,4 +35,9 @@ public class TrainerDaoImpl implements TrainerDao {
     public List<Trainer> findAll() {
         return entityManager.createQuery("select t from Trainer t", Trainer.class).getResultList();
     }
+
+    @Override
+    public Trainer findByEmail(String email) {
+        return entityManager.createQuery("select t from Trainer t where t.email = ?1", Trainer.class).setParameter(1, email).getSingleResult();
+    }
 }
