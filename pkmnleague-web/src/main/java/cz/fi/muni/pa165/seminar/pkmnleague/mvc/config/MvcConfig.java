@@ -18,10 +18,6 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import javax.annotation.PostConstruct;
 import javax.validation.Validator;
 
-import org.springframework.core.Ordered;
-
-import java.io.IOException;
-
 @EnableWebMvc
 @Configuration
 @Import({ServiceConfiguration.class})
@@ -34,8 +30,6 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/login").setViewName("login");
-        registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
-        registry.addViewController("/").setViewName("home");
     }
 
     @Override
@@ -57,7 +51,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     }
 
     @PostConstruct
-    public void dataLoading() throws IOException {
+    public void dataLoading() {
         sampleData.loadData();
     }
 
