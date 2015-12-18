@@ -5,7 +5,9 @@
  */
 package cz.fi.muni.pa165.seminar.pkmnleague.dto;
 
-import cz.fi.muni.pa165.seminar.pkmnleague.enums.PokemonType;
+
+import cz.fi.muni.pa165.seminar.pkmnleague.domain.PokemonType;
+
 import java.util.Objects;
 
 /**

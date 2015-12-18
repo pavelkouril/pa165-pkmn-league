@@ -31,6 +31,16 @@
             <version>7.0</version>
             <type>jar</type>
         </dependency>
+        <dependency>
+            <groupId>cz.fi.muni.pa165.seminar.pkmnleague</groupId>
+            <artifactId>pkmnleague-persistence</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>cz.fi.muni.pa165.seminar.pkmnleague</groupId>
+            <artifactId>pkmnleague-persistence</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 </project>
