@@ -16,9 +16,9 @@
     <link href="${pageContext.request.contextPath}/css/pkmnleague.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="login-page">
 
-<div class="container" tiles:fragment="content">
+<div class="container">
 
     <form name="f" action="${pageContext.request.contextPath}/login" method="post" class="form-signin">
         <h2 class="form-signin-heading">Please sign in</h2>
@@ -40,8 +40,7 @@
                 You have been logged out.
             </div>
         </c:if>
-        
-        
+
 
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <input type="email" id="username" name="username" class="form-control" placeholder="Email address" required
@@ -49,7 +48,9 @@
         <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-
+        <br>
+        <br>
+        <a href="${pageContext.request.contextPath}/registration" class="btn btn-default btn-block">Sign up</a>
     </form>
 
 </div>
