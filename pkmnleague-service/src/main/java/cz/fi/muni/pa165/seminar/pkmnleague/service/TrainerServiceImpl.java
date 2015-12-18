@@ -15,11 +15,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import javax.inject.Inject;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Implementation of the {@link TrainerService}.
@@ -73,8 +70,8 @@ public class TrainerServiceImpl implements TrainerService {
 
     @Override
     public Role getRoleForTrainer(Trainer trainer) {
-        if (isGymLeader(trainer)) return Role.GYM_LEADER;
-        return Role.TRAINER;
+        if (isGymLeader(trainer)) return Role.ROLE_GYMLEADER;
+        return Role.ROLE_TRAINER;
     }
 
     @Override

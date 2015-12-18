@@ -36,6 +36,22 @@
             <ul class="nav navbar-nav">
                 <li><a href="${pageContext.request.contextPath}/pokemon/list">Your Pokémon</a></li>
             </ul>
+            <ul class="nav navbar-nav">
+                <li><a href="${pageContext.request.contextPath}/gym/list">Available Gyms</a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li><a href="${pageContext.request.contextPath}/trainer/list">Other Trainers</a></li>
+            </ul>
+            <c:if test="${pageContext.request.isUserInRole('ROLE_TRAINER')}">
+                <ul class="nav navbar-nav">
+                    <li><a href="${pageContext.request.contextPath}/gym/create">Create your Gym</a></li>
+                </ul>
+            </c:if>
+            <c:if test="${pageContext.request.isUserInRole('ROLE_GYMLEADER')}">
+                <ul class="nav navbar-nav">
+                    <li><a href="${pageContext.request.contextPath}/gym/badge">Hand out Badge</a></li>
+                </ul>
+            </c:if>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="${pageContext.request.contextPath}/logout"><i class="fa fa-power-off"></i> Log out</a>
                 </li>

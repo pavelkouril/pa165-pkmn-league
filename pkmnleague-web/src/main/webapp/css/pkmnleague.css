@@ -46,3 +46,12 @@
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
+
+.pokemon-overview {
+    padding-left: 0;
+    list-style: none;
+}
+
+.pokemon-overview li {
+    float: left;
+}

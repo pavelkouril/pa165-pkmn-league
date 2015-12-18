@@ -5,26 +5,32 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
-<my:layout title="Gym">
+<my:layout title="Available Gyms">
 <jsp:attribute name="body">
-    <h1> Gyms </h1>
-      <table class="table">
+
+    <p><a class="btn btn-success" href="${pageContext.request.contextPath}/gym/create"><i class="fa fa-plus"></i>
+        Estabilish your own Gym</a></p>
+
+      <table class="table table-bordered">
           <tr>
-              <th>Pokemon</th>
-              <th>Pokemon type</th>
-              <th>Name</th>
-              <th>Level</th>
+              <th>Gym Leader</th>
+              <th>Type</th>
+              <th>Location</th>
+              <th>Beaten?</th>
           </tr>
           <c:forEach items="${gyms}" var="gym">
               <tr>
-                  <td><c:out value="${gym.name}"/></td>
-                  <td><c:out value="${gym.type}"/></td>
+                  <td><c:out value="${gym.leader.fullName}"/></td>
+                  <td>
+                      <img src="${pageContext.request.contextPath}/img/types/${fn:toLowerCase(gym.type)}.png"
+                           alt="${gym.type}" title="${gym.type}">
+                  </td>
                   <td><c:out value="${gym.city}"/></td>
+                  <td></td>
               </tr>
           </c:forEach>
       </table>
-
-    <a class ="btn btn-info" href="${pageContext.request.contextPath}/gym/create">Create</a>
 </jsp:attribute>
 </my:layout>

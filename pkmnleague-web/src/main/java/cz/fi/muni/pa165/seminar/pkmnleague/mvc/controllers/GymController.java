@@ -1,8 +1,8 @@
 package cz.fi.muni.pa165.seminar.pkmnleague.mvc.controllers;
 
 import cz.fi.muni.pa165.seminar.pkmnleague.dto.GymCreateDTO;
-import cz.fi.muni.pa165.seminar.pkmnleague.dto.PokemonCreateDTO;
 import cz.fi.muni.pa165.seminar.pkmnleague.facade.GymFacade;
+import cz.fi.muni.pa165.seminar.pkmnleague.facade.TrainerFacade;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.util.Locale;
+import java.security.Principal;
 
 /**
  * @author dhanak @domhanak on 12/18/15.
@@ -28,12 +29,15 @@ public class GymController {
     final static Logger log = LoggerFactory.getLogger(PokemonController.class);
 
     @ModelAttribute("gym")
-    public GymCreateDTO getGym(){
+    public GymCreateDTO getGym() {
         return new GymCreateDTO();
     }
 
     @Autowired
-    GymFacade gymFacade;
+    private GymFacade gymFacade;
+
+    @Autowired
+    private TrainerFacade trainerFacade;
 
     /**
      * Lists all gyms.
@@ -55,36 +59,25 @@ public class GymController {
      * @return
      */
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String create(Model model) {
+    public String create(Model model, Principal principal) {
         log.debug("Create new gym");
         model.addAttribute("createGym", new GymCreateDTO());
         return "gym/create";
     }
 
-    /**
-     * Creates new Gym.
-     *
-     * @param gym
-     * @param bindingResult
-     * @param redirectAttributes
-     * @param uriBuilder
-     * @param locale
-     * @return
-     */
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(@Valid @ModelAttribute("gym") GymCreateDTO gym, BindingResult bindingResult,
-                         RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder, Locale locale) {
+                         RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder, Principal principal, HttpSession session) {
 
-
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("alert_failure", "Some data were not filled!");
             return "redirect:" + uriBuilder.path("/gym/create").build();
         }
+        gym.setLeader(trainerFacade.findByEmail(principal.getName()));
         gymFacade.createGym(gym);
 
-        redirectAttributes.addFlashAttribute("alert_success", "Gym was successfully created.");
-
-        return "redirect:" + uriBuilder.path("/gym/list").build();
+        session.invalidate();
+        return "redirect:/login?role";
 
     }
 }

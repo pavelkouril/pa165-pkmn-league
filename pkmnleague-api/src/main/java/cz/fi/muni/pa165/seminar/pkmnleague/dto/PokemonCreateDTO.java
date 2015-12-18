@@ -2,38 +2,36 @@ package cz.fi.muni.pa165.seminar.pkmnleague.dto;
 
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.PokemonType;
 
-import java.util.Objects;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Objects;
 
 /**
- *
  * @author Oldrich Faldik
  */
 public class PokemonCreateDTO {
-    
-    @Min(0)
+
+    @Min(1)
+    @Max(649)
     private int speciesId;
 
     @NotNull
     @Size(min = 4, max = 40)
     private String speciesName;
- 
-    @NotNull
-    @Size(min = 4, max = 40)
+
     private String nickname;
 
     @NotNull
     private PokemonType primaryType;
 
-    @NotNull
     private PokemonType secondaryType;
 
-    @Min(0)
+    @Min(1)
+    @Max(100)
     private int level;
 
-    @NotNull
     private TrainerDTO trainer;
 
     public int getSpeciesId() {
@@ -137,7 +135,6 @@ public class PokemonCreateDTO {
         }
         return true;
     }
-    
-    
-    
+
+
 }

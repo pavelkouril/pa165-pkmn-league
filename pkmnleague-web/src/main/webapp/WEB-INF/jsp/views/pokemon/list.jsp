@@ -6,27 +6,42 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<my:layout title="Pokemon">
+<my:layout title="Your Pokémon">
 <jsp:attribute name="body">
 
-    <h1> Pokemons </h1>
-      <table class="table">
+    <p>
+        <a class="btn btn-success" href="${pageContext.request.contextPath}/pokemon/create">
+            <i class="fa fa-plus"></i> Add a Pokémon
+        </a>
+    </p>
+
+
+      <table class="table table-bordered">
           <tr>
-              <th>Pokemon</th>
-              <th>Pokemon primary type</th>
-              <th>Pokemon secondary type</th>
+              <th>Icon</th>
+              <th>Species ID</th>
+              <th>Pokémon</th>
+              <th>Nickname</th>
+              <th>Types</th>
               <th>Level</th>
+              <th></th>
           </tr>
           <c:forEach items="${pokemons}" var="pokemon">
               <tr>
-                  <td><c:out value="${pokemon.nickname}"/></td>
-                  <td><c:out value="${pokemon.primaryType}"/></td>
-                  <td><c:out value="${pokemon.secondaryType}"/></td>
-                  <td><c:out value="${pokemon.level}"/></td>
+                  <td class="col-xs-1"><my:pkmn-icon pokemon="${pokemon}"/></td>
+                  <td class="col-xs-1"><c:out value="${pokemon.speciesId}"/></td>
+                  <td class="col-xs-2"><c:out value="${pokemon.speciesName}"/></td>
+                  <td class="col-xs-2"><c:out value="${pokemon.nickname}"/></td>
+                  <td class="col-xs-2"><my:pkmn-type pokemon="${pokemon}"/></td>
+                  <td class="col-xs-1"><c:out value="${pokemon.level}"/></td>
+                  <td>
+                      <a href="${pageContext.request.contextPath}/pokemon/edit/${pokemon.id}" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i> Rename</a>
+                      <a href="${pageContext.request.contextPath}/pokemon/level-up/${pokemon.id}" class="btn btn-sm btn-info"><i class="fa fa-arrow-up"></i> Level up</a>
+                      <a href="${pageContext.request.contextPath}/pokemon/release/${pokemon.id}" class="btn btn-sm btn-danger"><i class="fa fa-remove"></i> Release</a>
+                  </td>
               </tr>
           </c:forEach>
       </table>
 
-    <a class ="btn btn-info" href="${pageContext.request.contextPath}/pokemon/create">Create</a>
 </jsp:attribute>
 </my:layout>

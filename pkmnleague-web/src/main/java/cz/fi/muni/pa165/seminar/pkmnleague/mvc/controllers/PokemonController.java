@@ -3,6 +3,7 @@ package cz.fi.muni.pa165.seminar.pkmnleague.mvc.controllers;
 import cz.fi.muni.pa165.seminar.pkmnleague.dto.PokemonCreateDTO;
 import cz.fi.muni.pa165.seminar.pkmnleague.dto.PokemonDTO;
 import cz.fi.muni.pa165.seminar.pkmnleague.facade.PokemonFacade;
+import cz.fi.muni.pa165.seminar.pkmnleague.facade.TrainerFacade;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,24 +20,26 @@ import javax.validation.Valid;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * @author dhanak @domhanak on 12/18/15.
  */
 @Controller
-@RequestMapping(value = {"/pokemon"})
+@RequestMapping("/pokemon")
 public class PokemonController {
 
     final static Logger log = LoggerFactory.getLogger(PokemonController.class);
 
     @ModelAttribute("pokemon")
-    public PokemonCreateDTO getPokemon(){
+    public PokemonCreateDTO getPokemon() {
         return new PokemonCreateDTO();
     }
 
     @Autowired
     PokemonFacade pokemonFacade;
+
+    @Autowired
+    private TrainerFacade trainerFacade;
 
     /**
      * Lists all pokemon of logged trainer.
@@ -75,26 +78,15 @@ public class PokemonController {
         return "pokemon/create";
     }
 
-    /**
-     * Creates new Pokemon.
-     *
-     * @param pokemon
-     * @param bindingResult
-     * @param redirectAttributes
-     * @param uriBuilder
-     * @param locale
-     * @return
-     */
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(@Valid @ModelAttribute("pokemon") PokemonCreateDTO pokemon, BindingResult bindingResult,
-                         RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder, Locale locale) {
+                         RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder, Principal principal) {
 
-
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("alert_failure", "Some data were not filled!");
             return "redirect:" + uriBuilder.path("/pokemon/create").build();
         }
-
+        pokemon.setTrainer(trainerFacade.findByEmail(principal.getName()));
         pokemonFacade.createPokemon(pokemon);
 
         redirectAttributes.addFlashAttribute("alert_success", "Pokemon was successfully created.");
