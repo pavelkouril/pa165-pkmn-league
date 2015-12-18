@@ -15,11 +15,31 @@ import javax.validation.constraints.Size;
  */
 public class BadgeCreateDTO {
     
-    @NotNull
+    //@NotNull
     private TrainerDTO trainer;
 
-    @NotNull
+    //@NotNull
     private GymDTO gym;
+    
+    private int trainerId;
+    
+    private int gymId;
+    
+    public int getTrainerId() {
+        return trainerId;
+    }
+    
+    public int getGymId() {
+        return gymId;
+    }
+    
+    public void setGymId(int id) {
+        this.gymId = id;
+    }
+    
+    public void setTrainerId(int id) {
+        this.trainerId = id;
+    }
 
     public TrainerDTO getTrainer() {
         return trainer;
