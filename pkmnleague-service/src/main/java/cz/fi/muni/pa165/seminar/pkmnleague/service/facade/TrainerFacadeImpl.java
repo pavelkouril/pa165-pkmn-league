@@ -109,4 +109,9 @@ public class TrainerFacadeImpl implements TrainerFacade {
         mappedTrainer.setDateOfBirth((java.sql.Date) newDateOfBirth);
     }
 
+    @Override
+    public TrainerDTO findByEmail(String email) {
+        return beanMappingService.mapTo(trainerService.findByEmail(email), TrainerDTO.class);
+    }
+
 }

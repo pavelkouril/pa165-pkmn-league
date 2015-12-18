@@ -87,5 +87,6 @@ public interface TrainerFacade {
         * 
         */
         public void changeDateOfBirth(Date newDateOfBirth, int trainerId);
-        
+
+        TrainerDTO findByEmail(String email);
 }

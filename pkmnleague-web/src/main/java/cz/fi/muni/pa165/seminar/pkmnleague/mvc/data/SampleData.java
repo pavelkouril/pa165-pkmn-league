@@ -10,7 +10,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.IOException;
 import java.util.Date;
 
 
@@ -30,12 +29,12 @@ public class SampleData {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-
-    public void loadData() throws IOException {
+    public void loadData() {
         Trainer trainerRed = trainer("Red", "red@example.com", "heslo123", new Date(0));
         Trainer trainerGreen = trainer("Green", "green@example.com", "123heslo", new Date(0));
 
-        Pokemon pikachu = pokemon(trainerRed, 25, "Pikachu", PokemonType.ELECTRIC, 88);
+        Pokemon rPikachu = pokemon(trainerRed, 25, "Pikachu", PokemonType.ELECTRIC, 88);
+        Pokemon rLapras = pokemon(trainerRed, 131, "Lapras", PokemonType.WATER, PokemonType.ICE, 80);
         Pokemon scizor = pokemon(trainerGreen, 212, "Scizor", PokemonType.BUG, PokemonType.STEEL, 55);
     }
 

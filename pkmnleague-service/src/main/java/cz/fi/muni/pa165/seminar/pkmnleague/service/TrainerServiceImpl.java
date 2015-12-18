@@ -95,6 +95,11 @@ public class TrainerServiceImpl implements TrainerService {
     }
 
     @Override
+    public Trainer findByEmail(String email) {
+        return trainerDao.findByEmail(email);
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         Trainer trainer = trainerDao.findByEmail(s);
 

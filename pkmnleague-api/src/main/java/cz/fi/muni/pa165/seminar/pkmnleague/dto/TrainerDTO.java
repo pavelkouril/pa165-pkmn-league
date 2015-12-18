@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.fi.muni.pa165.seminar.pkmnleague.dto;
 
 import java.util.Date;
@@ -28,6 +23,8 @@ public class TrainerDTO {
     private Date dateOfBirth;
 
     private Set<BadgeDTO> badges = new HashSet<>();
+
+    private Set<PokemonDTO> pokemon = new HashSet<>();
 
     public int getId() {
         return id;
@@ -75,6 +72,14 @@ public class TrainerDTO {
 
     public void setBadges(Set<BadgeDTO> badges) {
         this.badges = badges;
+    }
+
+    public Set<PokemonDTO> getPokemon() {
+        return pokemon;
+    }
+
+    public void setPokemon(Set<PokemonDTO> pokemon) {
+        this.pokemon = pokemon;
     }
 
     @Override

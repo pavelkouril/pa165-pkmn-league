@@ -39,7 +39,7 @@ public class Pokemon {
     private int level;
 
     @NotNull
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="TRAINER_ID")
     private Trainer trainer;
 
@@ -49,6 +49,7 @@ public class Pokemon {
         this.primaryType = primaryType;
         this.level = level;
         this.trainer = trainer;
+        trainer.addPokemon(this);
     }
 
     public Pokemon(Trainer trainer, int speciesId, String speciesName, PokemonType primaryType, PokemonType secondaryType, int level) {
@@ -58,6 +59,7 @@ public class Pokemon {
         this.secondaryType = secondaryType;
         this.level = level;
         this.trainer = trainer;
+        trainer.addPokemon(this);
     }
 
     protected Pokemon() {
