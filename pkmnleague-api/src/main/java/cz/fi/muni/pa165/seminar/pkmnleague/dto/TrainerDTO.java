@@ -29,8 +29,6 @@ public class TrainerDTO {
 
     private Set<BadgeDTO> badges = new HashSet<>();
 
-    private boolean isGymLeader = false;
-
     public int getId() {
         return id;
     }
@@ -63,14 +61,6 @@ public class TrainerDTO {
         this.password = password;
     }
 
-    public boolean isGymLeader() {
-        return isGymLeader;
-    }
-
-    public void setGymLeader(boolean gymLeader) {
-        isGymLeader = gymLeader;
-    }
-
     public Date getDateOfBirth() {
         return dateOfBirth;
     }
@@ -87,21 +77,12 @@ public class TrainerDTO {
         this.badges = badges;
     }
 
-    public boolean isIsGymLeader() {
-        return isGymLeader;
-    }
-
-    public void setIsGymLeader(boolean isGymLeader) {
-        this.isGymLeader = isGymLeader;
-    }
-
     @Override
     public int hashCode() {
         int hash = 3;
         hash = 79 * hash + Objects.hashCode(this.fullName);
         hash = 79 * hash + Objects.hashCode(this.email);
         hash = 79 * hash + Objects.hashCode(this.dateOfBirth);
-        hash = 79 * hash + (this.isGymLeader ? 1 : 0);
         return hash;
     }
 
@@ -121,9 +102,6 @@ public class TrainerDTO {
             return false;
         }
         if (!Objects.equals(this.dateOfBirth, other.dateOfBirth)) {
-            return false;
-        }
-        if (this.isGymLeader != other.isGymLeader) {
             return false;
         }
         return true;

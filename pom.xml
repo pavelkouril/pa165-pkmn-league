@@ -45,5 +45,6 @@
         <module>pkmnleague-service</module>
         <module>pkmnleague-api</module>
         <module>pkmnleague-web</module>
+        <module>pkmnleague-rest</module>
     </modules>
 </project>
