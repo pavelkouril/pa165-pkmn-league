@@ -92,7 +92,7 @@ public class PokemonController {
 
         if (bindingResult.hasErrors()){
             redirectAttributes.addFlashAttribute("alert_failure", "Some data were not filled!");
-            return "redirect:" + uriBuilder.path("/room/create").build();
+            return "redirect:" + uriBuilder.path("/pokemon/create").build();
         }
 
         pokemonFacade.createPokemon(pokemon);

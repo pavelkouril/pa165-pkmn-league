@@ -12,6 +12,7 @@
 <form:form method="post" action="${pageContext.request.contextPath}/gym/create" modelAttribute="createGym">
 
   <fieldset><legend>New Gym</legend>
+      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
       <%@include file="form.jsp"%>
       <input type="submit" value="Save"></td>
  </fieldset>
