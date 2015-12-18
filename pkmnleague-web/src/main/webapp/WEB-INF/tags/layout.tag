@@ -13,6 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><c:out value="${title} | "/>Pokémon League</title>
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/favicon.png">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/font-awesome.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pkmnleague.css">
@@ -39,7 +40,8 @@
                 <li><a href="#">menu</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><i class="fa fa-power-off"></i> Odhlásit se</a></li>
+                <li><a href="${pageContext.request.contextPath}/logout"><i class="fa fa-power-off"></i> Odhlásit se</a>
+                </li>
             </ul>
         </div>
     </div>
