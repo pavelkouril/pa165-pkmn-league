@@ -5,7 +5,7 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<layout title="Gym">
+<my:layout title="Gym">
 <jsp:attribute name="body">
 
 <form:form method="post" action="${pageContext.request.contextPath}/gym/create" modelAttribute="createGym">
@@ -19,4 +19,4 @@
           <div class="alert alert-danger" role="alert"><c:out value="${alert_failure}"/></div>
       </c:if>
 </jsp:attribute>
-</layout>
+<my:/layout>

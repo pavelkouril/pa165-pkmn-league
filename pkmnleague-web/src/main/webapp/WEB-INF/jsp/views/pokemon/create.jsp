@@ -9,7 +9,7 @@
 <my:layout title="Pokemon">
 <jsp:attribute name="body">
 
-<form:form method="post" action="${pageContext.request.contextPath}/pokemon/add" modelAttribute="createPokemon">
+<form:form method="post" action="${pageContext.request.contextPath}/pokemon/create" modelAttribute="createPokemon">
 
   <fieldset><legend>New Pokemon</legend>
       <%@include file="form.jsp"%>
