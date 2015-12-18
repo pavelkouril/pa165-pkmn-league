@@ -43,6 +43,9 @@ public class Trainer {
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Pokemon> pokemon = new HashSet<>();
 
+    @OneToOne
+    private Gym gym;
+
     public Trainer(String fullName, String email, String password, Date dateOfBirth) {
         this.fullName = fullName;
         this.email = email;
@@ -115,6 +118,18 @@ public class Trainer {
 
     public boolean isGymLeaderAtGym(Gym gym) {
         return gym.getLeader().equals(this);
+    }
+
+    public Gym getGym() {
+        return gym;
+    }
+
+    public void setGym(Gym gym) {
+        this.gym = gym;
+    }
+
+    public boolean isGymLeader() {
+        return gym != null;
     }
 
     @Override

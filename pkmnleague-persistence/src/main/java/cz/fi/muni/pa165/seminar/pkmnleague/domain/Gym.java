@@ -1,14 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.fi.muni.pa165.seminar.pkmnleague.domain;
 
-import java.io.Serializable;
-import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 /**
  *
@@ -30,7 +24,7 @@ public class Gym implements Serializable {
     private PokemonType type;
     
     @NotNull
-    @ManyToOne(cascade=CascadeType.PERSIST)
+    @OneToOne(cascade=CascadeType.PERSIST)
     @JoinColumn(name="TRAINER_ID")
     private Trainer leader;
 
@@ -38,6 +32,7 @@ public class Gym implements Serializable {
         this.city = city;
         this.type = type;
         this.leader = leader;
+        leader.setGym(this);
     }
 
     protected Gym() {

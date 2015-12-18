@@ -36,10 +36,10 @@ public class SampleData {
     private PasswordEncoder passwordEncoder;
 
     public void loadData() {
-        Trainer red = trainer("Red", "red@example.com", "heslo", new Date(0));
-        Trainer blue = trainer("Blue", "blue@example.com", "heslo", new Date(0));
-        Trainer brock = trainer("Brock", "brock@example.com", "heslo", new Date(0));
-        Trainer misty = trainer("Misty", "misty@example.com", "heslo", new Date(0));
+        Trainer red = trainer("Red", "red@example.com", "heslo", new Date(1990, 8, 24));
+        Trainer blue = trainer("Blue", "blue@example.com", "heslo", new Date(1996, 9, 1));
+        Trainer brock = trainer("Brock", "brock@example.com", "heslo", new Date(1999, 12, 12));
+        Trainer misty = trainer("Misty", "misty@example.com", "heslo", new Date(2001, 5, 26));
 
         pokemon(red, 25, "Pikachu", PokemonType.ELECTRIC, 88);
         pokemon(red, 131, "Lapras", PokemonType.WATER, PokemonType.ICE, 80);

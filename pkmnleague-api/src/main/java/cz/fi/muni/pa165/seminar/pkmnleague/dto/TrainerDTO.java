@@ -26,6 +26,8 @@ public class TrainerDTO {
 
     private Set<PokemonDTO> pokemon = new HashSet<>();
 
+    private GymDTO gym;
+
     public int getId() {
         return id;
     }
@@ -80,6 +82,14 @@ public class TrainerDTO {
 
     public void setPokemon(Set<PokemonDTO> pokemon) {
         this.pokemon = pokemon;
+    }
+
+    public GymDTO getGym() {
+        return gym;
+    }
+
+    public void setGym(GymDTO gym) {
+        this.gym = gym;
     }
 
     @Override
