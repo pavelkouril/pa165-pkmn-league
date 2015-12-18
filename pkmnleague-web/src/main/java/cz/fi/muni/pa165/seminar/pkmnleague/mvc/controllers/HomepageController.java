@@ -13,13 +13,13 @@ import java.security.Principal;
  * @author Pavel Kouřil <pk@pavelkouril.cz>
  */
 @Controller
-@RequestMapping("/home")
+@RequestMapping("/")
 public class HomepageController {
 
     @Autowired
     private TrainerFacade trainerFacade;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public String list(Model model, Principal principal) {
         model.addAttribute("trainer", trainerFacade.findByEmail(principal.getName()));
         return "home";

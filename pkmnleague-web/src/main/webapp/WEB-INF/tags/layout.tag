@@ -34,13 +34,10 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="#">Nějaké</a></li>
-                <li><a href="#">položky</a></li>
-                <li><a href="#">v</a></li>
-                <li><a href="#">menu</a></li>
+                <li><a href="${pageContext.request.contextPath}/pokemon/list">Your Pokémon</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="${pageContext.request.contextPath}/logout"><i class="fa fa-power-off"></i> Odhlásit se</a>
+                <li><a href="${pageContext.request.contextPath}/logout"><i class="fa fa-power-off"></i> Log out</a>
                 </li>
             </ul>
         </div>
