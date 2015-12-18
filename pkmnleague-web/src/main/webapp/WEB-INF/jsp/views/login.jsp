@@ -23,13 +23,20 @@
     <form name="f" action="${pageContext.request.contextPath}/login" method="post" class="form-signin">
         <h2 class="form-signin-heading">Please sign in</h2>
 
-        <c:if test="${param.error ne null}">
-            <div class="alert alert-error">
-                Invalid username and password.
+        <c:if test="${param.role ne null}">
+            <div class="alert alert-info">
+                Your role was changed to Gym Leader. You need to sign in again to see the changes.
             </div>
         </c:if>
+
+        <c:if test="${param.error ne null}">
+            <div class="alert alert-danger">
+                Invalid username or password.
+            </div>
+        </c:if>
+
         <c:if test="${param.logout ne null}">
-            <div class="alert alert-success">
+            <div class="alert alert-info">
                 You have been logged out.
             </div>
         </c:if>

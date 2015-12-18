@@ -9,16 +9,12 @@ import cz.fi.muni.pa165.seminar.pkmnleague.facade.PokemonFacade;
 import cz.fi.muni.pa165.seminar.pkmnleague.service.BeanMappingService;
 import cz.fi.muni.pa165.seminar.pkmnleague.service.PokemonService;
 import cz.fi.muni.pa165.seminar.pkmnleague.service.TrainerService;
-
-import javax.inject.Inject;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
-
+import javax.inject.Inject;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Zuzana Goldmannova
@@ -39,7 +35,10 @@ public class PokemonFacadeImpl implements PokemonFacade {
 
     @Override
     public void createPokemon(PokemonCreateDTO p) {
-        Pokemon mappedPokemon = beanMappingService.mapTo(p, Pokemon.class);
+        Pokemon mappedPokemon = new Pokemon(trainerService.findById(p.getTrainer().getId()), p.getSpeciesId(), p.getSpeciesName(), p.getPrimaryType(), p.getLevel());
+        if (p.getSecondaryType() != null) {
+            mappedPokemon.setSecondaryType(p.getSecondaryType());
+        }
         pokemonService.create(mappedPokemon);
     }
 

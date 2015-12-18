@@ -25,8 +25,7 @@ public class GymCreateDTO {
     
     @NotNull
     private PokemonType type;
-    
-    @NotNull
+
     private TrainerDTO leader;
 
     public String getCity() {
