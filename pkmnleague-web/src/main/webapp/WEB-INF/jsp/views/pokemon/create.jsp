@@ -12,6 +12,7 @@
 <form:form method="post" action="${pageContext.request.contextPath}/pokemon/create" modelAttribute="createPokemon">
 
   <fieldset><legend>New Pokemon</legend>
+      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
       <%@include file="form.jsp"%>
       <input type="submit" value="Save"></td>
  </fieldset>

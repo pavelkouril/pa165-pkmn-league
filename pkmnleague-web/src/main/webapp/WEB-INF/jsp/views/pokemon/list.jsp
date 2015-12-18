@@ -13,16 +13,16 @@
       <table class="table">
           <tr>
               <th>Pokemon</th>
-              <th>Pokemon type</th>
-              <th>Name</th>
+              <th>Pokemon primary type</th>
+              <th>Pokemon secondary type</th>
               <th>Level</th>
           </tr>
           <c:forEach items="${pokemons}" var="pokemon">
               <tr>
-                  <td><c:out value="${pokemon.name}"/></td>
-                  <td><c:out value="${pokemon.type}"/></td>
+                  <td><c:out value="${pokemon.nickname}"/></td>
+                  <td><c:out value="${pokemon.primaryType}"/></td>
+                  <td><c:out value="${pokemon.secondaryType}"/></td>
                   <td><c:out value="${pokemon.level}"/></td>
-                  <td><c:out value="${pokemon.trainer}"/></td>
               </tr>
           </c:forEach>
       </table>

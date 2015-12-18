@@ -3,7 +3,6 @@ package cz.fi.muni.pa165.seminar.pkmnleague.mvc.controllers;
 import cz.fi.muni.pa165.seminar.pkmnleague.dto.GymCreateDTO;
 import cz.fi.muni.pa165.seminar.pkmnleague.dto.PokemonCreateDTO;
 import cz.fi.muni.pa165.seminar.pkmnleague.facade.GymFacade;
-import cz.fi.muni.pa165.seminar.pkmnleague.facade.PokemonFacade;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +57,7 @@ public class GymController {
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String create(Model model) {
         log.debug("Create new gym");
-        model.addAttribute("createGym", new PokemonCreateDTO());
+        model.addAttribute("createGym", new GymCreateDTO());
         return "gym/create";
     }
 
