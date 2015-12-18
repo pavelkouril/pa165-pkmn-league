@@ -5,20 +5,18 @@ import cz.fi.muni.pa165.seminar.pkmnleague.domain.PokemonType;
 import java.util.Objects;
 
 /**
- *
  * @author Oldrich Faldik
  */
 
 
-public class PokemonDTO
-{
-    
+public class PokemonDTO {
+
     private int id;
 
     private int speciesId;
 
     private String speciesName;
- 
+
     private String nickname;
 
     private PokemonType primaryType;
@@ -36,8 +34,6 @@ public class PokemonDTO
     public void setId(int id) {
         this.id = id;
     }
-    
-    
 
     public int getSpeciesId() {
         return speciesId;
@@ -56,7 +52,7 @@ public class PokemonDTO
     }
 
     public String getNickname() {
-        return nickname;
+        return nickname != null ? nickname : speciesName;
     }
 
     public void setNickname(String nickname) {
@@ -141,6 +137,5 @@ public class PokemonDTO
         return true;
     }
 
-   
 
 }

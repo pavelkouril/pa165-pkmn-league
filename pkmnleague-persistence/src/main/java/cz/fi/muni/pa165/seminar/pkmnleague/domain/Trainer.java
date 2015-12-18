@@ -36,11 +36,11 @@ public class Trainer {
     private String password;
 
     @NotNull
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = CascadeType.ALL)
     private Set<Badge> badges = new HashSet<>();
 
     @NotNull
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = CascadeType.ALL)
     private Set<Pokemon> pokemon = new HashSet<>();
 
     public Trainer(String fullName, String email, String password, Date dateOfBirth) {
