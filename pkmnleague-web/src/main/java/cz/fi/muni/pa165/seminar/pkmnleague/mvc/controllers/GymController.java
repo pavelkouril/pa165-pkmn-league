@@ -57,7 +57,7 @@ public class GymController {
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String create(Model model) {
         log.debug("Create new gym");
-        model.addAttribute("createGym", new PokemonCreateDTO());
+        model.addAttribute("createGym", new GymCreateDTO());
         return "gym/create";
     }
 
