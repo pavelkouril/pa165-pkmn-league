@@ -36,11 +36,8 @@ public class BadgeFacadeImpl implements BadgeFacade {
 
     @Override
     public void createBadge(BadgeCreateDTO b) {
-        Badge mappedBadge = beanMappingService.mapTo(b, Badge.class);
-        mappedBadge.setGym(gymService.findById(b.getGym().getId()));
-        mappedBadge.setTrainer(trainerService.findById((b.getTrainer().getId())));
-
-        badgeService.createBadge(mappedBadge);
+        Badge newBadge = new Badge(trainerService.findById(b.getTrainerId()), gymService.findById(b.getGymId()));
+        badgeService.createBadge(newBadge);
     }
 
     @Override

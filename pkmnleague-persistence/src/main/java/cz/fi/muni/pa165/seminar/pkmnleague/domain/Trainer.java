@@ -88,7 +88,7 @@ public class Trainer {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(java.sql.Date date) {
+    public void setDateOfBirth(java.util.Date date) {
         this.dateOfBirth = date;
     }
 

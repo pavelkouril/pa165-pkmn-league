@@ -1,9 +1,8 @@
 package cz.fi.muni.pa165.seminar.pkmnleague.mvc.controllers;
 
-import cz.fi.muni.pa165.seminar.pkmnleague.dto.BadgeDTO;
+import cz.fi.muni.pa165.seminar.pkmnleague.dto.BadgeCreateDTO;
 import cz.fi.muni.pa165.seminar.pkmnleague.dto.GymCreateDTO;
-import cz.fi.muni.pa165.seminar.pkmnleague.dto.GymDTO;
-import cz.fi.muni.pa165.seminar.pkmnleague.dto.TrainerDTO;
+import cz.fi.muni.pa165.seminar.pkmnleague.facade.BadgeFacade;
 import cz.fi.muni.pa165.seminar.pkmnleague.facade.GymFacade;
 import cz.fi.muni.pa165.seminar.pkmnleague.facade.TrainerFacade;
 import org.slf4j.Logger;
@@ -21,8 +20,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.security.Principal;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * @author dhanak @domhanak on 12/18/15.
@@ -40,6 +37,9 @@ public class GymController {
 
     @Autowired
     private GymFacade gymFacade;
+    
+    @Autowired
+    private BadgeFacade badgeFacade;
 
     @Autowired
     private TrainerFacade trainerFacade;
@@ -51,13 +51,50 @@ public class GymController {
      * @return
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String gyms(Model model, Principal principal) {
+    public String gyms(Model model) {
         log.info("Gyms = {}", gymFacade.getAllGyms());
-        TrainerDTO trainer = trainerFacade.findByEmail(principal.getName());
-        Set<GymDTO> beatenGyms = trainer.getBadges().stream().map(BadgeDTO::getGym).collect(Collectors.toSet());
-        model.addAttribute("beatenGyms", beatenGyms);
         model.addAttribute("gyms", gymFacade.getAllGyms());
         return "gym/list";
+    }
+    
+    /**
+     * Hands out a badge to a trainer.
+     *
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/badge", method = RequestMethod.GET)
+    public String badge(Model model, Principal principal) {
+        log.debug("Hand out badge");
+        model.addAttribute("createBadge", new BadgeCreateDTO());
+        log.info("Trainers = {}", trainerFacade.getAllTrainers());
+        model.addAttribute("trainers", trainerFacade.getAllTrainers());
+        log.info("Gyms = {}", gymFacade.getGymsByLeader(trainerFacade.findByEmail(principal.getName()).getId()));
+        model.addAttribute("gyms", gymFacade.getGymsByLeader(trainerFacade.findByEmail(principal.getName()).getId()));
+        return "gym/badge";
+    }
+    
+    @RequestMapping(value = "/badge", method = RequestMethod.POST)
+    public String badge(@Valid @ModelAttribute("badge") BadgeCreateDTO badge, 
+                        BindingResult bindingResult,
+                        RedirectAttributes redirectAttributes, 
+                        UriComponentsBuilder uriBuilder, Principal principal) {
+
+        if (bindingResult.hasErrors()) {
+            //redirectAttributes.addFlashAttribute("alert_failure", bindingResult.toString());
+            redirectAttributes.addFlashAttribute("alert_failure", "Some data were not filled!");
+            return "redirect:" + uriBuilder.path("/gym/badge").build();
+        }
+        
+        badge.setTrainer(trainerFacade.getTrainerWithId(badge.getTrainerId()));
+        badge.setGym(gymFacade.getGymWithId(badge.getGymId()));
+
+        //badgeFacade.createBadge(badge);
+
+        //redirectAttributes.addFlashAttribute("alert_success", "Badge was successfully handed out.");
+
+        return "redirect:" + uriBuilder.path("/gym/badge").build();
+
     }
 
     /**
