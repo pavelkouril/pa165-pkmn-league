@@ -1,6 +1,9 @@
 package cz.fi.muni.pa165.seminar.pkmnleague.mvc.controllers;
 
+import cz.fi.muni.pa165.seminar.pkmnleague.dto.BadgeDTO;
 import cz.fi.muni.pa165.seminar.pkmnleague.dto.GymCreateDTO;
+import cz.fi.muni.pa165.seminar.pkmnleague.dto.GymDTO;
+import cz.fi.muni.pa165.seminar.pkmnleague.dto.TrainerDTO;
 import cz.fi.muni.pa165.seminar.pkmnleague.facade.GymFacade;
 import cz.fi.muni.pa165.seminar.pkmnleague.facade.TrainerFacade;
 import org.slf4j.Logger;
@@ -18,6 +21,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @author dhanak @domhanak on 12/18/15.
@@ -46,8 +51,11 @@ public class GymController {
      * @return
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String gyms(Model model) {
+    public String gyms(Model model, Principal principal) {
         log.info("Gyms = {}", gymFacade.getAllGyms());
+        TrainerDTO trainer = trainerFacade.findByEmail(principal.getName());
+        Set<GymDTO> beatenGyms = trainer.getBadges().stream().map(BadgeDTO::getGym).collect(Collectors.toSet());
+        model.addAttribute("beatenGyms", beatenGyms);
         model.addAttribute("gyms", gymFacade.getAllGyms());
         return "gym/list";
     }

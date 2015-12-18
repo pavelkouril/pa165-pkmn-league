@@ -6,6 +6,26 @@
     color: #aaa;
 }
 
+.login-page {
+    position: relative;
+    z-index: 1;
+}
+
+.login-page:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: .4;
+    z-index: -1;
+    background-image: url('../img/map.png');
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
 .form-signin {
     max-width: 330px;
     padding: 15px;
