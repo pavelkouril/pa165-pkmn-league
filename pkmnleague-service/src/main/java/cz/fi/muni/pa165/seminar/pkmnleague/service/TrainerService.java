@@ -18,6 +18,8 @@ public interface TrainerService extends UserDetailsService {
 
     Trainer findById(int id);
 
+    Trainer findByEmail(String email);
+
     List<Trainer> findAll();
 
     void delete(Trainer trainer);
