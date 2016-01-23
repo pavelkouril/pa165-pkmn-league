@@ -35,6 +35,11 @@ public class PokemonServiceImpl implements PokemonService {
     public void create(Pokemon pokemon) {
         pokemonDao.save(pokemon);
     }
+    
+    public void update(Pokemon pokemon,String newNickName) {
+        pokemon.setNickname(newNickName);
+        pokemonDao.save(pokemon);
+    }
 
     @Override
     public void levelUpPokemon(Pokemon pokemon) {

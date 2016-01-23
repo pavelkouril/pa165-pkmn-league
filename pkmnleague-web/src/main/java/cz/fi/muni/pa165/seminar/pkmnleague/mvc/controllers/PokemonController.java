@@ -2,6 +2,7 @@ package cz.fi.muni.pa165.seminar.pkmnleague.mvc.controllers;
 
 import cz.fi.muni.pa165.seminar.pkmnleague.dto.PokemonCreateDTO;
 import cz.fi.muni.pa165.seminar.pkmnleague.dto.PokemonDTO;
+import cz.fi.muni.pa165.seminar.pkmnleague.dto.PokemonEditDTO;
 import cz.fi.muni.pa165.seminar.pkmnleague.dto.TrainerDTO;
 import cz.fi.muni.pa165.seminar.pkmnleague.exceptions.PokemonLeagueServiceException;
 import cz.fi.muni.pa165.seminar.pkmnleague.facade.PokemonFacade;
@@ -36,6 +37,11 @@ public class PokemonController {
     @ModelAttribute("pokemon")
     public PokemonCreateDTO getPokemon() {
         return new PokemonCreateDTO();
+    }
+    
+    @ModelAttribute("pokemonEdited")
+    public PokemonEditDTO getPokemonEdited() {
+        return new PokemonEditDTO();
     }
 
     @Autowired
@@ -99,6 +105,37 @@ public class PokemonController {
         return "pokemon/create";
     }
 
+    
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String edit(Model model,@PathVariable int id){
+        log.debug("Edit existing pokemon");
+        PokemonEditDTO pok=new PokemonEditDTO();
+        
+        PokemonDTO existPok=pokemonFacade.getPokemonWithId(id);
+        pok.setId(id);
+        pok.setNickname(existPok.getNickname());
+        model.addAttribute("editPokemon", pok);
+        return "pokemon/edit";
+    }
+    
+    
+    @RequestMapping(value = "edit", method = RequestMethod.POST)
+    public String edit(@Valid @ModelAttribute("pokemonEdited") PokemonEditDTO pokemon, BindingResult bindingResult,
+                         RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder, Principal principal) {
+
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("alert_failure", "Some data were not filled!");
+            return "redirect:" + uriBuilder.path("/pokemon/edit").build();
+        }
+        
+        pokemonFacade.changeNickName(pokemon.getNickname(), pokemon.getId());
+
+        redirectAttributes.addFlashAttribute("alert_success", "Pokemon was successfully edited.");
+
+        return "redirect:" + uriBuilder.path("/pokemon/list").build();
+
+    }
+    
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(@Valid @ModelAttribute("pokemon") PokemonCreateDTO pokemon, BindingResult bindingResult,
                          RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder, Principal principal) {
@@ -115,4 +152,9 @@ public class PokemonController {
         return "redirect:" + uriBuilder.path("/pokemon/list").build();
 
     }
+    
+    
+    
+    
+    
 }

@@ -125,6 +125,8 @@ public class PokemonFacadeImpl implements PokemonFacade {
     public void changeNickName(String newNickName, int pokemonId) {
         Pokemon mappedPokemon = beanMappingService.mapTo(pokemonId, Pokemon.class);
         mappedPokemon.setNickname(newNickName);
+        
+        pokemonService.update(pokemonService.findById(pokemonId),newNickName);
     }
 
     @Override
