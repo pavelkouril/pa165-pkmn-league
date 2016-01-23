@@ -23,6 +23,10 @@
     <form name="f" action="${pageContext.request.contextPath}/login" method="post" class="form-signin">
         <h2 class="form-signin-heading">Please sign in</h2>
 
+        <c:if test="${not empty alert_success}">
+            <div class="alert alert-success" role="alert"><c:out value="${alert_success}"/></div>
+        </c:if>
+
         <c:if test="${param.role ne null}">
             <div class="alert alert-info">
                 Your role was changed to Gym Leader. You need to sign in again to see the changes.
@@ -49,6 +53,7 @@
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         <br>
+        <a href="${pageContext.request.contextPath}/registration" class="btn btn-lg btn-default btn-block">Sign up</a>
         <br>
 
     </form>
