@@ -60,7 +60,7 @@ public class TrainerFacadeTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
-    public void testFindAllGymsFacade() throws Exception {
+    public void testFindAllTrainersFacade() throws Exception {
         TrainerDTO dto1 = new TrainerDTO();
         TrainerDTO dto2 = new TrainerDTO();
 
@@ -76,7 +76,7 @@ public class TrainerFacadeTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
-    public void testGetGymByIdFacade() throws Exception {
+    public void testGetTrainerByIdFacade() throws Exception {
         TrainerDTO dto = new TrainerDTO();
         dto.setId(1);
 
