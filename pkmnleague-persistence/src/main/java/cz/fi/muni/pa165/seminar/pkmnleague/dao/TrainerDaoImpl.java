@@ -2,6 +2,7 @@ package cz.fi.muni.pa165.seminar.pkmnleague.dao;
 
 
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.Trainer;
+import cz.fi.muni.pa165.seminar.pkmnleague.utils.DaoLayerException;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -18,26 +19,46 @@ public class TrainerDaoImpl implements TrainerDao {
 
     @Override
     public Trainer findById(int id) {
-        return entityManager.find(Trainer.class, id);
+        try {
+            return entityManager.find(Trainer.class, id);
+        } catch (Exception e) {
+            throw new DaoLayerException(e.getMessage());
+        }
     }
 
     @Override
     public void save(Trainer trainer) {
-        entityManager.persist(trainer);
+        try {
+            entityManager.persist(trainer);
+        } catch (Exception e) {
+            throw new DaoLayerException(e.getMessage());
+        }
     }
 
     @Override
     public void delete(Trainer trainer) {
-        entityManager.remove(trainer);
+        try {
+            entityManager.remove(trainer);
+        } catch (Exception e) {
+            throw new DaoLayerException(e.getMessage());
+        }
     }
 
     @Override
     public List<Trainer> findAll() {
-        return entityManager.createQuery("select t from Trainer t", Trainer.class).getResultList();
+        try {
+            return entityManager.createQuery("select t from Trainer t", Trainer.class).getResultList();
+        } catch (Exception e) {
+            throw new DaoLayerException(e.getMessage());
+        }
     }
 
     @Override
     public Trainer findByEmail(String email) {
-        return entityManager.createQuery("select t from Trainer t where t.email = ?1", Trainer.class).setParameter(1, email).getSingleResult();
+        try {
+            return entityManager.createQuery("select t from Trainer t where t.email = ?1", Trainer.class).setParameter(1, email).getSingleResult();
+        } catch (Exception e) {
+            throw new DaoLayerException(e.getMessage());
+        }
     }
 }

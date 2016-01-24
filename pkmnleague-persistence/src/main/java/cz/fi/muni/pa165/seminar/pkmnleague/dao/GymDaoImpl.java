@@ -1,6 +1,7 @@
 package cz.fi.muni.pa165.seminar.pkmnleague.dao;
 
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.Gym;
+import cz.fi.muni.pa165.seminar.pkmnleague.utils.DaoLayerException;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -15,27 +16,44 @@ import java.util.List;
  */
 @Repository
 public class GymDaoImpl implements GymDao{
-     @PersistenceContext
+
+    @PersistenceContext
     private EntityManager entityManager;
 
     @Override
     public Gym findById(int id) {
-        return entityManager.find(Gym.class, id);
+        try {
+            return entityManager.find(Gym.class, id);
+        } catch (Exception e) {
+            throw new DaoLayerException(e.getMessage());
+        }
     }
 
     @Override
     public void save(Gym gym) {
-        entityManager.persist(gym);
+        try {
+            entityManager.persist(gym);
+        } catch (Exception e) {
+            throw new DaoLayerException(e.getMessage());
+        }
     }
 
     @Override
     public void delete(Gym gym) {
-        entityManager.remove(gym);
+        try {
+            entityManager.remove(gym);
+        } catch (Exception e) {
+            throw new DaoLayerException(e.getMessage());
+        }
     }
 
     @Override
     public List<Gym> findAll() {
-        return entityManager.createQuery("select g from Gym g", Gym.class).getResultList();
+        try {
+            return entityManager.createQuery("select g from Gym g", Gym.class).getResultList();
+        } catch (Exception e) {
+            throw new DaoLayerException(e.getMessage());
+        }
     }
     
 }
