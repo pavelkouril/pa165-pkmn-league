@@ -31,6 +31,10 @@ public class GymDTO
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getCity() {
         return city;
     }
@@ -84,7 +88,4 @@ public class GymDTO
         }
         return true;
     }
-
-   
-
 }
