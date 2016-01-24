@@ -6,6 +6,9 @@
 package cz.fi.muni.pa165.seminar.pkmnleague.dao;
 
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.Badge;
+import cz.fi.muni.pa165.seminar.pkmnleague.utils.DaoLayerException;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DataAccessResourceFailureException;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -23,22 +26,46 @@ public class BadgeDaoImpl implements BadgeDao{
 
     @Override
     public Badge findById(int id) {
-        return entityManager.find(Badge.class, id);
+        try {
+            return entityManager.find(Badge.class, id);
+        } catch (Exception e) {
+            throw new DaoLayerException(e.getMessage());
+        }
     }
 
     @Override
     public void save(Badge badge) {
-        entityManager.persist(badge);
+        if (findById(badge.getId()) != null) {
+           try {
+               entityManager.merge(badge);
+            } catch (Exception e) {
+                throw new DaoLayerException(e.getMessage());
+            }
+        } else {
+            try {
+                entityManager.persist(badge);
+            } catch (Exception e) {
+                throw new DaoLayerException(e.getMessage());
+            }
+        }
     }
 
     @Override
     public void delete(Badge badge) {
-        entityManager.remove(badge);
+        try {
+            entityManager.remove(findById(badge.getId()));
+        } catch (Exception e) {
+            throw new DaoLayerException(e.getMessage());
+        }
     }
 
     @Override
     public List<Badge> findAll() {
-        return entityManager.createQuery("select b from Badge b", Badge.class).getResultList();
+        try {
+            return entityManager.createQuery("select b from Badge b", Badge.class).getResultList();
+        } catch (Exception e) {
+            throw new DaoLayerException(e.getMessage());
+        }
     }
 
  

@@ -37,6 +37,12 @@ public class PokemonDaoTest extends AbstractTestNGSpringContextTests {
 
         Pokemon result = pokemonDao.findById(pokemon.getId());
         assertEquals(pokemon, result);
+
+        pokemon.setLevel(10);
+        pokemonDao.save(pokemon);
+
+        Pokemon resultUpdate = pokemonDao.findById(pokemon.getId());
+        assertEquals(resultUpdate.getLevel(), 10);
     }
 
     @Test

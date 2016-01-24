@@ -54,6 +54,12 @@ public class GymDaoTest extends AbstractTestNGSpringContextTests {
 
         Gym result = gymDao.findById(testGym.getId());
         assertEquals(testGym, result);
+
+        testGym.setCity("Pewter");
+        gymDao.save(testGym);
+
+        Gym resultUpdate = gymDao.findById(testGym.getId());
+        assertEquals(resultUpdate.getCity(), "Pewter");
     }
 
     @Test
