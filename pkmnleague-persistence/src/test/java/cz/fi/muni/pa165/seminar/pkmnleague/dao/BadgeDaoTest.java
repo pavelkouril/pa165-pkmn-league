@@ -32,6 +32,7 @@ public class BadgeDaoTest extends AbstractTestNGSpringContextTests {
     public void testSave() {
         Trainer leader = new Trainer("Misty", "misty@kanto.jp", "", new Date(1996, 1, 2));
         Gym gym = new Gym("Cerulean", PokemonType.WATER, leader);
+        Gym gym2 = new Gym("Pewter", PokemonType.WATER, leader);
 
         Trainer t = new Trainer("Ash", "satoshi@kanto.jp", "", new Date(0));
 
@@ -39,8 +40,14 @@ public class BadgeDaoTest extends AbstractTestNGSpringContextTests {
 
         badgeDao.save(badge);
 
-        Badge result = badgeDao.findById(badge.getId());
-        assertEquals(badge, result);
+        Badge resultCreate = badgeDao.findById(badge.getId());
+        assertEquals(badge, resultCreate);
+
+        badge.setGym(gym2);
+
+        badgeDao.save(badge);
+        Badge resultUpdate = badgeDao.findById(badge.getId());
+        assertEquals(badge, resultUpdate);
     }
 
     @Test

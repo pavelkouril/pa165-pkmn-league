@@ -32,10 +32,18 @@ public class PokemonDaoImpl implements PokemonDao {
 
     @Override
     public void save(Pokemon pokemon) {
-        try {
-            entityManager.persist(pokemon);
-        } catch (Exception e) {
-            throw new DaoLayerException(e.getMessage());
+        if (findById(pokemon.getId()) != null) {
+            try {
+                entityManager.merge(pokemon);
+            } catch (Exception e) {
+                throw new DaoLayerException(e.getMessage());
+            }
+        } else {
+            try {
+                entityManager.persist(pokemon);
+            } catch (Exception e) {
+                throw new DaoLayerException(e.getMessage());
+            }
         }
     }
 

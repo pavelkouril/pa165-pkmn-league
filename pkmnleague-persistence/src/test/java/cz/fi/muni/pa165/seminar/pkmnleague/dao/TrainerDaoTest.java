@@ -34,6 +34,13 @@ public class TrainerDaoTest extends AbstractTestNGSpringContextTests {
 
         Trainer result = trainerDao.findById(trainer.getId());
         assertEquals(trainer, result);
+
+        trainer.setEmail("karik@kares.sk");
+        trainerDao.save(trainer);
+
+        Trainer resultUpdate = trainerDao.findById(trainer.getId());
+        assertEquals("karik@kares.sk", resultUpdate.getEmail());
+
     }
 
     @Test

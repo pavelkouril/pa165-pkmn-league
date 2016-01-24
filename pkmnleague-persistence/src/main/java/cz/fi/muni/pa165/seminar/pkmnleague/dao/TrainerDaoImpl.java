@@ -28,10 +28,18 @@ public class TrainerDaoImpl implements TrainerDao {
 
     @Override
     public void save(Trainer trainer) {
-        try {
-            entityManager.persist(trainer);
-        } catch (Exception e) {
-            throw new DaoLayerException(e.getMessage());
+        if (findById(trainer.getId()) != null) {
+            try {
+                entityManager.merge(trainer);
+            } catch (Exception e) {
+                throw new DaoLayerException(e.getMessage());
+            }
+        } else {
+            try {
+                entityManager.persist(trainer);
+            } catch (Exception e) {
+                throw new DaoLayerException(e.getMessage());
+            }
         }
     }
 

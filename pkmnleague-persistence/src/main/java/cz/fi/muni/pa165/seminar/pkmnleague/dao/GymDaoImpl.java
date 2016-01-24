@@ -31,10 +31,18 @@ public class GymDaoImpl implements GymDao{
 
     @Override
     public void save(Gym gym) {
-        try {
-            entityManager.persist(gym);
-        } catch (Exception e) {
-            throw new DaoLayerException(e.getMessage());
+        if (findById(gym.getId()) != null) {
+            try {
+                entityManager.merge(gym);
+            } catch (Exception e) {
+                throw new DaoLayerException(e.getMessage());
+            }
+        } else {
+            try {
+                entityManager.persist(gym);
+            } catch (Exception e) {
+                throw new DaoLayerException(e.getMessage());
+            }
         }
     }
 
