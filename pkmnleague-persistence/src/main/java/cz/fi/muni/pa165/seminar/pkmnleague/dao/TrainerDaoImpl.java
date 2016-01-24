@@ -46,7 +46,7 @@ public class TrainerDaoImpl implements TrainerDao {
     @Override
     public void delete(Trainer trainer) {
         try {
-            entityManager.remove(trainer);
+            entityManager.remove(findById(trainer.getId()));
         } catch (Exception e) {
             throw new DaoLayerException(e.getMessage());
         }

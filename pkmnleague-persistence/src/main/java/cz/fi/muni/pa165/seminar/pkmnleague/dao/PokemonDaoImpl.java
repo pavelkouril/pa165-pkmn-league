@@ -50,7 +50,7 @@ public class PokemonDaoImpl implements PokemonDao {
     @Override
     public void delete(Pokemon pokemon) {
         try {
-            entityManager.remove(pokemon);
+            entityManager.remove(findById(pokemon.getId()));
         } catch (Exception e) {
             throw new DaoLayerException(e.getMessage());
         }

@@ -49,7 +49,7 @@ public class GymDaoImpl implements GymDao{
     @Override
     public void delete(Gym gym) {
         try {
-            entityManager.remove(gym);
+            entityManager.remove(findById(gym.getId()));
         } catch (Exception e) {
             throw new DaoLayerException(e.getMessage());
         }

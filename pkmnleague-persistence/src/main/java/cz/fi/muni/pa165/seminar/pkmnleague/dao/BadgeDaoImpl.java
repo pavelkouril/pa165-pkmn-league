@@ -35,25 +35,25 @@ public class BadgeDaoImpl implements BadgeDao{
 
     @Override
     public void save(Badge badge) {
-     //   if (findById(badge.getId()) != null) {
-      //      try {
-      //          entityManager.merge(badge);
-     //       } catch (Exception e) {
-     //           throw new DaoLayerException(e.getMessage());
-      //      }
-      //  } else {
+        if (findById(badge.getId()) != null) {
+           try {
+               entityManager.merge(badge);
+            } catch (Exception e) {
+                throw new DaoLayerException(e.getMessage());
+            }
+        } else {
             try {
                 entityManager.persist(badge);
             } catch (Exception e) {
                 throw new DaoLayerException(e.getMessage());
             }
-       // }
+        }
     }
 
     @Override
     public void delete(Badge badge) {
         try {
-            entityManager.remove(badge);
+            entityManager.remove(findById(badge.getId()));
         } catch (Exception e) {
             throw new DaoLayerException(e.getMessage());
         }
