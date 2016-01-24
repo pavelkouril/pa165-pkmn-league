@@ -12,6 +12,7 @@ public interface PokemonService {
     List<Pokemon> findAll();
     void delete(Pokemon pokemon);
     void create(Pokemon pokemon);
+    void update(Pokemon pokemon, String newNickName);
 
     void levelUpPokemon(Pokemon pokemon);
 }
