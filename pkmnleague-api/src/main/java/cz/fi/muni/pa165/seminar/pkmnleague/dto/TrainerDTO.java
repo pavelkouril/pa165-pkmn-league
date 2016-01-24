@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @author Oldrich Faldik
@@ -82,6 +83,10 @@ public class TrainerDTO {
 
     public void setPokemon(Set<PokemonDTO> pokemon) {
         this.pokemon = pokemon;
+    }
+
+    public Set<GymDTO> getBeatenGyms() {
+        return this.badges.stream().map(BadgeDTO::getGym).collect(Collectors.toSet());
     }
 
     public GymDTO getGym() {
