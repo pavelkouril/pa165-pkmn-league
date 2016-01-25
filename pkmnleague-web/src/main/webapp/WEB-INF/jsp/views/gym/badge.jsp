@@ -31,15 +31,7 @@
             <form:errors path="trainerId" cssClass="error"/>
         </div>
         
-        <form:label path="gymId" cssClass="col-sm-2 control-label">Gym</form:label>
-        <div class="col-sm-10">
-            
-            <form:select id="gymId" path="gymId" name="gymId" class="form-control" required="required">
-                         <form:options items="${gyms}" itemValue="id" itemLabel="city"/>
-                    </form:select>
-            
-            <form:errors path="gymId" cssClass="error"/>
-        </div>        
+               
     </div>
 
     <div class="form-group">

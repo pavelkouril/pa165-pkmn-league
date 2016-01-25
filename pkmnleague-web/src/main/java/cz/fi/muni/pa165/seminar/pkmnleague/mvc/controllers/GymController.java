@@ -2,6 +2,8 @@ package cz.fi.muni.pa165.seminar.pkmnleague.mvc.controllers;
 
 import cz.fi.muni.pa165.seminar.pkmnleague.dto.BadgeCreateDTO;
 import cz.fi.muni.pa165.seminar.pkmnleague.dto.GymCreateDTO;
+import cz.fi.muni.pa165.seminar.pkmnleague.dto.GymEditDTO;
+import cz.fi.muni.pa165.seminar.pkmnleague.dto.TrainerDTO;
 import cz.fi.muni.pa165.seminar.pkmnleague.facade.BadgeFacade;
 import cz.fi.muni.pa165.seminar.pkmnleague.facade.GymFacade;
 import cz.fi.muni.pa165.seminar.pkmnleague.facade.TrainerFacade;
@@ -32,6 +34,11 @@ public class GymController {
 
     @ModelAttribute("gym")
     public GymCreateDTO getGym() {
+        return new GymCreateDTO();
+    }
+    
+    @ModelAttribute("gymEdited")
+    public GymCreateDTO getGymEdited() {
         return new GymCreateDTO();
     }
 
@@ -68,9 +75,9 @@ public class GymController {
         log.debug("Hand out badge");
         model.addAttribute("createBadge", new BadgeCreateDTO());
         log.info("Trainers = {}", trainerFacade.getAllTrainers());
-        model.addAttribute("trainers", trainerFacade.getAllTrainers());
-        log.info("Gyms = {}", gymFacade.getGymsByLeader(trainerFacade.findByEmail(principal.getName()).getId()));
-        model.addAttribute("gyms", gymFacade.getGymsByLeader(trainerFacade.findByEmail(principal.getName()).getId()));
+        model.addAttribute("trainers", trainerFacade.getBadgeAbleTrainers(principal.getName()));
+        //log.info("Gyms = {}", gymFacade.getGymsByLeader(trainerFacade.findByEmail(principal.getName()).getId()));
+        //model.addAttribute("gyms", gymFacade.getGymsByLeader(trainerFacade.findByEmail(principal.getName()).getId()));
         return "gym/badge";
     }
     
@@ -86,12 +93,13 @@ public class GymController {
             return "redirect:" + uriBuilder.path("/gym/badge").build();
         }
         
-        badge.setTrainer(trainerFacade.getTrainerWithId(badge.getTrainerId()));
-        badge.setGym(gymFacade.getGymWithId(badge.getGymId()));
+        //badge.setTrainerId(trainerFacade.findByEmail(principal.getName()).getId());
+        
+        badge.setGymId(trainerFacade.findByEmail(principal.getName()).getGym().getId());
 
-        //badgeFacade.createBadge(badge);
+        badgeFacade.createBadge(badge);
 
-        //redirectAttributes.addFlashAttribute("alert_success", "Badge was successfully handed out.");
+        redirectAttributes.addFlashAttribute("alert_success", "Badge was successfully handed out.");
 
         return "redirect:" + uriBuilder.path("/gym/badge").build();
 
@@ -103,6 +111,9 @@ public class GymController {
      * @param model
      * @return
      */
+
+    
+    
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String create(Model model, Principal principal) {
         log.debug("Create new gym");
@@ -125,4 +136,35 @@ public class GymController {
         return "redirect:/login?role";
 
     }
+    
+    
+    @RequestMapping(value = "/edit", method = RequestMethod.GET)
+    public String edit(Model model, Principal principal) {
+        log.debug("Edit your gym");
+        String trainerName=principal.getName();
+        TrainerDTO trainer=trainerFacade.findByEmail(principal.getName());
+        
+        
+        model.addAttribute("editGym", trainer.getGym());
+        return "gym/edit";
+    }
+    
+    
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public String edit(@Valid @ModelAttribute("editGym") GymEditDTO gym, BindingResult bindingResult,
+                         RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder, Principal principal, HttpSession session) {
+
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("alert_failure", "Some data were not filled!");
+            return "redirect:" + uriBuilder.path("/gym/edit").build();
+        }
+        
+        gymFacade.editGym(gym);
+
+        
+        
+        return "redirect:/gym/list";
+
+    }
+    
 }

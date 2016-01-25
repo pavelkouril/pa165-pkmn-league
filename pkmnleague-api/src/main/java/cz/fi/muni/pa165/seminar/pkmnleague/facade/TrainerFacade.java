@@ -40,6 +40,12 @@ public interface TrainerFacade {
         public List<TrainerDTO> getAllTrainers();
         
         /**
+        * Gets Bagde Able Trainers
+        * @return List of TrainerDTOs
+        */
+        public List<TrainerDTO> getBadgeAbleTrainers(String name);
+        
+        /**
         * Gets existing Trainer by ID
         *
         * @param id
