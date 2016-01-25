@@ -22,4 +22,5 @@ public class TrainerController {
         model.addAttribute("trainers", trainerFacade.getAllTrainers());
         return "trainer/list";
     }
+
 }

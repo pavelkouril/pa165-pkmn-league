@@ -67,4 +67,5 @@ public class PokemonDaoTest extends AbstractTestNGSpringContextTests {
 
         assertEquals(1, pokemonDao.findAll().size());
     }
+
 }

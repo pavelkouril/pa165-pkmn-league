@@ -3,7 +3,6 @@ package cz.fi.muni.pa165.seminar.pkmnleague.mvc.controllers;
 import cz.fi.muni.pa165.seminar.pkmnleague.dto.PokemonCreateDTO;
 import cz.fi.muni.pa165.seminar.pkmnleague.dto.PokemonDTO;
 import cz.fi.muni.pa165.seminar.pkmnleague.dto.PokemonEditDTO;
-import cz.fi.muni.pa165.seminar.pkmnleague.dto.TrainerDTO;
 import cz.fi.muni.pa165.seminar.pkmnleague.exceptions.PokemonLeagueServiceException;
 import cz.fi.muni.pa165.seminar.pkmnleague.facade.PokemonFacade;
 import cz.fi.muni.pa165.seminar.pkmnleague.facade.TrainerFacade;
@@ -76,7 +75,7 @@ public class PokemonController {
 
     @RequestMapping(value = "/level-up/{id}", method = RequestMethod.GET)
     public String levelUp(@PathVariable int id, RedirectAttributes redirectAttributes, Principal principal) {
-        if (!trainerFacade.findByEmail(principal.getName()).equals(pokemonFacade.getPokemonWithId(id).getTrainer())) {
+        if (!trainerFacade.getTrainerWithEmail(principal.getName()).equals(pokemonFacade.getPokemonWithId(id).getTrainer())) {
             redirectAttributes.addFlashAttribute("alert_danger", "You can't modify Pokémon you don't own!");
             return "redirect:/pokemon/list";
         }
@@ -144,7 +143,7 @@ public class PokemonController {
             redirectAttributes.addFlashAttribute("alert_failure", "Some data were not filled!");
             return "redirect:" + uriBuilder.path("/pokemon/create").build();
         }
-        pokemon.setTrainer(trainerFacade.findByEmail(principal.getName()));
+        pokemon.setTrainer(trainerFacade.getTrainerWithEmail(principal.getName()));
         pokemonFacade.createPokemon(pokemon);
 
         redirectAttributes.addFlashAttribute("alert_success", "Pokemon was successfully created.");

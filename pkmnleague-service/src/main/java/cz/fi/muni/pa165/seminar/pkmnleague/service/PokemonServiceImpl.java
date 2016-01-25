@@ -13,6 +13,7 @@ import java.util.List;
  */
 @Service
 public class PokemonServiceImpl implements PokemonService {
+
     @Inject
     private PokemonDao pokemonDao;
 
@@ -35,8 +36,8 @@ public class PokemonServiceImpl implements PokemonService {
     public void create(Pokemon pokemon) {
         pokemonDao.save(pokemon);
     }
-    
-    public void update(Pokemon pokemon,String newNickName) {
+
+    public void update(Pokemon pokemon, String newNickName) {
         pokemon.setNickname(newNickName);
         pokemonDao.save(pokemon);
     }
@@ -49,4 +50,5 @@ public class PokemonServiceImpl implements PokemonService {
         pokemon.setLevel(pokemon.getLevel() + 1);
         pokemonDao.save(pokemon);
     }
+
 }

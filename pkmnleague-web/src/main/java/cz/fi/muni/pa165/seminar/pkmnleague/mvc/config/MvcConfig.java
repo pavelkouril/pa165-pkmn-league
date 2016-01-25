@@ -21,7 +21,6 @@ import javax.validation.Validator;
 @ComponentScan(basePackages = "cz.fi.muni.pa165.seminar.pkmnleague.mvc")
 public class MvcConfig extends WebMvcConfigurerAdapter {
 
-
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/login").setViewName("login");

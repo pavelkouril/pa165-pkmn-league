@@ -7,8 +7,6 @@ import java.util.Objects;
 /**
  * @author Oldrich Faldik
  */
-
-
 public class PokemonDTO {
 
     private int id;
@@ -136,6 +134,5 @@ public class PokemonDTO {
         }
         return true;
     }
-
 
 }

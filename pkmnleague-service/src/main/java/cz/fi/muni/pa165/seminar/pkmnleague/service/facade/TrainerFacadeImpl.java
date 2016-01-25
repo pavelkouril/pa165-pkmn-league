@@ -2,7 +2,6 @@ package cz.fi.muni.pa165.seminar.pkmnleague.service.facade;
 
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.Badge;
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.Trainer;
-import cz.fi.muni.pa165.seminar.pkmnleague.dto.BadgeDTO;
 import cz.fi.muni.pa165.seminar.pkmnleague.dto.TrainerCreateDTO;
 import cz.fi.muni.pa165.seminar.pkmnleague.dto.TrainerDTO;
 import cz.fi.muni.pa165.seminar.pkmnleague.facade.TrainerFacade;
@@ -65,19 +64,6 @@ public class TrainerFacadeImpl implements TrainerFacade {
     }
 
     @Override
-    public List<TrainerDTO> getTrainersByIsGymLeader() {
-        List<Trainer> trainers = trainerService.findAll();
-        List<Trainer> trainersLeaders = new ArrayList<Trainer>();
-        for (Trainer trainer : trainers) {
-            if (trainerService.isGymLeader(trainer)) {
-                trainersLeaders.add(trainerService.findById(trainer.getId()));
-            }
-        }
-        final List<TrainerDTO> dtot = beanMappingService.mapTo(trainersLeaders, TrainerDTO.class);
-        return dtot;
-    }
-
-    @Override
     public List<TrainerDTO> getTrainersByCountOfBages(int badgesCount) {
         List<Trainer> trainers = trainerService.findAll();
         List<Trainer> trainersBadges = new ArrayList<Trainer>();
@@ -91,64 +77,45 @@ public class TrainerFacadeImpl implements TrainerFacade {
     }
 
     @Override
-    public void addBadge(BadgeDTO newBadge, int trainerId) {
-        Badge mappedBadge = beanMappingService.mapTo(newBadge, Badge.class);
-        gymService.awardBadgeToTrainer(mappedBadge.getGym(), trainerService.findById(trainerId));
-    }
-
-
-    @Override
-    public void changeName(String newName, int trainerId) {
-        Trainer mappedTrainer = beanMappingService.mapTo(trainerId, Trainer.class);
-        mappedTrainer.setFullName(newName);
-    }
-
-    @Override
     public void changeDateOfBirth(Date newDateOfBirth, int trainerId) {
         Trainer mappedTrainer = beanMappingService.mapTo(trainerId, Trainer.class);
         mappedTrainer.setDateOfBirth((java.sql.Date) newDateOfBirth);
     }
 
     @Override
-    public TrainerDTO findByEmail(String email) {
+    public TrainerDTO getTrainerWithEmail(String email) {
         return beanMappingService.mapTo(trainerService.findByEmail(email), TrainerDTO.class);
     }
 
     @Override
     public List<TrainerDTO> getBadgeAbleTrainers(String name) {
-        TrainerDTO gymTrainer=this.findByEmail(name);
+        TrainerDTO gymTrainer = this.getTrainerWithEmail(name);
         List<Trainer> trainers = trainerService.findAll();
         List<Trainer> trainersBadges = new ArrayList<Trainer>();
         List<Trainer> trainersBadgesFinal = new ArrayList<Trainer>();
-        List<Badge> badges= badgeService.findAll();
-        
+        List<Badge> badges = badgeService.findAll();
+
         for (Trainer trainer : trainers) {
             if (gymTrainer.getId() != trainer.getId()) {
-                
-                   
-                   trainersBadges.add(trainerService.findById(trainer.getId())); 
-                   
-                
-                
+                trainersBadges.add(trainerService.findById(trainer.getId()));
             }
         }
-        
+
         for (Trainer trainerBadge : trainersBadges) {
-          boolean hasBadge=false;  
-                for (Badge badge : badges) {
-                   if(badge.getTrainer().getId()==trainerBadge.getId() && badge.getGym().getId()==gymTrainer.getGym().getId()){
-                       hasBadge=true;
-                   }
-                   
+            boolean hasBadge = false;
+            for (Badge badge : badges) {
+                if (badge.getTrainer().getId() == trainerBadge.getId() && badge.getGym().getId() == gymTrainer.getGym().getId()) {
+                    hasBadge = true;
                 }
-                if(hasBadge==false){
-                   trainersBadgesFinal.add(trainerService.findById(trainerBadge.getId()));
-                   }
-            
+
+            }
+            if (hasBadge == false) {
+                trainersBadgesFinal.add(trainerService.findById(trainerBadge.getId()));
+            }
+
         }
-        
-        
-        
+
+
         final List<TrainerDTO> dtot = beanMappingService.mapTo(trainersBadgesFinal, TrainerDTO.class);
         return dtot;
     }

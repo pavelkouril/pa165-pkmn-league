@@ -78,4 +78,5 @@ public class BadgeDaoTest extends AbstractTestNGSpringContextTests {
 
         assertEquals(1, badgeDao.findAll().size());
     }
+
 }

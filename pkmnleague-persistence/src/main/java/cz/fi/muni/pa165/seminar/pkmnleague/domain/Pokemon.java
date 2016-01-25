@@ -39,7 +39,7 @@ public class Pokemon {
 
     @NotNull
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="TRAINER_ID")
+    @JoinColumn(name = "TRAINER_ID")
     private Trainer trainer;
 
     public Pokemon(Trainer trainer, int speciesId, String speciesName, PokemonType primaryType, int level) {
@@ -147,4 +147,5 @@ public class Pokemon {
         result = 31 * result + getTrainer().hashCode();
         return result;
     }
+
 }

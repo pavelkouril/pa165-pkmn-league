@@ -14,6 +14,7 @@ import java.util.List;
  */
 @Repository
 public class TrainerDaoImpl implements TrainerDao {
+
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -69,4 +70,5 @@ public class TrainerDaoImpl implements TrainerDao {
             throw new DaoLayerException(e.getMessage());
         }
     }
+
 }

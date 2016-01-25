@@ -10,6 +10,7 @@ import java.util.List;
  * @author Pavel Kouřil
  */
 public interface PokemonDao {
+
     /**
      * Finds Pokemon by given ID (primary key)
      */
@@ -29,4 +30,5 @@ public interface PokemonDao {
      * Returns all existing Pokemon entities in database
      */
     List<Pokemon> findAll();
+
 }

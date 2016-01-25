@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.fi.muni.pa165.seminar.pkmnleague.dto;
 
 
@@ -11,22 +6,18 @@ import cz.fi.muni.pa165.seminar.pkmnleague.domain.PokemonType;
 import java.util.Objects;
 
 /**
- *
  * @author Oldrich Faldik
  */
-
-
-public class GymDTO
-{
+public class GymDTO {
 
     private int id;
-    
+
     private String city;
-    
+
     private PokemonType type;
-    
+
     private TrainerDTO leader;
-    
+
     public int getId() {
         return id;
     }
@@ -88,4 +79,5 @@ public class GymDTO
         }
         return true;
     }
+
 }

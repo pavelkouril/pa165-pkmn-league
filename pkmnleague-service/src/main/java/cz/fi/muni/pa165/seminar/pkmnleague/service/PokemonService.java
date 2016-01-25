@@ -8,11 +8,17 @@ import java.util.List;
  * @author Pavel Kouřil <pk@pavelkouril.cz>
  */
 public interface PokemonService {
+
     Pokemon findById(int id);
+
     List<Pokemon> findAll();
+
     void delete(Pokemon pokemon);
+
     void create(Pokemon pokemon);
+
     void update(Pokemon pokemon, String newNickName);
 
     void levelUpPokemon(Pokemon pokemon);
+
 }

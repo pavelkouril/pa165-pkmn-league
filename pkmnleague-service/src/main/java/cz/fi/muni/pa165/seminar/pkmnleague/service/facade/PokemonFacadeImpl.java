@@ -19,7 +19,6 @@ import java.util.List;
 /**
  * @author Zuzana Goldmannova
  */
-
 @Service
 @Transactional
 public class PokemonFacadeImpl implements PokemonFacade {
@@ -145,4 +144,5 @@ public class PokemonFacadeImpl implements PokemonFacade {
     public void levelUpPokemonWithId(int id) {
         pokemonService.levelUpPokemon(pokemonService.findById(id));
     }
+
 }

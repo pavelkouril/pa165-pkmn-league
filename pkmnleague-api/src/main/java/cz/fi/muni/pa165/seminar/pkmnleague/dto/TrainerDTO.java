@@ -9,8 +9,6 @@ import java.util.stream.Collectors;
 /**
  * @author Oldrich Faldik
  */
-
-
 public class TrainerDTO {
 
     private int id;

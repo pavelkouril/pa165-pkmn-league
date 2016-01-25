@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 /**
  * @author Pavel Kouřil <pk@pavelkouril.cz>
  */
-@JsonIgnoreProperties({ "password" })
+@JsonIgnoreProperties({"password"})
 public class TrainerDTOMixin {
 }
 

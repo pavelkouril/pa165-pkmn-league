@@ -81,8 +81,8 @@ public class GymFacadeTest extends AbstractTestNGSpringContextTests {
         GymDTO dto1 = new GymDTO();
         GymDTO dto2 = new GymDTO();
 
-        doReturn(toList(new Gym[]{senecGym,bielGym})).when(gymServiceMock).findAll();
-        doReturn(toList(new GymDTO[]{dto1,dto2})).when(beanMappingServiceMock)
+        doReturn(toList(new Gym[]{senecGym, bielGym})).when(gymServiceMock).findAll();
+        doReturn(toList(new GymDTO[]{dto1, dto2})).when(beanMappingServiceMock)
                 .mapTo(Matchers.anyListOf(Gym.class), (Class<?>) Matchers.any(Class.class));
 
         Collection<GymDTO> gymDTOs = gymFacade.getAllGyms();
@@ -108,4 +108,5 @@ public class GymFacadeTest extends AbstractTestNGSpringContextTests {
         verify(beanMappingServiceMock).mapTo(senecGym, GymDTO.class);
         verifyNoMoreInteractions(gymServiceMock);
     }
+
 }

@@ -7,6 +7,7 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 import javax.servlet.Filter;
 
 public class RestInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return new Class<?>[]{RestConfig.class};
@@ -28,4 +29,5 @@ public class RestInitializer extends AbstractAnnotationConfigDispatcherServletIn
     protected Class<?>[] getServletConfigClasses() {
         return null;
     }
+
 }

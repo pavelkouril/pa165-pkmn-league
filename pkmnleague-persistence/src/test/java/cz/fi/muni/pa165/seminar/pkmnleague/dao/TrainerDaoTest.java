@@ -61,4 +61,5 @@ public class TrainerDaoTest extends AbstractTestNGSpringContextTests {
 
         assertEquals(1, trainerDao.findAll().size());
     }
+
 }

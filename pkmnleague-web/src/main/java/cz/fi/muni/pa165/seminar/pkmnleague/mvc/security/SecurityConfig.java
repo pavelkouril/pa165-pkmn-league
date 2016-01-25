@@ -1,9 +1,5 @@
 package cz.fi.muni.pa165.seminar.pkmnleague.mvc.security;
 
-/**
- * @author olda
- */
-
 import cz.fi.muni.pa165.seminar.pkmnleague.service.TrainerService;
 import cz.fi.muni.pa165.seminar.pkmnleague.service.config.ServiceConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +12,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+/**
+ * @author olda
+ */
 @Configuration
 @Import(ServiceConfiguration.class)
 @EnableWebSecurity
@@ -51,4 +50,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/css/**", "/js/**", "favicon.ico", "/img/**");
     }
+
 }

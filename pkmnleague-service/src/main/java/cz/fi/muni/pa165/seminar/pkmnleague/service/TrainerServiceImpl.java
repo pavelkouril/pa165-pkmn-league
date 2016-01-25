@@ -29,13 +29,13 @@ import java.util.List;
 public class TrainerServiceImpl implements TrainerService {
 
     @Autowired
-    TrainerDao trainerDao;
+    private TrainerDao trainerDao;
 
     @Autowired
-    GymDao gymDao;
+    private GymDao gymDao;
 
     @Autowired
-    PokemonService pokemonService;
+    private PokemonService pokemonService;
 
 
     @Override
@@ -109,4 +109,5 @@ public class TrainerServiceImpl implements TrainerService {
     private User buildUserForAuthentication(Trainer trainer, List<GrantedAuthority> authorities) {
         return new User(trainer.getEmail(), trainer.getPassword(), authorities);
     }
+
 }

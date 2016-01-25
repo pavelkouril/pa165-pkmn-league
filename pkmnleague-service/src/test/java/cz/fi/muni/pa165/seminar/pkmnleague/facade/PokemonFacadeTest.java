@@ -79,7 +79,7 @@ public class PokemonFacadeTest extends AbstractTestNGSpringContextTests {
         PokemonDTO dto2 = new PokemonDTO();
 
         doReturn(toList(new Pokemon[]{pokemon1, pokemon2})).when(pokemonServiceMock).findAll();
-        doReturn(toList(new PokemonDTO[]{dto1,dto2})).when(beanMappingServiceMock)
+        doReturn(toList(new PokemonDTO[]{dto1, dto2})).when(beanMappingServiceMock)
                 .mapTo(Matchers.anyListOf(Pokemon.class), (Class<?>) Matchers.any(Class.class));
 
         Collection<PokemonDTO> pokemonDTOs = pokemonFacade.getAllPokemons();
@@ -105,5 +105,6 @@ public class PokemonFacadeTest extends AbstractTestNGSpringContextTests {
         verify(beanMappingServiceMock).mapTo(pokemon1, PokemonDTO.class);
         verifyNoMoreInteractions(pokemonServiceMock);
     }
+
 }
 
