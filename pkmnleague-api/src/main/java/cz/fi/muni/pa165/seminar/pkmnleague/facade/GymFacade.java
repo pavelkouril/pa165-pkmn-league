@@ -8,6 +8,7 @@ package cz.fi.muni.pa165.seminar.pkmnleague.facade;
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.PokemonType;
 import cz.fi.muni.pa165.seminar.pkmnleague.dto.GymCreateDTO;
 import cz.fi.muni.pa165.seminar.pkmnleague.dto.GymDTO;
+import cz.fi.muni.pa165.seminar.pkmnleague.dto.GymEditDTO;
 import cz.fi.muni.pa165.seminar.pkmnleague.dto.TrainerDTO;
 import java.util.List;
 
@@ -24,6 +25,13 @@ public interface GymFacade {
         * @param g GymCreateDTO - information about new Gym
         */
         public void createGym(GymCreateDTO g);
+        
+        /**
+        * Edit existing Gym
+        *
+        * @param g GymEditDTO - information about Gym
+        */
+        public void editGym(GymEditDTO g);
         
         /**
         * Delete existing Gym

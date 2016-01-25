@@ -114,4 +114,43 @@ public class TrainerFacadeImpl implements TrainerFacade {
         return beanMappingService.mapTo(trainerService.findByEmail(email), TrainerDTO.class);
     }
 
+    @Override
+    public List<TrainerDTO> getBadgeAbleTrainers(String name) {
+        TrainerDTO gymTrainer=this.findByEmail(name);
+        List<Trainer> trainers = trainerService.findAll();
+        List<Trainer> trainersBadges = new ArrayList<Trainer>();
+        List<Trainer> trainersBadgesFinal = new ArrayList<Trainer>();
+        List<Badge> badges= badgeService.findAll();
+        
+        for (Trainer trainer : trainers) {
+            if (gymTrainer.getId() != trainer.getId()) {
+                
+                   
+                   trainersBadges.add(trainerService.findById(trainer.getId())); 
+                   
+                
+                
+            }
+        }
+        
+        for (Trainer trainerBadge : trainersBadges) {
+          boolean hasBadge=false;  
+                for (Badge badge : badges) {
+                   if(badge.getTrainer().getId()==trainerBadge.getId() && badge.getGym().getId()==gymTrainer.getGym().getId()){
+                       hasBadge=true;
+                   }
+                   
+                }
+                if(hasBadge==false){
+                   trainersBadgesFinal.add(trainerService.findById(trainerBadge.getId()));
+                   }
+            
+        }
+        
+        
+        
+        final List<TrainerDTO> dtot = beanMappingService.mapTo(trainersBadgesFinal, TrainerDTO.class);
+        return dtot;
+    }
+
 }

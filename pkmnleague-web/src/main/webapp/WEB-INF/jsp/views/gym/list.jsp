@@ -10,8 +10,17 @@
 <my:layout title="Available Gyms">
 <jsp:attribute name="body">
 
-    <p><a class="btn btn-success" href="${pageContext.request.contextPath}/gym/create"><i class="fa fa-plus"></i>
+    
+        
+    <c:if test="${pageContext.request.isUserInRole('ROLE_TRAINER')}">
+                <p><a class="btn btn-success" href="${pageContext.request.contextPath}/gym/create"><i class="fa fa-plus"></i>
         Estabilish your own Gym</a></p>
+            </c:if>
+    <c:if test="${pageContext.request.isUserInRole('ROLE_GYMLEADER')}">
+                <p><a class="btn btn-success" href="${pageContext.request.contextPath}/gym/edit"><i class="fa fa-plus"></i>
+        Edit your own Gym</a></p>
+    </c:if>    
+        
 
       <table class="table table-bordered">
           <tr>

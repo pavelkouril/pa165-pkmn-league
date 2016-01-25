@@ -4,6 +4,7 @@ import cz.fi.muni.pa165.seminar.pkmnleague.domain.Gym;
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.PokemonType;
 import cz.fi.muni.pa165.seminar.pkmnleague.dto.GymCreateDTO;
 import cz.fi.muni.pa165.seminar.pkmnleague.dto.GymDTO;
+import cz.fi.muni.pa165.seminar.pkmnleague.dto.GymEditDTO;
 import cz.fi.muni.pa165.seminar.pkmnleague.dto.TrainerDTO;
 import cz.fi.muni.pa165.seminar.pkmnleague.facade.GymFacade;
 import cz.fi.muni.pa165.seminar.pkmnleague.service.BeanMappingService;
@@ -36,6 +37,13 @@ public class GymFacadeImpl implements GymFacade {
     public void createGym(GymCreateDTO g) {
         Gym newGym = new Gym(g.getCity(), g.getType(), trainerService.findById(g.getLeader().getId()));
         gymService.create(newGym);
+    }
+    
+    @Override
+    public void editGym(GymEditDTO g) {
+        Gym editGym= gymService.findById(g.getId());
+        //Gym editGym = new Gym(g.getCity(), g.getType(), trainerService.findById(g.getLeader().getId()));
+        gymService.update(editGym,g.getCity(),g.getType());
     }
 
     @Override

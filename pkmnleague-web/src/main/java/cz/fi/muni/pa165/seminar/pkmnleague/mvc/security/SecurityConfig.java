@@ -39,6 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/gym/create").hasRole("TRAINER")
                 .antMatchers("/gym/badge").hasRole("GYMLEADER")
+                .antMatchers("/gym/edit").hasRole("GYMLEADER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").failureUrl("/login?error").defaultSuccessUrl("/", true).permitAll()

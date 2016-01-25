@@ -2,6 +2,7 @@ package cz.fi.muni.pa165.seminar.pkmnleague.service;
 
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.Badge;
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.Gym;
+import cz.fi.muni.pa165.seminar.pkmnleague.domain.PokemonType;
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.Trainer;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
  */
 public interface GymService {
     public void create(Gym gym);
+    public void update(Gym gym,String city,PokemonType type);
     Gym findById(int id);
     List<Gym> findAll();
     void delete(Gym gym);

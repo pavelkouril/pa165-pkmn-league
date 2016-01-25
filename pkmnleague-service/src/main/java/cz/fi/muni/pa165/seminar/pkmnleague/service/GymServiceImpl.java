@@ -3,6 +3,7 @@ package cz.fi.muni.pa165.seminar.pkmnleague.service;
 import cz.fi.muni.pa165.seminar.pkmnleague.dao.GymDao;
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.Badge;
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.Gym;
+import cz.fi.muni.pa165.seminar.pkmnleague.domain.PokemonType;
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.Trainer;
 import cz.fi.muni.pa165.seminar.pkmnleague.exceptions.PokemonLeagueServiceException;
 import org.springframework.stereotype.Service;
@@ -56,5 +57,13 @@ public class GymServiceImpl implements GymService {
         }
 
         return new Badge(trainer, gym);
+    }
+
+    @Override
+    public void update(Gym gym, String city, PokemonType type) {
+        
+        gym.setCity(city);
+        gym.setType(type);
+        gymDao.save(gym);
     }
 }
