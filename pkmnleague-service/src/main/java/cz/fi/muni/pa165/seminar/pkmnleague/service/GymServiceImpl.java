@@ -16,9 +16,10 @@ import java.util.List;
  */
 @Service
 public class GymServiceImpl implements GymService {
+
     @Inject
     private GymDao gymDao;
-    
+
     @Override
     public void create(Gym gym) {
         gymDao.save(gym);
@@ -61,9 +62,9 @@ public class GymServiceImpl implements GymService {
 
     @Override
     public void update(Gym gym, String city, PokemonType type) {
-        
         gym.setCity(city);
         gym.setType(type);
         gymDao.save(gym);
     }
+
 }

@@ -1,6 +1,5 @@
 package cz.fi.muni.pa165.seminar.pkmnleague.domain;
 
-import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -71,4 +70,5 @@ public class Badge {
         result = 31 * result + getGym().hashCode();
         return result;
     }
+
 }

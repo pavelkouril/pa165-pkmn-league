@@ -85,8 +85,8 @@ public class BadgeFacadeTest extends AbstractTestNGSpringContextTests {
         BadgeDTO dto1 = new BadgeDTO();
         BadgeDTO dto2 = new BadgeDTO();
 
-        doReturn(toList(new Badge[]{badge1,badge2})).when(badgeServiceMock).findAll();
-        doReturn(toList(new BadgeDTO[]{dto1,dto2})).when(beanMappingServiceMock)
+        doReturn(toList(new Badge[]{badge1, badge2})).when(badgeServiceMock).findAll();
+        doReturn(toList(new BadgeDTO[]{dto1, dto2})).when(beanMappingServiceMock)
                 .mapTo(Matchers.anyListOf(Badge.class), (Class<?>) Matchers.any(Class.class));
 
         Collection<BadgeDTO> badgeDTOs = badgeFacade.getAllBadges();
@@ -129,4 +129,5 @@ public class BadgeFacadeTest extends AbstractTestNGSpringContextTests {
         verify(badgeServiceMock).createBadge(badge1);
         verifyNoMoreInteractions(badgeServiceMock);
     }
+
 }

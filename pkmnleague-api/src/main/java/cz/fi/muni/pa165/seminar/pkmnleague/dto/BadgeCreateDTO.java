@@ -1,42 +1,32 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.fi.muni.pa165.seminar.pkmnleague.dto;
 
 import java.util.Objects;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
- *
  * @author Oldrich Faldik
  */
 public class BadgeCreateDTO {
-    
-    //@NotNull
+
     private TrainerDTO trainer;
 
-    //@NotNull
     private GymDTO gym;
-    
+
     private int trainerId;
-    
+
     private int gymId;
-    
+
     public int getTrainerId() {
         return trainerId;
     }
-    
+
     public int getGymId() {
         return gymId;
     }
-    
+
     public void setGymId(int id) {
         this.gymId = id;
     }
-    
+
     public void setTrainerId(int id) {
         this.trainerId = id;
     }
@@ -83,7 +73,4 @@ public class BadgeCreateDTO {
         return true;
     }
 
-   
-    
-    
 }

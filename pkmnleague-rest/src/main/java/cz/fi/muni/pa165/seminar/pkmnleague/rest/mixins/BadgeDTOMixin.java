@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 /**
  * @author Pavel Kouřil <pk@pavelkouril.cz>
  */
-@JsonIgnoreProperties({ "trainer" })
+@JsonIgnoreProperties({"trainer"})
 public class BadgeDTOMixin {
 }
 

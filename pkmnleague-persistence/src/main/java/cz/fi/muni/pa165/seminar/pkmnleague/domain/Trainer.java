@@ -15,6 +15,7 @@ import java.util.Set;
  */
 @Entity
 public class Trainer {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -152,4 +153,5 @@ public class Trainer {
         result = 31 * result + getDateOfBirth().hashCode();
         return result;
     }
+
 }

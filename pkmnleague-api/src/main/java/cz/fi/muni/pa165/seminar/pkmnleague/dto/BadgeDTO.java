@@ -1,23 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.fi.muni.pa165.seminar.pkmnleague.dto;
 
 import java.util.Objects;
 
 /**
- *
  * @author Oldrich Faldik
  */
+public class BadgeDTO {
 
-
-public class BadgeDTO
-{
-    
     private int id;
-    
+
     private TrainerDTO trainer;
 
     private GymDTO gym;
@@ -71,8 +62,6 @@ public class BadgeDTO
         }
         return true;
     }
-
-   
 
 }
 

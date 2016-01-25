@@ -30,13 +30,14 @@ import javax.sql.DataSource;
 @EnableJpaRepositories
 @ImportResource("classpath:/appContext.xml")
 public class EmbeddedDerbyDatabase {
+
     @Bean
-    public JpaTransactionManager transactionManager(){
-        return  new JpaTransactionManager(entityManagerFactory().getObject());
+    public JpaTransactionManager transactionManager() {
+        return new JpaTransactionManager(entityManagerFactory().getObject());
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean  entityManagerFactory(){
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean jpaFactoryBean = new LocalContainerEntityManagerFactoryBean();
         jpaFactoryBean.setDataSource(db());
         jpaFactoryBean.setJpaVendorAdapter(jpaVendorAdapter());
@@ -56,7 +57,7 @@ public class EmbeddedDerbyDatabase {
     }
 
     @Bean
-    public LocalValidatorFactoryBean localValidatorFactoryBean(){
+    public LocalValidatorFactoryBean localValidatorFactoryBean() {
         return new LocalValidatorFactoryBean();
     }
 
@@ -66,10 +67,11 @@ public class EmbeddedDerbyDatabase {
     }
 
     @Bean
-    public DataSource db(){
+    public DataSource db() {
         EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
         builder.setName("PokemonLeagueDB");
         return builder.setType(EmbeddedDatabaseType.DERBY).build();
     }
+
 }
 

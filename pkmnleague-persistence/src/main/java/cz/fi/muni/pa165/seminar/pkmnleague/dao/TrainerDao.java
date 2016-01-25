@@ -16,28 +16,29 @@ public interface TrainerDao {
      *
      * @param id of the Trainer instance.
      */
-    public Trainer findById(int id);
+    Trainer findById(int id);
 
     /**
      * Creates or updates corresponding trainer
      *
      * @param trainer instance of Trainer to create or update.
      */
-    public void save(Trainer trainer);
+    void save(Trainer trainer);
 
     /**
      * Deletes provided instance of Trainer.
      *
      * @param trainer instance of Trainer to delete.
      */
-    public void delete(Trainer trainer);
+    void delete(Trainer trainer);
 
     /**
      * Find all instances of Trainer.
      *
      * @return List of Trainer instances.
      */
-    public List<Trainer> findAll();
+    List<Trainer> findAll();
 
     Trainer findByEmail(String email);
+
 }

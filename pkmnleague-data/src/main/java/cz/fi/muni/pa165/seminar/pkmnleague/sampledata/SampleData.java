@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
-
 /**
  * @author Pavel Kouřil <pk@pavelkouril.cz>
  */
@@ -96,4 +95,5 @@ public class SampleData {
         badgeService.createBadge(b);
         return b;
     }
+
 }

@@ -36,7 +36,7 @@ public class GymController {
     public GymCreateDTO getGym() {
         return new GymCreateDTO();
     }
-    
+
     @ModelAttribute("gymEdited")
     public GymCreateDTO getGymEdited() {
         return new GymCreateDTO();
@@ -44,7 +44,7 @@ public class GymController {
 
     @Autowired
     private GymFacade gymFacade;
-    
+
     @Autowired
     private BadgeFacade badgeFacade;
 
@@ -61,11 +61,11 @@ public class GymController {
     public String gyms(Model model, Principal principal) {
         log.info("Gyms = {}", gymFacade.getAllGyms());
         model.addAttribute("gyms", gymFacade.getAllGyms());
-        model.addAttribute("user", trainerFacade.findByEmail(principal.getName()));
-        model.addAttribute("beatenGyms", trainerFacade.findByEmail(principal.getName()));
+        model.addAttribute("user", trainerFacade.getTrainerWithEmail(principal.getName()));
+        model.addAttribute("beatenGyms", trainerFacade.getTrainerWithEmail(principal.getName()));
         return "gym/list";
     }
-    
+
     /**
      * Hands out a badge to a trainer.
      *
@@ -78,33 +78,27 @@ public class GymController {
         model.addAttribute("createBadge", new BadgeCreateDTO());
         log.info("Trainers = {}", trainerFacade.getAllTrainers());
         model.addAttribute("trainers", trainerFacade.getBadgeAbleTrainers(principal.getName()));
-        //log.info("Gyms = {}", gymFacade.getGymsByLeader(trainerFacade.findByEmail(principal.getName()).getId()));
-        //model.addAttribute("gyms", gymFacade.getGymsByLeader(trainerFacade.findByEmail(principal.getName()).getId()));
         return "gym/badge";
     }
-    
+
     @RequestMapping(value = "/badge", method = RequestMethod.POST)
-    public String badge(@Valid @ModelAttribute("badge") BadgeCreateDTO badge, 
+    public String badge(@Valid @ModelAttribute("badge") BadgeCreateDTO badge,
                         BindingResult bindingResult,
-                        RedirectAttributes redirectAttributes, 
+                        RedirectAttributes redirectAttributes,
                         UriComponentsBuilder uriBuilder, Principal principal) {
 
         if (bindingResult.hasErrors()) {
-            //redirectAttributes.addFlashAttribute("alert_failure", bindingResult.toString());
             redirectAttributes.addFlashAttribute("alert_failure", "Some data were not filled!");
             return "redirect:" + uriBuilder.path("/gym/badge").build();
         }
-        
-        //badge.setTrainerId(trainerFacade.findByEmail(principal.getName()).getId());
-        
-        badge.setGymId(trainerFacade.findByEmail(principal.getName()).getGym().getId());
+
+        badge.setGymId(trainerFacade.getTrainerWithEmail(principal.getName()).getGym().getId());
 
         badgeFacade.createBadge(badge);
 
         redirectAttributes.addFlashAttribute("alert_success", "Badge was successfully handed out.");
 
         return "redirect:" + uriBuilder.path("/gym/badge").build();
-
     }
 
     /**
@@ -113,11 +107,8 @@ public class GymController {
      * @param model
      * @return
      */
-
-    
-    
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String create(Model model, Principal principal) {
+    public String create(Model model) {
         log.debug("Create new gym");
         model.addAttribute("createGym", new GymCreateDTO());
         return "gym/create";
@@ -131,42 +122,33 @@ public class GymController {
             redirectAttributes.addFlashAttribute("alert_failure", "Some data were not filled!");
             return "redirect:" + uriBuilder.path("/gym/create").build();
         }
-        gym.setLeader(trainerFacade.findByEmail(principal.getName()));
+        gym.setLeader(trainerFacade.getTrainerWithEmail(principal.getName()));
         gymFacade.createGym(gym);
 
         session.invalidate();
         return "redirect:/login?role";
-
     }
-    
-    
+
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public String edit(Model model, Principal principal) {
         log.debug("Edit your gym");
-        String trainerName=principal.getName();
-        TrainerDTO trainer=trainerFacade.findByEmail(principal.getName());
-        
-        
+        TrainerDTO trainer = trainerFacade.getTrainerWithEmail(principal.getName());
+
         model.addAttribute("editGym", trainer.getGym());
         return "gym/edit";
     }
-    
-    
+
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String edit(@Valid @ModelAttribute("editGym") GymEditDTO gym, BindingResult bindingResult,
-                         RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder, Principal principal, HttpSession session) {
+                       RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder, Principal principal, HttpSession session) {
 
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("alert_failure", "Some data were not filled!");
             return "redirect:" + uriBuilder.path("/gym/edit").build();
         }
-        
+
         gymFacade.editGym(gym);
-
-        
-        
         return "redirect:/gym/list";
-
     }
-    
+
 }

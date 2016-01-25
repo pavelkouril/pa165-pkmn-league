@@ -11,9 +11,13 @@ import java.util.List;
  * @author Pavel Kouřil <pk@pavelkouril.cz>
  */
 public interface BadgeService {
+
     void createBadge(Badge badge);
+
     Badge findById(int id);
+
     List<Badge> findAll();
+
     void delete(Badge gym);
 
     /**
@@ -23,4 +27,5 @@ public interface BadgeService {
      * @return List of all Trainers badges.
      */
     List<Badge> getAllBadgesByTrainer(Trainer trainer);
+
 }

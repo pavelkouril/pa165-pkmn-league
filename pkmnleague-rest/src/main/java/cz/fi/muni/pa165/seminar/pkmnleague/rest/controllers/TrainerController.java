@@ -12,7 +12,6 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 import java.util.Set;
 
@@ -88,4 +87,5 @@ public class TrainerController {
             throw new ResourceAlreadyExistingException();
         }
     }
+
 }

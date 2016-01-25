@@ -6,6 +6,8 @@ package cz.fi.muni.pa165.seminar.pkmnleague.utils;
  * @author Dominik Hanak @domhanak
  */
 public class PokemonLeagueRunner {
+
     public static void main(String[] args) {
     }
+
 }

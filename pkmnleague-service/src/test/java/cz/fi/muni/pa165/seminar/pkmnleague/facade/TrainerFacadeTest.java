@@ -65,7 +65,7 @@ public class TrainerFacadeTest extends AbstractTestNGSpringContextTests {
         TrainerDTO dto2 = new TrainerDTO();
 
         doReturn(toList(new Trainer[]{trainer, trainerLeader})).when(trainerServiceMock).findAll();
-        doReturn(toList(new TrainerDTO[]{dto1,dto2})).when(beanMappingServiceMock)
+        doReturn(toList(new TrainerDTO[]{dto1, dto2})).when(beanMappingServiceMock)
                 .mapTo(Matchers.anyListOf(Trainer.class), (Class<?>) Matchers.any(Class.class));
 
         Collection<TrainerDTO> trainerDTOs = trainerFacade.getAllTrainers();
@@ -91,4 +91,5 @@ public class TrainerFacadeTest extends AbstractTestNGSpringContextTests {
         verify(beanMappingServiceMock).mapTo(trainer, TrainerDTO.class);
         verifyNoMoreInteractions(trainerServiceMock);
     }
+
 }

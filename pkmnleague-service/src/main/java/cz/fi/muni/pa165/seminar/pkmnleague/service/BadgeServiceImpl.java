@@ -1,7 +1,6 @@
 package cz.fi.muni.pa165.seminar.pkmnleague.service;
 
 import cz.fi.muni.pa165.seminar.pkmnleague.dao.BadgeDao;
-import cz.fi.muni.pa165.seminar.pkmnleague.dao.GymDao;
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.Badge;
 import cz.fi.muni.pa165.seminar.pkmnleague.domain.Trainer;
 import cz.fi.muni.pa165.seminar.pkmnleague.exceptions.PokemonLeagueServiceException;
@@ -60,4 +59,5 @@ public class BadgeServiceImpl implements BadgeService {
 
         return result;
     }
+
 }

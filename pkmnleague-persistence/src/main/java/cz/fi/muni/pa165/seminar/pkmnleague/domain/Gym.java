@@ -5,7 +5,6 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
- *
  * @author Oldrich Faldik
  */
 @Entity
@@ -14,18 +13,18 @@ public class Gym implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
+
     @NotNull
     @Column(nullable = false)
     private String city;
-    
+
     @NotNull
     @Column(nullable = false)
     private PokemonType type;
-    
+
     @NotNull
-    @OneToOne(cascade=CascadeType.PERSIST)
-    @JoinColumn(name="TRAINER_ID")
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "TRAINER_ID")
     private Trainer leader;
 
     public Gym(String city, PokemonType type, Trainer leader) {
@@ -84,4 +83,5 @@ public class Gym implements Serializable {
         result = 31 * result + getLeader().hashCode();
         return result;
     }
+
 }

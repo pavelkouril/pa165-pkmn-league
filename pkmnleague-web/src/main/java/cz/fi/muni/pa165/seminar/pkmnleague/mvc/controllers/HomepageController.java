@@ -28,7 +28,7 @@ public class HomepageController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String list(Model model, Principal principal) {
-        TrainerDTO trainer = trainerFacade.findByEmail(principal.getName());
+        TrainerDTO trainer = trainerFacade.getTrainerWithEmail(principal.getName());
         model.addAttribute("trainer", trainer);
         List<BadgeDTO> badges = badgeFacade.getBadgesByTrainer(trainer.getId());
         model.addAttribute("badges", badges);

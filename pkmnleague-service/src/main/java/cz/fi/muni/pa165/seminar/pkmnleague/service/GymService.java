@@ -11,10 +11,17 @@ import java.util.List;
  * @author Pavel Kouřil <pk@pavelkouril.cz>
  */
 public interface GymService {
-    public void create(Gym gym);
-    public void update(Gym gym,String city,PokemonType type);
+
+    void create(Gym gym);
+
+    void update(Gym gym, String city, PokemonType type);
+
     Gym findById(int id);
+
     List<Gym> findAll();
+
     void delete(Gym gym);
+
     Badge awardBadgeToTrainer(Gym gym, Trainer trainer);
+
 }

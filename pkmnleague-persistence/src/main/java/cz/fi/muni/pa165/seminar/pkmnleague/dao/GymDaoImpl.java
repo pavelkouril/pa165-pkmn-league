@@ -9,13 +9,12 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 /**
- *
  * Implementation of GymDao interface.
- * 
+ *
  * @author Zuzana Goldmannova
  */
 @Repository
-public class GymDaoImpl implements GymDao{
+public class GymDaoImpl implements GymDao {
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -63,5 +62,5 @@ public class GymDaoImpl implements GymDao{
             throw new DaoLayerException(e.getMessage());
         }
     }
-    
+
 }

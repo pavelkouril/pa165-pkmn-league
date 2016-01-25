@@ -75,4 +75,5 @@ public class BadgeFacadeImpl implements BadgeFacade {
         final List<BadgeDTO> dtob = beanMappingService.mapTo(badgesByGym, BadgeDTO.class);
         return dtob;
     }
+
 }
