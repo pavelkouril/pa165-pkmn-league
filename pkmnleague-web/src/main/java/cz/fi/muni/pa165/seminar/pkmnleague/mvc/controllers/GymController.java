@@ -58,9 +58,11 @@ public class GymController {
      * @return
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String gyms(Model model) {
+    public String gyms(Model model, Principal principal) {
         log.info("Gyms = {}", gymFacade.getAllGyms());
         model.addAttribute("gyms", gymFacade.getAllGyms());
+        model.addAttribute("user", trainerFacade.findByEmail(principal.getName()));
+        model.addAttribute("beatenGyms", trainerFacade.findByEmail(principal.getName()));
         return "gym/list";
     }
     
