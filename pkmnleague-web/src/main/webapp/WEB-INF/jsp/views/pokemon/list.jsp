@@ -37,6 +37,7 @@
                   <td>
                       <a href="${pageContext.request.contextPath}/pokemon/edit/${pokemon.id}" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i> Rename</a>
                       <a href="${pageContext.request.contextPath}/pokemon/level-up/${pokemon.id}" class="btn btn-sm btn-info"><i class="fa fa-arrow-up"></i> Level up</a>
+                      <a href="${pageContext.request.contextPath}/pokemon/release/${pokemon.id}" class="btn btn-sm btn-danger"><i class="fa fa-remove"></i> Release</a>
                   </td>
               </tr>
           </c:forEach>
