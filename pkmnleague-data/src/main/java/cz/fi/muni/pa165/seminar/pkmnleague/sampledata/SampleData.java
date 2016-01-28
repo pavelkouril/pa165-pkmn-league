@@ -44,7 +44,7 @@ public class SampleData {
         pokemon(red, 131, "Lapras", PokemonType.WATER, PokemonType.ICE, 80);
         pokemon(red, 143, "Snorlax", PokemonType.NORMAL, 88);
         pokemon(red, 3, "Venusaur", PokemonType.GRASS, PokemonType.POISON, 84);
-        pokemon(red, 6, "Charziard", PokemonType.FIRE, PokemonType.FLYING, 84);
+        pokemon(red, 6, "Charizard", PokemonType.FIRE, PokemonType.FLYING, 84);
         pokemon(red, 9, "Blastoise", PokemonType.WATER, 84);
 
         pokemon(blue, 103, "Exeggutor", PokemonType.GRASS, PokemonType.PSYCHIC, 55);
